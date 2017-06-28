@@ -1,0 +1,139 @@
+# Copyright (C) 2017 Pakkasmarja Management
+# This file is distributed under the same license as the Pakkasmarja Management package.
+msgid ""
+msgstr ""
+"Project-Id-Version: Pakkasmarja Management 0.0.1\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/wordpress-"
+"pakkasmarja-management\n"
+"POT-Creation-Date: 2017-06-26 14:38+0300\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"PO-Revision-Date: 2017-06-26 14:41+0300\n"
+"Language-Team: \n"
+"X-Generator: Poedit 1.8.9\n"
+"Last-Translator: \n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Language: fi\n"
+
+#: chat-threads/chat-threads-groups-widget.php:18
+#: question-groups/question-groups-groups-widget.php:18
+msgid "User Groups"
+msgstr "Käyttäjäryhmät"
+
+#: chat-threads/chat-threads-groups-widget.php:62
+#: question-groups/question-groups-groups-widget.php:62
+msgid "User"
+msgstr "Käyttäjä"
+
+#: chat-threads/chat-threads-groups-widget.php:63
+#: question-groups/question-groups-groups-widget.php:63
+msgid "Manager"
+msgstr "Manageri"
+
+#: chat-threads/chat-threads-type.php:11 chat-threads/chat-threads-type.php:21
+#: chat-threads/chat-threads-type.php:22
+msgid "Chat Threads"
+msgstr "Keskusteluketjut"
+
+#: chat-threads/chat-threads-type.php:12
+msgid "Chat Thread"
+msgstr "Keskusteluketju"
+
+#: chat-threads/chat-threads-type.php:13 chat-threads/chat-threads-type.php:14
+msgid "Add Chat Thread"
+msgstr "Lisää keskusteluketju"
+
+#: chat-threads/chat-threads-type.php:15
+msgid "Edit Chat Thread"
+msgstr "Muokkaa keskusteluketjua"
+
+#: chat-threads/chat-threads-type.php:16
+msgid "New Chat Thread"
+msgstr "Uusi keskusteluketju"
+
+#: chat-threads/chat-threads-type.php:17
+msgid "View Chat Thread"
+msgstr "Näytä keskusteluketju"
+
+#: chat-threads/chat-threads-type.php:18
+msgid "Search Chat Threads"
+msgstr "Hae keskusteluketjuja"
+
+#: chat-threads/chat-threads-type.php:19
+msgid "No Chat Threads found"
+msgstr "Keskusteluketjuja ei löytynyt"
+
+#: chat-threads/chat-threads-type.php:20
+msgid "No Chat Threads in trash"
+msgstr "Ei keskusteluketjuja roskakorissa"
+
+#: question-groups/question-groups-type.php:11
+#: question-groups/question-groups-type.php:21
+#: question-groups/question-groups-type.php:22
+msgid "Question Groups"
+msgstr "Kysymysryhmät"
+
+#: question-groups/question-groups-type.php:12
+msgid "Question Group"
+msgstr "Kysymysryhmä"
+
+#: question-groups/question-groups-type.php:13
+#: question-groups/question-groups-type.php:14
+msgid "Add Question Group"
+msgstr ""
+"Lisää k\n"
+"ysymysryhmä"
+
+#: question-groups/question-groups-type.php:15
+msgid "Edit Question Group"
+msgstr "Muokkaa kysymysryhmää"
+
+#: question-groups/question-groups-type.php:16
+msgid "New Question Group"
+msgstr "Uusi kysymysryhmä"
+
+#: question-groups/question-groups-type.php:17
+msgid "View Question Group"
+msgstr "Näytä kysymysryhmä"
+
+#: question-groups/question-groups-type.php:18
+msgid "Search Question Groups"
+msgstr "Hae kysymysryhmiä"
+
+#: question-groups/question-groups-type.php:19
+msgid "No Question Groups found"
+msgstr "Kysymysryhmiä ei löytynyt"
+
+#: question-groups/question-groups-type.php:20
+msgid "No Question Groups in trash"
+msgstr "Ei kysymysryhmiä roskakorissa"
+
+#: settings/settings-ui.php:22
+msgid "Pakkasmarja Settings"
+msgstr "Pakkasmarja Asetukset"
+
+#: settings/settings-ui.php:27
+msgid "API Settings"
+msgstr "API-asetukset"
+
+#: settings/settings-ui.php:28
+msgid "API URL"
+msgstr "API-osoite"
+
+#: settings/settings-ui.php:47
+msgid "You do not have sufficient permissions to access this page."
+msgstr "Oikeutesi eivät riitä tämän sivun katseluun"
+
+#. Plugin Name of the plugin/theme
+#: settings/settings-ui.php:51
+msgid "Pakkasmarja Management"
+msgstr "Pakkasmarja hallinta"
+
+#. Description of the plugin/theme
+msgid "Management functions for Pakkasmarja Application"
+msgstr "Pakkasmarja applikaation hallintapalvelut"
+
+#. Author of the plugin/theme
+msgid "Metatavu Oy"
+msgstr "Metatavu Oy"

@@ -1,0 +1,135 @@
+# Copyright (C) 2017 Pakkasmarja Management
+# This file is distributed under the same license as the Pakkasmarja Management package.
+msgid ""
+msgstr ""
+"Project-Id-Version: Pakkasmarja Management 0.0.1\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/wordpress-"
+"pakkasmarja-management\n"
+"POT-Creation-Date: 2017-06-26 11:37:09+00:00\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"PO-Revision-Date: 2017-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+
+#: chat-threads/chat-threads-groups-widget.php:18
+#: question-groups/question-groups-groups-widget.php:18
+msgid "User Groups"
+msgstr ""
+
+#: chat-threads/chat-threads-groups-widget.php:62
+#: question-groups/question-groups-groups-widget.php:62
+msgid "User"
+msgstr ""
+
+#: chat-threads/chat-threads-groups-widget.php:63
+#: question-groups/question-groups-groups-widget.php:63
+msgid "Manager"
+msgstr ""
+
+#: chat-threads/chat-threads-type.php:11 chat-threads/chat-threads-type.php:21
+#: chat-threads/chat-threads-type.php:22
+msgid "Chat Threads"
+msgstr ""
+
+#: chat-threads/chat-threads-type.php:12
+msgid "Chat Thread"
+msgstr ""
+
+#: chat-threads/chat-threads-type.php:13 chat-threads/chat-threads-type.php:14
+msgid "Add Chat Thread"
+msgstr ""
+
+#: chat-threads/chat-threads-type.php:15
+msgid "Edit Chat Thread"
+msgstr ""
+
+#: chat-threads/chat-threads-type.php:16
+msgid "New Chat Thread"
+msgstr ""
+
+#: chat-threads/chat-threads-type.php:17
+msgid "View Chat Thread"
+msgstr ""
+
+#: chat-threads/chat-threads-type.php:18
+msgid "Search Chat Threads"
+msgstr ""
+
+#: chat-threads/chat-threads-type.php:19
+msgid "No Chat Threads found"
+msgstr ""
+
+#: chat-threads/chat-threads-type.php:20
+msgid "No Chat Threads in trash"
+msgstr ""
+
+#: question-groups/question-groups-type.php:11
+#: question-groups/question-groups-type.php:21
+#: question-groups/question-groups-type.php:22
+msgid "Question Groups"
+msgstr ""
+
+#: question-groups/question-groups-type.php:12
+msgid "Question Group"
+msgstr ""
+
+#: question-groups/question-groups-type.php:13
+#: question-groups/question-groups-type.php:14
+msgid "Add Question Group"
+msgstr ""
+
+#: question-groups/question-groups-type.php:15
+msgid "Edit Question Group"
+msgstr ""
+
+#: question-groups/question-groups-type.php:16
+msgid "New Question Group"
+msgstr ""
+
+#: question-groups/question-groups-type.php:17
+msgid "View Question Group"
+msgstr ""
+
+#: question-groups/question-groups-type.php:18
+msgid "Search Question Groups"
+msgstr ""
+
+#: question-groups/question-groups-type.php:19
+msgid "No Question Groups found"
+msgstr ""
+
+#: question-groups/question-groups-type.php:20
+msgid "No Question Groups in trash"
+msgstr ""
+
+#: settings/settings-ui.php:22
+msgid "Pakkasmarja Settings"
+msgstr ""
+
+#: settings/settings-ui.php:27
+msgid "API Settings"
+msgstr ""
+
+#: settings/settings-ui.php:28
+msgid "API URL"
+msgstr ""
+
+#: settings/settings-ui.php:47
+msgid "You do not have sufficient permissions to access this page."
+msgstr ""
+
+#. #-#-#-#-#  wordpress-pakkasmarja-management.pot (Pakkasmarja Management 0.0.1)  #-#-#-#-#
+#. Plugin Name of the plugin/theme
+#: settings/settings-ui.php:51
+msgid "Pakkasmarja Management"
+msgstr ""
+
+#. Description of the plugin/theme
+msgid "Management functions for Pakkasmarja Application"
+msgstr ""
+
+#. Author of the plugin/theme
+msgid "Metatavu Oy"
+msgstr ""
