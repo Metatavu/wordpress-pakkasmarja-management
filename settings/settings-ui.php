@@ -25,13 +25,15 @@
       public function adminInit() {
         register_setting(PAKKASMARJA_MANAGEMENT_SETTINGS_GROUP, PAKKASMARJA_MANAGEMENT_SETTINGS_PAGE);
         add_settings_section('api', __( "API Settings", 'pakkasmarja_management' ), null, PAKKASMARJA_MANAGEMENT_SETTINGS_PAGE);
-        $this->addOption('api', 'api-url', __( "API URL", 'pakkasmarja_management' ));
+        $this->addOption('api', 'url', 'api-url', __( "API URL", 'pakkasmarja_management'));
+        $this->addOption('api', 'text', 'client-id', __( "Client Id", 'pakkasmarja_management' ));
+        $this->addOption('api', 'text', 'client-secret', __( "Client Secret", 'pakkasmarja_management' ));
       }
 
-      private function addOption($group, $name, $title) {
+      private function addOption($group, $type, $name, $title) {
         add_settings_field($name, $title, array($this, 'createFieldUI'), PAKKASMARJA_MANAGEMENT_SETTINGS_PAGE, $group, [
           'name' => $name, 
-          'type' => 'url'
+          'type' => $type
         ]);
       }
 
