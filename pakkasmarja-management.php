@@ -17,7 +17,7 @@
   require_once( __DIR__ . '/question-groups/question-groups.php');
   require_once( __DIR__ . '/settings/settings.php');
   require_once( __DIR__ . '/webhooks/webhook-handler.php');
-
+  require_once( __DIR__ . '/operations/operations.php');
   
   add_action('plugins_loaded', function() {
     load_plugin_textdomain( PAKKASMARJA_MANAGEMENT_I18N_DOMAIN, false, dirname( plugin_basename(__FILE__) ) . '/lang/' );
