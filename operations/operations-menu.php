@@ -25,9 +25,15 @@
        * Renders operations table
        */
       public function renderOperationPage() {
+        echo '<div class="wrap">';
+
+        echo sprintf('<h1 class="wp-heading-inline">%s</h1>', __('Operations', 'pakkasmarja_management'));
+
         $table = new OperationReportsTable();
         $table->prepare_items();
         $table->display();
+
+        echo '</div>';
       }
       
     }

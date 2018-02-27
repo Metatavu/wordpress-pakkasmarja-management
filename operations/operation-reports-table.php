@@ -18,9 +18,10 @@
      * Operation reports table
      */
     class OperationReportsTable extends \WP_List_Table {
-      
+
+      private static $SUPPORTED_OPERATION_TYPES = ["SAP_CONTACT_SYNC", "SAP_DELIVERY_PLACE_SYNC", "SAP_ITEM_GROUP_SYNC", "SAP_CONTRACT_SYNC"]; 
       private static $DEFAULT_TIMEZONE = 'Europe/Helsinki';
-      private static $DATE_FORMAT = 'Y-m-d';
+      private static $DATETIME_FORMAT = 'Y-m-d H:i:s';
       private $perPage = 10;
       
       /**
@@ -38,6 +39,13 @@
           'ajax'      => false  
         ]);
         
+        wp_enqueue_script('jquery');
+        wp_enqueue_script('jquery-ui-dialog', null, ['jquery']);
+        wp_enqueue_script('operation-reports-table', plugin_dir_url(__FILE__) . 'operation-reports-table.js', null, ['jquery-ui-dialog' ]);
+        
+        wp_register_style('jquery-ui', 'https://cdn.metatavu.io/libs/jquery-ui/1.12.1/jquery-ui.min.css');
+        wp_enqueue_style('jquery-ui');
+
         $this->operationReportsApi = \Metatavu\Pakkasmarja\Api\ApiClient::getOperationReportsApi();
       }
       
@@ -54,7 +62,7 @@
         foreach ($response["items"] as $operationReport) {
           $this->items[] = [
             "id" => $operationReport['id'],
-            "type" => $this->getTypeLabel($operationReport['type']),
+            "type" => $this->getOperationTypeLabel($operationReport['type']),
             "started" => $this->formatDateTime($operationReport["started"]),
             "status" => $this->getStatus($operationReport["pendingCount"], $operationReport["failedCount"], $operationReport["successCount"])
           ];
@@ -65,6 +73,33 @@
           'per_page'    => $this->perPage,
           'total_pages' => ceil($itemCount/ $this->perPage)
         ]);
+      }
+
+      /**
+       * Renders actions bar into the table
+       * @param string $which which bar is in question (top or bottom)
+       */
+      public function extra_tablenav($which) {
+        if ($which === "top") {
+          echo sprintf("<label>%s</label>", __('Operation', 'pakkasmarja_management'));
+          echo "\n";
+          echo '<select name="operation-type">';
+          
+          foreach (self::$SUPPORTED_OPERATION_TYPES as $operationType) {
+            echo sprintf('<option value="%s">%s</option>', $operationType, $this->getOperationTypeLabel($operationType));
+          }
+
+          echo "</select>";
+          echo "\n";
+          
+          echo sprintf('<button id="doaction" class="button" data-dialog-confirm="%s" data-dialog-cancel="%s" data-dialog-title="%s" data-dialog-content="%s">%s</button>', 
+            htmlspecialchars(__('Confirm', 'pakkasmarja_management')),
+            htmlspecialchars(__('Cancel', 'pakkasmarja_management')),
+            htmlspecialchars(__('Confirm operation', 'pakkasmarja_management')),
+            htmlspecialchars(__('Confirm operation %s start', 'pakkasmarja_management')),
+            htmlspecialchars(__('Start', 'pakkasmarja_management'))
+          );
+        }
       }
        
       /**
@@ -135,7 +170,7 @@
        */
       private function getStatus($pendingCount, $failedCount, $successCount) {
         if ($pendingCount > 0) {
-          return __('In Progress', 'pakkasmarja_management');
+          return sprintf(__('In Progress (%d / %d)', 'pakkasmarja_management'), $failedCount + $successCount, $pendingCount);
         }
 
         if ($successCount > 0 && $failedCount > 0) {
@@ -155,16 +190,16 @@
        * @param string $type type
        * @return string localized type
        */
-      private function getTypeLabel($type) {
+      private function getOperationTypeLabel($type) {
         switch ($type) {
           case "SAP_CONTACT_SYNC":
-            return __('SAP Contacts', 'pakkasmarja_management');
+            return __('SAP Contacts synchronization', 'pakkasmarja_management');
           case "SAP_DELIVERY_PLACE_SYNC":
-            return __('SAP Delivery Places', 'pakkasmarja_management');
+            return __('SAP Delivery Places synchronization', 'pakkasmarja_management');
           case "SAP_ITEM_GROUP_SYNC":
-            return __('SAP Item Groups', 'pakkasmarja_management');
+            return __('SAP Item Groups synchronization', 'pakkasmarja_management');
           case "SAP_CONTRACT_SYNC":
-            return __('SAP Contracts', 'pakkasmarja_management');
+            return __('SAP Contracts synchronization', 'pakkasmarja_management');
         }
       }
 
@@ -211,7 +246,7 @@
         if ($dateTime) {
           $clone = clone $dateTime;
           $clone->setTimezone($this->getTimezone());
-          return $clone->format(self::$DATE_FORMAT);
+          return $clone->format(self::$DATETIME_FORMAT);
         }
         
         return null;
@@ -225,6 +260,8 @@
       private function getTimezone() {
         return new \DateTimeZone($result ? $result : self::$DEFAULT_TIMEZONE);
       }
+
+      
       
     }
     
