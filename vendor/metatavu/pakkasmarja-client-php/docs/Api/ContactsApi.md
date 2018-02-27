@@ -21,6 +21,11 @@ Finds contact by id
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
 
+// Configure API key authorization: bearer
+Metatavu\Pakkasmarja\Configuration::getDefaultConfiguration()->setApiKey('Authorization', 'YOUR_API_KEY');
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+// Metatavu\Pakkasmarja\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Authorization', 'Bearer');
+
 $api_instance = new Metatavu\Pakkasmarja\Api\ContactsApi(new \Http\Adapter\Guzzle6\Client());
 $id = "id_example"; // string | contact id
 
@@ -45,7 +50,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-No authorization required
+[bearer](../../README.md#bearer)
 
 ### HTTP request headers
 
@@ -65,6 +70,11 @@ Lists contacts
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
+
+// Configure API key authorization: bearer
+Metatavu\Pakkasmarja\Configuration::getDefaultConfiguration()->setApiKey('Authorization', 'YOUR_API_KEY');
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+// Metatavu\Pakkasmarja\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Authorization', 'Bearer');
 
 $api_instance = new Metatavu\Pakkasmarja\Api\ContactsApi(new \Http\Adapter\Guzzle6\Client());
 
@@ -86,7 +96,7 @@ This endpoint does not need any parameter.
 
 ### Authorization
 
-No authorization required
+[bearer](../../README.md#bearer)
 
 ### HTTP request headers
 
@@ -106,6 +116,11 @@ Updates single contact
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
+
+// Configure API key authorization: bearer
+Metatavu\Pakkasmarja\Configuration::getDefaultConfiguration()->setApiKey('Authorization', 'YOUR_API_KEY');
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+// Metatavu\Pakkasmarja\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Authorization', 'Bearer');
 
 $api_instance = new Metatavu\Pakkasmarja\Api\ContactsApi(new \Http\Adapter\Guzzle6\Client());
 $id = "id_example"; // string | contact id
@@ -133,7 +148,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-No authorization required
+[bearer](../../README.md#bearer)
 
 ### HTTP request headers
 

@@ -23,6 +23,11 @@ Requests contract document electronic signing
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
 
+// Configure API key authorization: bearer
+Metatavu\Pakkasmarja\Configuration::getDefaultConfiguration()->setApiKey('Authorization', 'YOUR_API_KEY');
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+// Metatavu\Pakkasmarja\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Authorization', 'Bearer');
+
 $api_instance = new Metatavu\Pakkasmarja\Api\ContractsApi(new \Http\Adapter\Guzzle6\Client());
 $id = "id_example"; // string | contract id
 $type = "type_example"; // string | document type
@@ -51,7 +56,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-No authorization required
+[bearer](../../README.md#bearer)
 
 ### HTTP request headers
 
@@ -71,6 +76,11 @@ Finds contract by id
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
+
+// Configure API key authorization: bearer
+Metatavu\Pakkasmarja\Configuration::getDefaultConfiguration()->setApiKey('Authorization', 'YOUR_API_KEY');
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+// Metatavu\Pakkasmarja\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Authorization', 'Bearer');
 
 $api_instance = new Metatavu\Pakkasmarja\Api\ContractsApi(new \Http\Adapter\Guzzle6\Client());
 $id = "id_example"; // string | contract id
@@ -98,7 +108,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-No authorization required
+[bearer](../../README.md#bearer)
 
 ### HTTP request headers
 
@@ -118,6 +128,11 @@ Returns contract document by type
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
+
+// Configure API key authorization: bearer
+Metatavu\Pakkasmarja\Configuration::getDefaultConfiguration()->setApiKey('Authorization', 'YOUR_API_KEY');
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+// Metatavu\Pakkasmarja\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Authorization', 'Bearer');
 
 $api_instance = new Metatavu\Pakkasmarja\Api\ContractsApi(new \Http\Adapter\Guzzle6\Client());
 $id = "id_example"; // string | contract id
@@ -147,7 +162,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-No authorization required
+[bearer](../../README.md#bearer)
 
 ### HTTP request headers
 
@@ -167,6 +182,11 @@ Lists contracts
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
+
+// Configure API key authorization: bearer
+Metatavu\Pakkasmarja\Configuration::getDefaultConfiguration()->setApiKey('Authorization', 'YOUR_API_KEY');
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+// Metatavu\Pakkasmarja\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Authorization', 'Bearer');
 
 $api_instance = new Metatavu\Pakkasmarja\Api\ContractsApi(new \Http\Adapter\Guzzle6\Client());
 $accept = "accept_example"; // string | Expected response format. Accepted values application/json for JSON reponse (default) and application/vnd.openxmlformats-officedocument.spreadsheetml.sheet for Excel response
@@ -192,7 +212,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-No authorization required
+[bearer](../../README.md#bearer)
 
 ### HTTP request headers
 
@@ -212,6 +232,11 @@ Updates single contract
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
+
+// Configure API key authorization: bearer
+Metatavu\Pakkasmarja\Configuration::getDefaultConfiguration()->setApiKey('Authorization', 'YOUR_API_KEY');
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+// Metatavu\Pakkasmarja\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Authorization', 'Bearer');
 
 $api_instance = new Metatavu\Pakkasmarja\Api\ContractsApi(new \Http\Adapter\Guzzle6\Client());
 $id = "id_example"; // string | contract id
@@ -239,7 +264,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-No authorization required
+[bearer](../../README.md#bearer)
 
 ### HTTP request headers
 

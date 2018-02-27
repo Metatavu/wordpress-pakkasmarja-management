@@ -21,6 +21,11 @@ Find operation report by id
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
 
+// Configure API key authorization: bearer
+Metatavu\Pakkasmarja\Configuration::getDefaultConfiguration()->setApiKey('Authorization', 'YOUR_API_KEY');
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+// Metatavu\Pakkasmarja\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Authorization', 'Bearer');
+
 $api_instance = new Metatavu\Pakkasmarja\Api\OperationReportsApi(new \Http\Adapter\Guzzle6\Client());
 $id = "id_example"; // string | operation report id
 
@@ -45,7 +50,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-No authorization required
+[bearer](../../README.md#bearer)
 
 ### HTTP request headers
 
@@ -65,6 +70,11 @@ Lists operation report items
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
+
+// Configure API key authorization: bearer
+Metatavu\Pakkasmarja\Configuration::getDefaultConfiguration()->setApiKey('Authorization', 'YOUR_API_KEY');
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+// Metatavu\Pakkasmarja\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Authorization', 'Bearer');
 
 $api_instance = new Metatavu\Pakkasmarja\Api\OperationReportsApi(new \Http\Adapter\Guzzle6\Client());
 $id = "id_example"; // string | operation report id
@@ -90,7 +100,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-No authorization required
+[bearer](../../README.md#bearer)
 
 ### HTTP request headers
 
@@ -110,6 +120,11 @@ Lists operation reports
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
+
+// Configure API key authorization: bearer
+Metatavu\Pakkasmarja\Configuration::getDefaultConfiguration()->setApiKey('Authorization', 'YOUR_API_KEY');
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+// Metatavu\Pakkasmarja\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Authorization', 'Bearer');
 
 $api_instance = new Metatavu\Pakkasmarja\Api\OperationReportsApi(new \Http\Adapter\Guzzle6\Client());
 $type = "type_example"; // string | filter by type
@@ -143,7 +158,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-No authorization required
+[bearer](../../README.md#bearer)
 
 ### HTTP request headers
 
