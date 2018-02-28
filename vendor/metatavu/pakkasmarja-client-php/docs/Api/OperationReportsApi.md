@@ -60,7 +60,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 # **listOperationReportItems**
-> \Metatavu\Pakkasmarja\Api\Model\OperationReportItem listOperationReportItems($id)
+> \Metatavu\Pakkasmarja\Api\Model\OperationReportItem[] listOperationReportItems($id)
 
 List operation report items
 
@@ -96,7 +96,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**\Metatavu\Pakkasmarja\Api\Model\OperationReportItem**](../Model/OperationReportItem.md)
+[**\Metatavu\Pakkasmarja\Api\Model\OperationReportItem[]**](../Model/OperationReportItem.md)
 
 ### Authorization
 

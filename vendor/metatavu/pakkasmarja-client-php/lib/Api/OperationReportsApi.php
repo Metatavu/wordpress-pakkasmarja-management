@@ -375,7 +375,7 @@ class OperationReportsApi
      *
      * @throws \Metatavu\Pakkasmarja\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \Metatavu\Pakkasmarja\Api\Model\OperationReportItem
+     * @return \Metatavu\Pakkasmarja\Api\Model\OperationReportItem[]
      */
     public function listOperationReportItems($id)
     {
@@ -392,11 +392,11 @@ class OperationReportsApi
      *
      * @throws \Metatavu\Pakkasmarja\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of \Metatavu\Pakkasmarja\Api\Model\OperationReportItem, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \Metatavu\Pakkasmarja\Api\Model\OperationReportItem[], HTTP status code, HTTP response headers (array of strings)
      */
     public function listOperationReportItemsWithHttpInfo($id)
     {
-        $returnType = '\Metatavu\Pakkasmarja\Api\Model\OperationReportItem';
+        $returnType = '\Metatavu\Pakkasmarja\Api\Model\OperationReportItem[]';
         $request = $this->listOperationReportItemsRequest($id);
 
         try {
@@ -447,7 +447,7 @@ class OperationReportsApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\Metatavu\Pakkasmarja\Api\Model\OperationReportItem',
+                        '\Metatavu\Pakkasmarja\Api\Model\OperationReportItem[]',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -513,7 +513,7 @@ class OperationReportsApi
      */
     public function listOperationReportItemsAsyncWithHttpInfo($id)
     {
-        $returnType = '\Metatavu\Pakkasmarja\Api\Model\OperationReportItem';
+        $returnType = '\Metatavu\Pakkasmarja\Api\Model\OperationReportItem[]';
         $request = $this->listOperationReportItemsRequest($id);
 
         return $this->client
