@@ -81,7 +81,7 @@
        * @param string $which which bar is in question (top or bottom)
        */
       public function extra_tablenav($which) {
-        if ($which === "top") {
+        if ($which === "top" && current_user_can('pakkasmarja_operations_create')) {
           echo sprintf("<label>%s</label>", __('Operation', 'pakkasmarja_management'));
           echo "\n";
           echo '<select name="operation-type">';

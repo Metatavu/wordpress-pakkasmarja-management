@@ -12,8 +12,7 @@
     
     class Menu {
 
-      // TODO: Custom capability
-      private $capability = 'manage_options';
+      private $capability = 'pakkasmarja_operations_view';
             
       public function __construct() {
         add_action( 'admin_menu', function () {

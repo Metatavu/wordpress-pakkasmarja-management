@@ -13,9 +13,11 @@
     
     class OperationReportView {
 
-      // TODO: Custom capability
-      private $capability = 'manage_options';
-            
+      private $capability = 'pakkasmarja_operations_view';
+           
+      /**
+       * Constructorr
+       */
       public function __construct() {
         $this->operationReportsApi = \Metatavu\Pakkasmarja\Api\ApiClient::getOperationReportsApi();
         
@@ -47,10 +49,21 @@
         echo '</div>';
       }
 
+      /**
+       * Formats status
+       * 
+       * @param string $status status
+       * @return string formatted status
+       */
       private function getStatus($status) {
         return Formatter::formatOperationItemStatus($status);
       }
 
+      /**
+       * Finds a operation report item by id
+       * 
+       * @return \Metatavu\Pakkasmarja\Api\Model\OperationReport operation report item
+       */
       private function findOperationReport($operationReportId) {
         try {
           return $this->operationReportsApi->findOperationReport($operationReportId);
@@ -66,6 +79,12 @@
         }
       }
 
+      /**
+       * Lists operation report items
+       * 
+       * @param int $operationReportId operation report id
+       * @return \Metatavu\Pakkasmarja\Api\Model\OperationReportItem[] array of operation report items
+       */
       private function listOperationReportItems($operationReportId) {
         try {
           return $this->operationReportsApi->listOperationReportItems($operationReportId);
@@ -79,10 +98,8 @@
 
           echo '</div>';
         }
-      }
-      
+      }  
     }
-    
   }
   
   add_action('init', function () {
@@ -90,7 +107,5 @@
       new OperationReportView();
     }
   });
-
-  
     
 ?>
