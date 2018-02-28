@@ -11,6 +11,7 @@
   }
   
   require_once( __DIR__ . '/../api/api-client.php');
+  require_once( __DIR__ . '/operation-formatter.php');
   
   if (!class_exists( '\Metatavu\Pakkasmarja\Operations\OperationsReportTable' ) ) {
     
@@ -20,8 +21,6 @@
     class OperationReportsTable extends \WP_List_Table {
 
       private static $SUPPORTED_OPERATION_TYPES = ["SAP_CONTACT_SYNC", "SAP_DELIVERY_PLACE_SYNC", "SAP_ITEM_GROUP_SYNC", "SAP_CONTRACT_SYNC"]; 
-      private static $DEFAULT_TIMEZONE = 'Europe/Helsinki';
-      private static $DATETIME_FORMAT = 'Y-m-d H:i:s';
       private $perPage = 10;
       
       /**
@@ -63,15 +62,17 @@
           $this->items[] = [
             "id" => $operationReport['id'],
             "type" => $this->getOperationTypeLabel($operationReport['type']),
-            "started" => $this->formatDateTime($operationReport["started"]),
+            "started" => Formatter::formatDateTime($operationReport["started"]),
             "status" => $this->getStatus($operationReport["pendingCount"], $operationReport["failedCount"], $operationReport["successCount"])
           ];
         }
+
+        $totalCount = empty($response["totalCount"]) ? 0 : intval($response["totalCount"]);
         
         $this->set_pagination_args([
-          'total_items' => $response["pageCount"],
+          'total_items' => $totalCount,
           'per_page'    => $this->perPage,
-          'total_pages' => ceil($itemCount/ $this->perPage)
+          'total_pages' => ceil($totalCount / $this->perPage)
         ]);
       }
 
@@ -86,7 +87,7 @@
           echo '<select name="operation-type">';
           
           foreach (self::$SUPPORTED_OPERATION_TYPES as $operationType) {
-            echo sprintf('<option value="%s">%s</option>', $operationType, $this->getOperationTypeLabel($operationType));
+            echo sprintf('<option value="%s">%s</option>', $operationType, Formatter::formatOperationType($operationType));
           }
 
           echo "</select>";
@@ -154,7 +155,7 @@
       public function column_type($item) {
         $id = $item['id'];
         $type = $item['type'];
-        $viewUrl = sprintf("?page=operation-report.php&action=%s&id=%s", "view", $id);
+        $viewUrl = sprintf("?page=pakkasmarja-operation-report-view.php&action=%s&id=%s", "view", $id);
         $actions = [];
         $actions['view'] = sprintf('<a href="%s">%s</a>', $viewUrl, __('View', 'pakkasmarja_management'));
         return sprintf('%1$s%2$s', sprintf('<a href="%s">%s</a>', $viewUrl, $type), $this->row_actions($actions));
@@ -191,16 +192,7 @@
        * @return string localized type
        */
       private function getOperationTypeLabel($type) {
-        switch ($type) {
-          case "SAP_CONTACT_SYNC":
-            return __('SAP Contacts synchronization', 'pakkasmarja_management');
-          case "SAP_DELIVERY_PLACE_SYNC":
-            return __('SAP Delivery Places synchronization', 'pakkasmarja_management');
-          case "SAP_ITEM_GROUP_SYNC":
-            return __('SAP Item Groups synchronization', 'pakkasmarja_management');
-          case "SAP_CONTRACT_SYNC":
-            return __('SAP Contracts synchronization', 'pakkasmarja_management');
-        }
+        return Formatter::formatOperationType($type);
       }
 
       /**
@@ -219,10 +211,12 @@
 
         try {
           $result = $this->operationReportsApi->listOperationReportsWithHttpInfo($type, $sortBy, $sortDir, $firstResult, $maxResults);
-          // TODO: Page count
+          $headers = $result[2];
+          $totalCountHeader = $headers["Total-Count"];
+          $totalCount = is_array($totalCountHeader) ? $totalCountHeader[0] : null;
           return [
             "items" => $result[0],
-            "pageCount" => 10
+            "totalCount" => $totalCount
           ];
         } catch (\Metatavu\Pakkasmarja\ApiException $e) {
           echo '<div class="error notice">';
@@ -236,30 +230,7 @@
         }
       }
       
-      /**
-       * Returns date time as string
-       * 
-       * @param \DateTime $dateTime date time
-       * @return string formatted date time
-       */
-      private function formatDateTime($dateTime) {
-        if ($dateTime) {
-          $clone = clone $dateTime;
-          $clone->setTimezone($this->getTimezone());
-          return $clone->format(self::$DATETIME_FORMAT);
-        }
-        
-        return null;
-      }
       
-      /**
-       * Returns time zone
-       * 
-       * @return \DateTimeZone time zone
-       */
-      private function getTimezone() {
-        return new \DateTimeZone($result ? $result : self::$DEFAULT_TIMEZONE);
-      }
 
       
       
