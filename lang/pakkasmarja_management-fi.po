@@ -5,16 +5,16 @@ msgstr ""
 "Project-Id-Version: Pakkasmarja Management 0.0.1\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/wordpress-"
 "pakkasmarja-management\n"
-"POT-Creation-Date: 2017-06-26 14:38+0300\n"
+"POT-Creation-Date: 2018-02-28 07:02:14+00:00\n"
+"PO-Revision-Date: 2018-02-28 09:06+0200\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: fi\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"PO-Revision-Date: 2017-06-26 14:41+0300\n"
-"Language-Team: \n"
-"X-Generator: Poedit 1.8.9\n"
-"Last-Translator: \n"
+"X-Generator: Poedit 2.0.4\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"Language: fi\n"
 
 #: chat-threads/chat-threads-groups-widget.php:18
 #: question-groups/question-groups-groups-widget.php:18
@@ -67,6 +67,104 @@ msgstr "Keskusteluketjuja ei löytynyt"
 #: chat-threads/chat-threads-type.php:20
 msgid "No Chat Threads in trash"
 msgstr "Ei keskusteluketjuja roskakorissa"
+
+#: operations/operation-formatter.php:27
+msgid "SAP Contacts synchronization"
+msgstr "SAP Yhteystietojen synkronointi"
+
+#: operations/operation-formatter.php:29
+msgid "SAP Delivery Places synchronization"
+msgstr "SAP toimituspaikkojen synkronointi"
+
+#: operations/operation-formatter.php:31
+msgid "SAP Item Groups synchronization"
+msgstr "SAP marjalajien synkronointi"
+
+#: operations/operation-formatter.php:33
+msgid "SAP Contracts synchronization"
+msgstr "SAP sopimusten synkronointi"
+
+#: operations/operation-formatter.php:46
+msgid "Pending"
+msgstr "Odottaa"
+
+#: operations/operation-formatter.php:48
+msgid "Failure"
+msgstr "Epäonnistunut"
+
+#: operations/operation-formatter.php:50
+#: operations/operation-reports-table.php:185
+msgid "Success"
+msgstr "Onnistunut"
+
+#: operations/operation-reports-table.php:85
+msgid "Operation"
+msgstr "Toimenpide"
+
+#: operations/operation-reports-table.php:97
+msgid "Confirm"
+msgstr "Vahvista"
+
+#: operations/operation-reports-table.php:98
+msgid "Cancel"
+msgstr "Peruuta"
+
+#: operations/operation-reports-table.php:99
+msgid "Confirm operation"
+msgstr "Vahvista toimenpide"
+
+#: operations/operation-reports-table.php:100
+msgid "Confirm operation %s start"
+msgstr "Vahvista toimenpiteen %s -aloittaminen"
+
+#: operations/operation-reports-table.php:101
+msgid "Start"
+msgstr "Aloita"
+
+#: operations/operation-reports-table.php:114
+msgid "Type"
+msgstr "Tyyppi"
+
+#: operations/operation-reports-table.php:115
+msgid "Started"
+msgstr "Aloitettu"
+
+#: operations/operation-reports-table.php:116
+#: operations/operations-report-view.php:42
+msgid "Status"
+msgstr "Tila"
+
+#: operations/operation-reports-table.php:160
+msgid "View"
+msgstr "Näytä"
+
+#: operations/operation-reports-table.php:174
+msgid "In Progress (%d / %d)"
+msgstr "Kesken (%d / %d)"
+
+#: operations/operation-reports-table.php:178
+msgid "Contains Errors (%d / %d)"
+msgstr "Sisältää virheitä (%d / %d)"
+
+#: operations/operation-reports-table.php:182
+msgid "Errored"
+msgstr "Epäonnistunut"
+
+#: operations/operations-menu.php:19 operations/operations-menu.php:29
+msgid "Operations"
+msgstr "Toimenpiteen"
+
+#: operations/operations-report-view.php:25
+msgid "View Operation"
+msgstr "Näytä toimenpide"
+
+#: operations/operations-report-view.php:38
+msgid "Back"
+msgstr "Takaisin"
+
+#: operations/operations-report-view.php:42
+msgid "Message"
+msgstr "Viesti\t"
 
 #: question-groups/question-groups-type.php:11
 #: question-groups/question-groups-type.php:21
@@ -121,12 +219,20 @@ msgstr "API-asetukset"
 msgid "API URL"
 msgstr "API-osoite"
 
-#: settings/settings-ui.php:47
+#: settings/settings-ui.php:29
+msgid "Client Id"
+msgstr ""
+
+#: settings/settings-ui.php:30
+msgid "Client Secret"
+msgstr ""
+
+#: settings/settings-ui.php:49
 msgid "You do not have sufficient permissions to access this page."
 msgstr "Oikeutesi eivät riitä tämän sivun katseluun"
 
 #. Plugin Name of the plugin/theme
-#: settings/settings-ui.php:51
+#: settings/settings-ui.php:53
 msgid "Pakkasmarja Management"
 msgstr "Pakkasmarja hallinta"
 

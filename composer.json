@@ -8,7 +8,7 @@
 	"license" : "AGPL-3.0",
 	"type" : "wordpress-plugin",
 	"require" : {
-		
+		"metatavu/pakkasmarja-client-php": "^0.0.4"
 	},
 	"repositories" : [{
 			"type" : "git",
