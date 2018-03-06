@@ -79,12 +79,12 @@
         foreach ($response["items"] as $contract) {
           $this->items[] = [
             "id" => $contract["id"],
-            "companyName" => $this->getCompanyName($contract["contactId"]),
+            "companyName" => Formatter::getCompanyName($contract["contactId"]),
             "status" => Formatter::formatContractStatus($contract["status"]),
-            "itemGroupName" => $this->getItemGroupName($contract["itemGroupId"]),
+            "itemGroupName" => Formatter::getItemGroupName($contract["itemGroupId"]),
             "contractQuantity" => $contract["contractQuantity"],
             "deliveredQuantity" => $contract["deliveredQuantity"],
-            "placeName" =>  $this->getDeliveryPlaceName($contract["deliveryPlaceId"]),
+            "placeName" => Formatter::getDeliveryPlaceName($contract["deliveryPlaceId"]),
             "remarks" => $contract["remarks"],
             "signDate" => Formatter::formatDateTime($contract["signDate"]),
             "startDate" => Formatter::formatDateTime($contract["startDate"]),
@@ -167,111 +167,13 @@
        * @param $item array item data
        * @return rendered type column  
        */
-      public function column_type($item) {
-        // TODO: companyName
-
+      public function column_companyName($item) {
         $id = $item['id'];
-        $type = $item['type'];
-        $viewUrl = sprintf("?page=pakkasmarja-contract-report-view.php&action=%s&id=%s", "view", $id);
+        $companyName = $item['companyName'];
+        $editUrl = sprintf("?page=pakkasmarja-contract-edit-view.php&action=%s&id=%s", "edit", $id);
         $actions = [];
-        $actions['view'] = sprintf('<a href="%s">%s</a>', $viewUrl, __('View', 'pakkasmarja_management'));
-        return sprintf('%1$s%2$s', sprintf('<a href="%s">%s</a>', $viewUrl, $type), $this->row_actions($actions));
-      }
-
-      /**
-       * Resolves company name by contact id
-       * 
-       * @param string $contactId contactId
-       * @return string contact's company name
-       */
-      private function getCompanyName($contactId) {
-        $contact = $this->findContactById($contactId);
-        if ($contact) {
-          return $contact->getCompanyName();
-        }
-
-        return null;
-      }
-
-      /**
-       * Resolves item group name by item group id
-       * 
-       * @param string $itemGroupId item group id
-       * @return string item group name
-       */
-      private function getItemGroupName($itemGroupId) {
-        $itemGroup = $this->findItemGroupById($itemGroupId);
-        if ($itemGroup) {
-          return $itemGroup->getName();
-        }
-
-        return null;
-      }
-
-      /**
-       * Resolves delivery place name by delivery place id
-       * 
-       * @param string $deliveryPlaceId delivery place id
-       * @return string delivery place name
-       */
-      private function getDeliveryPlaceName($deliveryPlaceId) {
-        $deliveryPlace = $this->findDeliveryPlaceById($deliveryPlaceId);
-        if ($deliveryPlace) {
-          return $deliveryPlace->getName();
-        }
-
-        return null;
-      }
-
-      /**
-       * Finds an item group by id
-       *
-       * @param string $itemGroupId item group id (required)
-       *
-       * @return \Metatavu\Pakkasmarja\Api\Model\ItemGroup
-       */
-      private function findItemGroupById($itemGroupId) {
-        try {
-          return $this->itemGroupsApi->findItemGroup($itemGroupId);
-        } catch (\Metatavu\Pakkasmarja\ApiException | \InvalidArgumentException $e) {
-          $message = $e->getMessage();
-          error_log("Failed to find item group #$itemGroupId: $message");
-          return null;
-        }
-      }
-
-      /**
-       * Finds a contact by id
-       *
-       * @param string $contactId contact id (required)
-       *
-       * @return \Metatavu\Pakkasmarja\Api\Model\Contact
-       */
-      private function findContactById($contactId) {
-        try {
-          return $this->contactsApi->findContact($contactId);
-        } catch (\Metatavu\Pakkasmarja\ApiException | \InvalidArgumentException $e) {
-          $message = $e->getMessage();
-          error_log("Failed to find contact #$contactId: $message");
-          return null;
-        }
-      }
-
-      /**
-       * Finds a delivery place by id
-       *
-       * @param string $deliveryPlaceId delivery place id (required)
-       *
-       * @return \Metatavu\Pakkasmarja\Api\Model\DeliveryPlace
-       */
-      private function findDeliveryPlaceById($deliveryPlaceId) {
-        try {
-          return $this->deliveryPlaceApi->findDeliveryPlace($deliveryPlaceId);
-        } catch (\Metatavu\Pakkasmarja\ApiException | \InvalidArgumentException $e) {
-          $message = $e->getMessage();
-          error_log("Failed to find delivery place #$deliveryPlaceId: $message");
-          return null;
-        }
+        $actions['edit'] = sprintf('<a href="%s">%s</a>', $editUrl, __('Edit', 'pakkasmarja_management'));
+        return sprintf('%1$s%2$s', sprintf('<a href="%s">%s</a>', $editUrl, $companyName), $this->row_actions($actions));
       }
 
       /**

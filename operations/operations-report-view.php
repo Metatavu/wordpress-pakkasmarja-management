@@ -18,6 +18,11 @@
       private $capability = 'pakkasmarja_operations_view';
            
       /**
+       * @var \Metatavu\Pakkasmarja\Api\OperationReportsApi
+       */
+      private $operationReportsApi;
+      
+      /**
        * Constructorr
        */
       public function __construct() {
