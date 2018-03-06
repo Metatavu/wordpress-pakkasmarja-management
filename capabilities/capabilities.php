@@ -15,7 +15,9 @@
       
       private static $capabilities = [
         'pakkasmarja_operations_create',
-        'pakkasmarja_operations_view'
+        'pakkasmarja_operations_view',
+        'pakkasmarja_contracts_view',
+        'pakkasmarja_contracts_edit'
       ];
       
       /**

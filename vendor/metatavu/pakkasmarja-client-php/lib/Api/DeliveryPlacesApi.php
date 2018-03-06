@@ -1,6 +1,6 @@
 <?php
 /**
- * ItemGroupsApi
+ * DeliveryPlacesApi
  * PHP version 5
  *
  * @category Class
@@ -38,14 +38,14 @@ use Metatavu\Pakkasmarja\HeaderSelector;
 use Metatavu\Pakkasmarja\ObjectSerializer;
 
 /**
- * ItemGroupsApi Class Doc Comment
+ * DeliveryPlacesApi Class Doc Comment
  *
  * @category Class
  * @package  Metatavu\Pakkasmarja
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
  */
-class ItemGroupsApi
+class DeliveryPlacesApi
 {
     /**
      * @var ClientInterface
@@ -81,37 +81,37 @@ class ItemGroupsApi
     }
 
     /**
-     * Operation findItemGroup
+     * Operation findDeliveryPlace
      *
-     * Find item group
+     * Find delivery place
      *
-     * @param  string $id item group id (required)
+     * @param  string $id delivery place id (required)
      *
      * @throws \Metatavu\Pakkasmarja\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \Metatavu\Pakkasmarja\Api\Model\ItemGroup
+     * @return \Metatavu\Pakkasmarja\Api\Model\DeliveryPlace
      */
-    public function findItemGroup($id)
+    public function findDeliveryPlace($id)
     {
-        list($response) = $this->findItemGroupWithHttpInfo($id);
+        list($response) = $this->findDeliveryPlaceWithHttpInfo($id);
         return $response;
     }
 
     /**
-     * Operation findItemGroupWithHttpInfo
+     * Operation findDeliveryPlaceWithHttpInfo
      *
-     * Find item group
+     * Find delivery place
      *
-     * @param  string $id item group id (required)
+     * @param  string $id delivery place id (required)
      *
      * @throws \Metatavu\Pakkasmarja\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of \Metatavu\Pakkasmarja\Api\Model\ItemGroup, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \Metatavu\Pakkasmarja\Api\Model\DeliveryPlace, HTTP status code, HTTP response headers (array of strings)
      */
-    public function findItemGroupWithHttpInfo($id)
+    public function findDeliveryPlaceWithHttpInfo($id)
     {
-        $returnType = '\Metatavu\Pakkasmarja\Api\Model\ItemGroup';
-        $request = $this->findItemGroupRequest($id);
+        $returnType = '\Metatavu\Pakkasmarja\Api\Model\DeliveryPlace';
+        $request = $this->findDeliveryPlaceRequest($id);
 
         try {
 
@@ -161,7 +161,7 @@ class ItemGroupsApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\Metatavu\Pakkasmarja\Api\Model\ItemGroup',
+                        '\Metatavu\Pakkasmarja\Api\Model\DeliveryPlace',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -196,18 +196,18 @@ class ItemGroupsApi
     }
 
     /**
-     * Operation findItemGroupAsync
+     * Operation findDeliveryPlaceAsync
      *
-     * Find item group
+     * Find delivery place
      *
-     * @param  string $id item group id (required)
+     * @param  string $id delivery place id (required)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function findItemGroupAsync($id)
+    public function findDeliveryPlaceAsync($id)
     {
-        return $this->findItemGroupAsyncWithHttpInfo($id)
+        return $this->findDeliveryPlaceAsyncWithHttpInfo($id)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -216,19 +216,19 @@ class ItemGroupsApi
     }
 
     /**
-     * Operation findItemGroupAsyncWithHttpInfo
+     * Operation findDeliveryPlaceAsyncWithHttpInfo
      *
-     * Find item group
+     * Find delivery place
      *
-     * @param  string $id item group id (required)
+     * @param  string $id delivery place id (required)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function findItemGroupAsyncWithHttpInfo($id)
+    public function findDeliveryPlaceAsyncWithHttpInfo($id)
     {
-        $returnType = '\Metatavu\Pakkasmarja\Api\Model\ItemGroup';
-        $request = $this->findItemGroupRequest($id);
+        $returnType = '\Metatavu\Pakkasmarja\Api\Model\DeliveryPlace';
+        $request = $this->findDeliveryPlaceRequest($id);
 
         return $this->client
             ->sendAsync($request)
@@ -268,23 +268,23 @@ class ItemGroupsApi
     }
 
     /**
-     * Create request for operation 'findItemGroup'
+     * Create request for operation 'findDeliveryPlace'
      *
-     * @param  string $id item group id (required)
+     * @param  string $id delivery place id (required)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    protected function findItemGroupRequest($id)
+    protected function findDeliveryPlaceRequest($id)
     {
         // verify the required parameter 'id' is set
         if ($id === null) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $id when calling findItemGroup'
+                'Missing the required parameter $id when calling findDeliveryPlace'
             );
         }
 
-        $resourcePath = '/itemGroups/{id}';
+        $resourcePath = '/deliveryPlaces/{id}';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];
@@ -367,35 +367,35 @@ class ItemGroupsApi
     }
 
     /**
-     * Operation listItemGroups
+     * Operation listDeliveryPlaces
      *
-     * Lists item groups
+     * Lists delivery places
      *
      *
      * @throws \Metatavu\Pakkasmarja\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \Metatavu\Pakkasmarja\Api\Model\ItemGroup[]
+     * @return \Metatavu\Pakkasmarja\Api\Model\DeliveryPlace[]
      */
-    public function listItemGroups()
+    public function listDeliveryPlaces()
     {
-        list($response) = $this->listItemGroupsWithHttpInfo();
+        list($response) = $this->listDeliveryPlacesWithHttpInfo();
         return $response;
     }
 
     /**
-     * Operation listItemGroupsWithHttpInfo
+     * Operation listDeliveryPlacesWithHttpInfo
      *
-     * Lists item groups
+     * Lists delivery places
      *
      *
      * @throws \Metatavu\Pakkasmarja\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of \Metatavu\Pakkasmarja\Api\Model\ItemGroup[], HTTP status code, HTTP response headers (array of strings)
+     * @return array of \Metatavu\Pakkasmarja\Api\Model\DeliveryPlace[], HTTP status code, HTTP response headers (array of strings)
      */
-    public function listItemGroupsWithHttpInfo()
+    public function listDeliveryPlacesWithHttpInfo()
     {
-        $returnType = '\Metatavu\Pakkasmarja\Api\Model\ItemGroup[]';
-        $request = $this->listItemGroupsRequest();
+        $returnType = '\Metatavu\Pakkasmarja\Api\Model\DeliveryPlace[]';
+        $request = $this->listDeliveryPlacesRequest();
 
         try {
 
@@ -445,7 +445,7 @@ class ItemGroupsApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\Metatavu\Pakkasmarja\Api\Model\ItemGroup[]',
+                        '\Metatavu\Pakkasmarja\Api\Model\DeliveryPlace[]',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -480,17 +480,17 @@ class ItemGroupsApi
     }
 
     /**
-     * Operation listItemGroupsAsync
+     * Operation listDeliveryPlacesAsync
      *
-     * Lists item groups
+     * Lists delivery places
      *
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function listItemGroupsAsync()
+    public function listDeliveryPlacesAsync()
     {
-        return $this->listItemGroupsAsyncWithHttpInfo()
+        return $this->listDeliveryPlacesAsyncWithHttpInfo()
             ->then(
                 function ($response) {
                     return $response[0];
@@ -499,18 +499,18 @@ class ItemGroupsApi
     }
 
     /**
-     * Operation listItemGroupsAsyncWithHttpInfo
+     * Operation listDeliveryPlacesAsyncWithHttpInfo
      *
-     * Lists item groups
+     * Lists delivery places
      *
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function listItemGroupsAsyncWithHttpInfo()
+    public function listDeliveryPlacesAsyncWithHttpInfo()
     {
-        $returnType = '\Metatavu\Pakkasmarja\Api\Model\ItemGroup[]';
-        $request = $this->listItemGroupsRequest();
+        $returnType = '\Metatavu\Pakkasmarja\Api\Model\DeliveryPlace[]';
+        $request = $this->listDeliveryPlacesRequest();
 
         return $this->client
             ->sendAsync($request)
@@ -550,16 +550,16 @@ class ItemGroupsApi
     }
 
     /**
-     * Create request for operation 'listItemGroups'
+     * Create request for operation 'listDeliveryPlaces'
      *
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    protected function listItemGroupsRequest()
+    protected function listDeliveryPlacesRequest()
     {
 
-        $resourcePath = '/itemGroups';
+        $resourcePath = '/deliveryPlaces';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];

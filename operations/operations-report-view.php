@@ -6,8 +6,10 @@
     exit;
   }
 
+  use \Metatavu\Pakkasmarja\Utils\Formatter;
+  
   require_once( __DIR__ . '/../api/api-client.php');
-  require_once( __DIR__ . '/operation-formatter.php');
+  require_once( __DIR__ . '/../utils/formatter.php');
   
   if (!class_exists( '\Metatavu\Pakkasmarja\Operations\OperationReportView' ) ) {
     
@@ -15,6 +17,11 @@
 
       private $capability = 'pakkasmarja_operations_view';
            
+      /**
+       * @var \Metatavu\Pakkasmarja\Api\OperationReportsApi
+       */
+      private $operationReportsApi;
+      
       /**
        * Constructorr
        */
