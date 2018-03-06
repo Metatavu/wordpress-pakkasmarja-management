@@ -1,14 +1,12 @@
 <?php
   
-  namespace Metatavu\Pakkasmarja\Operations;
+  namespace Metatavu\Pakkasmarja\Utils;
   
   if (!defined('ABSPATH')) { 
     exit;
   }
 
-  require_once( __DIR__ . '/operation-reports-table.php');
-  
-  if (!class_exists( '\Metatavu\Pakkasmarja\Operations\Formatter' ) ) {
+  if (!class_exists( '\Metatavu\Pakkasmarja\Utils\Formatter' ) ) {
     
     class Formatter {
 
@@ -48,6 +46,25 @@
             return __('Failure', 'pakkasmarja_management');
           case "SUCCESS":
             return __('Success', 'pakkasmarja_management');
+        }
+      }
+
+      /**
+       * Formats contract status
+       * 
+       * @param string $status contract status
+       * @return string formatted contract status
+       */
+      public static function formatContractStatus($status) {
+        switch ($status) {
+          case "APPROVED":
+            return __('Approved', 'pakkasmarja_management');
+          case "ON_HOLD":
+            return __('On Hold', 'pakkasmarja_management');
+          case "DRAFT":
+            return __('Draft', 'pakkasmarja_management');
+          case "TERMINATED":
+            return __('Terminated', 'pakkasmarja_management');
         }
       }
 

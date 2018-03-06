@@ -5,13 +5,15 @@
   if (!defined('ABSPATH')) { 
     exit;
   }
+
+  use \Metatavu\Pakkasmarja\Utils\Formatter;
   
   if (!class_exists( 'WP_List_Table' ) ) {
     require_once(ABSPATH . 'wp-admin/includes/class-wp-list-table.php' );
   }
   
   require_once( __DIR__ . '/../api/api-client.php');
-  require_once( __DIR__ . '/operation-formatter.php');
+  require_once( __DIR__ . '/../utils/formatter.php');
   
   if (!class_exists( '\Metatavu\Pakkasmarja\Operations\OperationsReportTable' ) ) {
     
