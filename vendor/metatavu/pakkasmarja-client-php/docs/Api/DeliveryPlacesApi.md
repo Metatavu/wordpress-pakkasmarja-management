@@ -1,19 +1,19 @@
-# Metatavu\Pakkasmarja\ItemGroupsApi
+# Metatavu\Pakkasmarja\DeliveryPlacesApi
 
 All URIs are relative to *https://localhost/rest/v1*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**findItemGroup**](ItemGroupsApi.md#findItemGroup) | **GET** /itemGroups/{id} | Find item group
-[**listItemGroups**](ItemGroupsApi.md#listItemGroups) | **GET** /itemGroups | Lists item groups
+[**findDeliveryPlace**](DeliveryPlacesApi.md#findDeliveryPlace) | **GET** /deliveryPlaces/{id} | Find delivery place
+[**listDeliveryPlaces**](DeliveryPlacesApi.md#listDeliveryPlaces) | **GET** /deliveryPlaces | Lists delivery places
 
 
-# **findItemGroup**
-> \Metatavu\Pakkasmarja\Api\Model\ItemGroup findItemGroup($id)
+# **findDeliveryPlace**
+> \Metatavu\Pakkasmarja\Api\Model\DeliveryPlace findDeliveryPlace($id)
 
-Find item group
+Find delivery place
 
-Finds item group by id
+Finds delivery place by id
 
 ### Example
 ```php
@@ -25,14 +25,14 @@ Metatavu\Pakkasmarja\Configuration::getDefaultConfiguration()->setApiKey('Author
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 // Metatavu\Pakkasmarja\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Authorization', 'Bearer');
 
-$api_instance = new Metatavu\Pakkasmarja\Api\ItemGroupsApi(new \Http\Adapter\Guzzle6\Client());
-$id = "id_example"; // string | item group id
+$api_instance = new Metatavu\Pakkasmarja\Api\DeliveryPlacesApi(new \Http\Adapter\Guzzle6\Client());
+$id = "id_example"; // string | delivery place id
 
 try {
-    $result = $api_instance->findItemGroup($id);
+    $result = $api_instance->findDeliveryPlace($id);
     print_r($result);
 } catch (Exception $e) {
-    echo 'Exception when calling ItemGroupsApi->findItemGroup: ', $e->getMessage(), PHP_EOL;
+    echo 'Exception when calling DeliveryPlacesApi->findDeliveryPlace: ', $e->getMessage(), PHP_EOL;
 }
 ?>
 ```
@@ -41,11 +41,11 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **id** | **string**| item group id |
+ **id** | **string**| delivery place id |
 
 ### Return type
 
-[**\Metatavu\Pakkasmarja\Api\Model\ItemGroup**](../Model/ItemGroup.md)
+[**\Metatavu\Pakkasmarja\Api\Model\DeliveryPlace**](../Model/DeliveryPlace.md)
 
 ### Authorization
 
@@ -58,12 +58,12 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
-# **listItemGroups**
-> \Metatavu\Pakkasmarja\Api\Model\ItemGroup[] listItemGroups()
+# **listDeliveryPlaces**
+> \Metatavu\Pakkasmarja\Api\Model\DeliveryPlace[] listDeliveryPlaces()
 
-Lists item groups
+Lists delivery places
 
-Lists item groups
+Lists delivery places
 
 ### Example
 ```php
@@ -75,13 +75,13 @@ Metatavu\Pakkasmarja\Configuration::getDefaultConfiguration()->setApiKey('Author
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 // Metatavu\Pakkasmarja\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Authorization', 'Bearer');
 
-$api_instance = new Metatavu\Pakkasmarja\Api\ItemGroupsApi(new \Http\Adapter\Guzzle6\Client());
+$api_instance = new Metatavu\Pakkasmarja\Api\DeliveryPlacesApi(new \Http\Adapter\Guzzle6\Client());
 
 try {
-    $result = $api_instance->listItemGroups();
+    $result = $api_instance->listDeliveryPlaces();
     print_r($result);
 } catch (Exception $e) {
-    echo 'Exception when calling ItemGroupsApi->listItemGroups: ', $e->getMessage(), PHP_EOL;
+    echo 'Exception when calling DeliveryPlacesApi->listDeliveryPlaces: ', $e->getMessage(), PHP_EOL;
 }
 ?>
 ```
@@ -91,7 +91,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-[**\Metatavu\Pakkasmarja\Api\Model\ItemGroup[]**](../Model/ItemGroup.md)
+[**\Metatavu\Pakkasmarja\Api\Model\DeliveryPlace[]**](../Model/DeliveryPlace.md)
 
 ### Authorization
 
