@@ -68,6 +68,15 @@
       }
 
       /**
+       * Returns new instance of DeliveryPlacesApi
+       * 
+       * @return \Metatavu\Pakkasmarja\Api\DeliveryPlacesApi
+       */
+      public static function getDeliveryPlacesApi() {
+        return new \Metatavu\Pakkasmarja\Api\DeliveryPlacesApi(null, self::getConfiguration());
+      }
+
+      /**
        * @deprecated
        */
       public function listUserGroups() {
