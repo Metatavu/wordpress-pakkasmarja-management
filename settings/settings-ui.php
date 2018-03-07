@@ -5,10 +5,6 @@
     exit;
   }
   
-  define(PAKKASMARJA_MANAGEMENT_SETTINGS_OPTION, 'pakkasmarja_management');
-  define(PAKKASMARJA_MANAGEMENT_SETTINGS_GROUP, 'pakkasmarja_management');
-  define(PAKKASMARJA_MANAGEMENT_SETTINGS_PAGE, 'pakkasmarja_management');
-  
   if (!class_exists( '\Metatavu\Pakkasmarja\Settings\SettingsUI' ) ) {
 
     class SettingsUI {
@@ -19,19 +15,19 @@
       }
 
       public function adminMenu() {
-        add_options_page (__( "Pakkasmarja Settings", 'pakkasmarja_management' ), __( "Pakkasmarja Settings", 'pakkasmarja_management' ), 'manage_options', PAKKASMARJA_MANAGEMENT_SETTINGS_OPTION, array($this, 'settingsPage'));
+        add_options_page (__( "Pakkasmarja Settings", 'pakkasmarja_management' ), __( "Pakkasmarja Settings", 'pakkasmarja_management' ), 'manage_options', 'pakkasmarja_management', array($this, 'settingsPage'));
       }
 
       public function adminInit() {
-        register_setting(PAKKASMARJA_MANAGEMENT_SETTINGS_GROUP, PAKKASMARJA_MANAGEMENT_SETTINGS_PAGE);
-        add_settings_section('api', __( "API Settings", 'pakkasmarja_management' ), null, PAKKASMARJA_MANAGEMENT_SETTINGS_PAGE);
+        register_setting('pakkasmarja_management', 'pakkasmarja_management');
+        add_settings_section('api', __( "API Settings", 'pakkasmarja_management' ), null, 'pakkasmarja_management');
         $this->addOption('api', 'url', 'api-url', __( "API URL", 'pakkasmarja_management'));
         $this->addOption('api', 'text', 'client-id', __( "Client Id", 'pakkasmarja_management' ));
         $this->addOption('api', 'text', 'client-secret', __( "Client Secret", 'pakkasmarja_management' ));
       }
 
       private function addOption($group, $type, $name, $title) {
-        add_settings_field($name, $title, array($this, 'createFieldUI'), PAKKASMARJA_MANAGEMENT_SETTINGS_PAGE, $group, [
+        add_settings_field($name, $title, array($this, 'createFieldUI'), 'pakkasmarja_management', $group, [
           'name' => $name, 
           'type' => $type
         ]);
@@ -41,7 +37,7 @@
         $name = $opts['name'];
         $type = $opts['type'];
         $value = Settings::getValue($name);
-        echo "<input id='$name' name='" . PAKKASMARJA_MANAGEMENT_SETTINGS_PAGE . "[$name]' size='42' type='$type' value='$value' />";
+        echo "<input id='$name' name='" . 'pakkasmarja_management' . "[$name]' size='42' type='$type' value='$value' />";
       }
 
       public function settingsPage() {
@@ -52,8 +48,8 @@
         echo '<div class="wrap">';
         echo "<h2>" . __( "Pakkasmarja Management", 'pakkasmarja_management') . "</h2>";
         echo '<form action="options.php" method="POST">';
-        settings_fields(PAKKASMARJA_MANAGEMENT_SETTINGS_GROUP);
-        do_settings_sections(PAKKASMARJA_MANAGEMENT_SETTINGS_PAGE);
+        settings_fields('pakkasmarja_management');
+        do_settings_sections('pakkasmarja_management');
         submit_button();
         echo "</form>";
         echo "</div>";
