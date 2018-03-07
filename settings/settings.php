@@ -7,14 +7,12 @@
   
   require_once('settings-ui.php');  
   
-  define(PAKKASMARJA_MANAGEMENT_SETTINGS_OPTION, 'pakkasmarja_management');
-  
   if (!class_exists( '\Metatavu\Pakkasmarja\Settings\Settings' ) ) {
 
     class Settings {
 
       public static function getValue($name) {
-        $options = get_option(PAKKASMARJA_MANAGEMENT_SETTINGS_OPTION);
+        $options = get_option('pakkasmarja_management');
         if ($options) {
           return $options[$name];
         }
