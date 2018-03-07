@@ -107,7 +107,12 @@
        * @param string $which which bar is in question (top or bottom)
        */
       public function extra_tablenav($which) {
-        
+        if ($which === "top" && current_user_can('pakkasmarja_contracts_view')) {
+          if (current_user_can('pakkasmarja_contracts_view')) {
+            $xlsxUrl = "?page=contract.php&action=xlsx";
+            echo sprintf('<a class="button" style="display: inline-block; margin-left:-7px" href="%s">%s</a>', $xlsxUrl, __('Download XLSX', 'pakkasmarja_management'));
+          }
+        }
       }
        
       /**
