@@ -5,8 +5,8 @@ msgstr ""
 "Project-Id-Version: Pakkasmarja Management 0.0.1\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/wordpress-"
 "pakkasmarja-management\n"
-"POT-Creation-Date: 2018-02-28 07:02:14+00:00\n"
-"PO-Revision-Date: 2018-02-28 09:06+0200\n"
+"POT-Creation-Date: 2018-03-07 06:13:22+00:00\n"
+"PO-Revision-Date: 2018-03-07 08:17+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: fi\n"
@@ -68,101 +68,142 @@ msgstr "Keskusteluketjuja ei löytynyt"
 msgid "No Chat Threads in trash"
 msgstr "Ei keskusteluketjuja roskakorissa"
 
-#: operations/operation-formatter.php:27
-msgid "SAP Contacts synchronization"
-msgstr "SAP Yhteystietojen synkronointi"
+#: contracts/contracts-edit-view.php:50
+msgid "Edit Contract"
+msgstr "Muokkaa sopimusta"
 
-#: operations/operation-formatter.php:29
-msgid "SAP Delivery Places synchronization"
-msgstr "SAP toimituspaikkojen synkronointi"
+#: contracts/contracts-edit-view.php:72
+msgid "Failed to update contract"
+msgstr "Sopimuksen muokkaus epäonnistui\t"
 
-#: operations/operation-formatter.php:31
-msgid "SAP Item Groups synchronization"
-msgstr "SAP marjalajien synkronointi"
-
-#: operations/operation-formatter.php:33
-msgid "SAP Contracts synchronization"
-msgstr "SAP sopimusten synkronointi"
-
-#: operations/operation-formatter.php:46
-msgid "Pending"
-msgstr "Odottaa"
-
-#: operations/operation-formatter.php:48
-msgid "Failure"
-msgstr "Epäonnistunut"
-
-#: operations/operation-formatter.php:50
-#: operations/operation-reports-table.php:185
-msgid "Success"
-msgstr "Onnistunut"
-
-#: operations/operation-reports-table.php:85
-msgid "Operation"
-msgstr "Toimenpide"
-
-#: operations/operation-reports-table.php:97
-msgid "Confirm"
-msgstr "Vahvista"
-
-#: operations/operation-reports-table.php:98
-msgid "Cancel"
-msgstr "Peruuta"
-
-#: operations/operation-reports-table.php:99
-msgid "Confirm operation"
-msgstr "Vahvista toimenpide"
-
-#: operations/operation-reports-table.php:100
-msgid "Confirm operation %s start"
-msgstr "Vahvista toimenpiteen %s -aloittaminen"
-
-#: operations/operation-reports-table.php:101
-msgid "Start"
-msgstr "Aloita"
-
-#: operations/operation-reports-table.php:114
-msgid "Type"
-msgstr "Tyyppi"
-
-#: operations/operation-reports-table.php:115
-msgid "Started"
-msgstr "Aloitettu"
-
-#: operations/operation-reports-table.php:116
-#: operations/operations-report-view.php:42
-msgid "Status"
-msgstr "Tila"
-
-#: operations/operation-reports-table.php:160
-msgid "View"
-msgstr "Näytä"
-
-#: operations/operation-reports-table.php:174
-msgid "In Progress (%d / %d)"
-msgstr "Kesken (%d / %d)"
-
-#: operations/operation-reports-table.php:178
-msgid "Contains Errors (%d / %d)"
-msgstr "Sisältää virheitä (%d / %d)"
-
-#: operations/operation-reports-table.php:182
-msgid "Errored"
-msgstr "Epäonnistunut"
-
-#: operations/operations-menu.php:19 operations/operations-menu.php:29
-msgid "Operations"
-msgstr "Toimenpiteen"
-
-#: operations/operations-report-view.php:25
-msgid "View Operation"
-msgstr "Näytä toimenpide"
-
-#: operations/operations-report-view.php:38
+#: contracts/contracts-edit-view.php:80
+#: operations/operations-report-view.php:45
 msgid "Back"
 msgstr "Takaisin"
 
-#: operations/operations-report-view.php:42
+#: contracts/contracts-edit-view.php:135 contracts/contracts-table.php:129
+msgid "Contract Quantity"
+msgstr "Sopimusmäärä"
+
+#: contracts/contracts-edit-view.php:136 contracts/contracts-table.php:127
+#: operations/operation-reports-table.php:118
+#: operations/operations-report-view.php:49
+msgid "Status"
+msgstr "Tila"
+
+#: contracts/contracts-edit-view.php:137
+msgid "Delivery Place"
+msgstr "Toimituspaikka"
+
+#: contracts/contracts-edit-view.php:138 contracts/contracts-table.php:132
+msgid "Remarks"
+msgstr "Huomautuskenttä"
+
+#: contracts/contracts-menu.php:19 contracts/contracts-menu.php:29
+msgid "Contracts"
+msgstr "Sopimukset"
+
+#: contracts/contracts-table.php:113
+msgid "Download XLSX"
+msgstr "Lataa XLSX -tiedostona"
+
+#: contracts/contracts-table.php:126
+msgid "Company"
+msgstr "Toimittajan nimi"
+
+#: contracts/contracts-table.php:128
+msgid "Item Group"
+msgstr "Marjalaji"
+
+#: contracts/contracts-table.php:130
+msgid "Delivered Quantity"
+msgstr "Toimitettu määrä"
+
+#: contracts/contracts-table.php:131
+msgid "Place"
+msgstr "Toimituspaikka"
+
+#: contracts/contracts-table.php:133
+msgid "Sign date"
+msgstr "Viljelijän allekirjoituspäivä"
+
+#: contracts/contracts-table.php:134
+msgid "Start date"
+msgstr "Alkupäivä"
+
+#: contracts/contracts-table.php:135
+msgid "End date"
+msgstr "Loppupäivä"
+
+#: contracts/contracts-table.php:136
+msgid "Approval date"
+msgstr "Pakkasmarjan hyväksyntäpäivä"
+
+#: contracts/contracts-table.php:180
+msgid "Edit"
+msgstr "Muokkaa\t"
+
+#: operations/operation-reports-table.php:87
+msgid "Operation"
+msgstr "Toimenpide"
+
+#: operations/operation-reports-table.php:99
+msgid "Confirm"
+msgstr "Vahvista"
+
+#: operations/operation-reports-table.php:100
+msgid "Cancel"
+msgstr "Peruuta"
+
+#: operations/operation-reports-table.php:101
+msgid "Confirm operation"
+msgstr "Vahvista toimenpide"
+
+#: operations/operation-reports-table.php:102
+msgid "Confirm operation %s start"
+msgstr "Vahvista toimenpiteen %s -aloittaminen"
+
+#: operations/operation-reports-table.php:103
+msgid "Start"
+msgstr "Aloita"
+
+#: operations/operation-reports-table.php:116
+msgid "Type"
+msgstr "Tyyppi"
+
+#: operations/operation-reports-table.php:117
+msgid "Started"
+msgstr "Aloitettu"
+
+#: operations/operation-reports-table.php:162
+msgid "View"
+msgstr "Näytä"
+
+#: operations/operation-reports-table.php:176
+msgid "In Progress (%d / %d)"
+msgstr "Kesken (%d / %d)"
+
+#: operations/operation-reports-table.php:180
+msgid "Contains Errors (%d / %d)"
+msgstr "Sisältää virheitä (%d / %d)"
+
+#: operations/operation-reports-table.php:184
+msgid "Errored"
+msgstr "Epäonnistunut"
+
+#: operations/operation-reports-table.php:187 utils/formatter.php:48
+msgid "Success"
+msgstr "Onnistunut"
+
+#: operations/operations-menu.php:19 operations/operations-menu.php:29
+msgid "Operations"
+msgstr "Toimenpiteet"
+
+#: operations/operations-report-view.php:32
+msgid "View Operation"
+msgstr "Näytä toimenpide"
+
+#: operations/operations-report-view.php:49
 msgid "Message"
 msgstr "Viesti\t"
 
@@ -235,6 +276,46 @@ msgstr "Oikeutesi eivät riitä tämän sivun katseluun"
 #: settings/settings-ui.php:53
 msgid "Pakkasmarja Management"
 msgstr "Pakkasmarja hallinta"
+
+#: utils/formatter.php:25
+msgid "SAP Contacts synchronization"
+msgstr "SAP Yhteystietojen synkronointi"
+
+#: utils/formatter.php:27
+msgid "SAP Delivery Places synchronization"
+msgstr "SAP toimituspaikkojen synkronointi"
+
+#: utils/formatter.php:29
+msgid "SAP Item Groups synchronization"
+msgstr "SAP marjalajien synkronointi"
+
+#: utils/formatter.php:31
+msgid "SAP Contracts synchronization"
+msgstr "SAP sopimusten synkronointi"
+
+#: utils/formatter.php:44
+msgid "Pending"
+msgstr "Odottaa"
+
+#: utils/formatter.php:46
+msgid "Failure"
+msgstr "Epäonnistunut"
+
+#: utils/formatter.php:61
+msgid "Approved"
+msgstr "Hyväksytty"
+
+#: utils/formatter.php:63
+msgid "On Hold"
+msgstr "Odottaa"
+
+#: utils/formatter.php:65
+msgid "Draft"
+msgstr "Vedos"
+
+#: utils/formatter.php:67
+msgid "Terminated"
+msgstr "Päättynyt"
 
 #. Description of the plugin/theme
 msgid "Management functions for Pakkasmarja Application"

@@ -6,7 +6,8 @@
   }
 
   require_once( __DIR__ . '/../vendor/autoload.php');
-  
+  require_once( __DIR__ . '/contracts-api-ext.php');
+
   if (!class_exists( '\Metatavu\Pakkasmarja\Api\ApiClient' ) ) {
     
     class ApiClient {
@@ -36,7 +37,7 @@
        * @return \Metatavu\Pakkasmarja\Api\ContractsApi
        */
       public static function getContractsApi() {
-        return new \Metatavu\Pakkasmarja\Api\ContractsApi(null, self::getConfiguration());
+        return new \Metatavu\Pakkasmarja\Api\ContractsApiExt(null, self::getConfiguration());
       }
 
       /**
