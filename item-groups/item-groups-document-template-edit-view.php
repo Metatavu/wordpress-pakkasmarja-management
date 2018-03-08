@@ -47,9 +47,9 @@
           if ($validateMessage) {
             echo '<div class="notice-error notice">' . $validateMessage . '</div>';
           } else {
-            $contents = apply_filters("the_content", $this->getRawPostString("contents"));
-            $header = apply_filters("the_content", $this->getRawPostString("header"));
-            $footer = apply_filters("the_content", $this->getRawPostString("footer"));
+            $contents = apply_filters("the_content", stripslashes($this->getRawPostString("contents")));
+            $header = apply_filters("the_content", stripslashes($this->getRawPostString("header")));
+            $footer = apply_filters("the_content", stripslashes($this->getRawPostString("footer")));
 
             if (!$this->updateItemGroupDocumentTemplate($itemGroupDocumentTemplate, $contents, $header, $footer)) {
               echo sprintf('<div class="notice-error notice">%s</div>', htmlspecialchars(__('Failed to update contract', 'pakkasmarja_management')));
