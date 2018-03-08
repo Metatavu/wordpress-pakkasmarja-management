@@ -53,7 +53,7 @@
 
         foreach ($response["items"] as $itemGroup) {
           $this->items[] = [
-            "id" => $item-group["id"],
+            "id" => $itemGroup["id"],
             "name" => $itemGroup->getName()
           ];
         }
@@ -113,15 +113,22 @@
        * 
        * @param $item array item data
        * @return rendered type column  
-       *//**
-      public function column_companyName($item) {
+       */
+      public function column_name($item) {
         $id = $item['id'];
         $name = $item['name'];
-        $editUrl = sprintf("?page=pakkasmarja-item-group-edit-view.php&action=%s&id=%s", "edit", $id);
+
         $actions = [];
-        $actions['edit'] = sprintf('<a href="%s">%s</a>', $editUrl, __('Edit', 'pakkasmarja_management'));
-        return sprintf('%1$s%2$s', sprintf('<a href="%s">%s</a>', $editUrl, $companyName), $this->row_actions($actions));
-      } */
+
+        $itemGroupDocumentTemplates = $this->itemGroupsApi->listItemGroupDocumentTemplates($id);
+        foreach ($itemGroupDocumentTemplates as $itemGroupDocumentTemplate) {
+          $editUrl = sprintf("?page=pakkasmarja-item-group-document-template-edit-view.php&item-group-id=%s&id=%s", $itemGroupDocumentTemplate->getItemGroupId(), $itemGroupDocumentTemplate->getId());
+          $title = sprintf(__('Edit template %s', 'pakkasmarja_management'), Formatter::formatDocumentTemplateType($itemGroupDocumentTemplate->getType()));
+          $actions["edit-template-" . $itemGroupDocumentTemplate->getId()] = sprintf('<a href="%s">%s</a>', $editUrl, $title);
+        }
+        
+        return sprintf('%1$s%2$s', $name, $this->row_actions($actions));
+      }
 
       /**
        * Lists item group reports

@@ -16,7 +16,7 @@
             
       public function __construct() {
         add_action( 'admin_menu', function () {
-          add_menu_page(__('ItemGroups', 'pakkasmarja_management'), __('ItemGroups', 'pakkasmarja_management'), $this->capability, 'item-group.php', [ $this, 'renderItemGroupsPage' ], 'dashicons-admin-customizer', 50);
+          add_menu_page(__('Item Groups', 'pakkasmarja_management'), __('Item Groups', 'pakkasmarja_management'), $this->capability, 'item-group.php', [ $this, 'renderItemGroupsPage' ], 'dashicons-admin-customizer', 50);
         });
       }
       
@@ -26,7 +26,7 @@
       public function renderItemGroupsPage() {
         echo '<div class="wrap">';
 
-        echo sprintf('<h1 class="wp-heading-inline">%s</h1>', __('ItemGroups', 'pakkasmarja_management'));
+        echo sprintf('<h1 class="wp-heading-inline">%s</h1>', __('Item Groups', 'pakkasmarja_management'));
 
         $table = new ItemGroupsTable();
         $table->prepare_items();
