@@ -20,6 +20,7 @@
   require_once( __DIR__ . '/webhooks/webhook-handler.php');
   require_once( __DIR__ . '/operations/operations.php');
   require_once( __DIR__ . '/contracts/contracts.php');
+  require_once( __DIR__ . '/item-groups/item-groups.php');
   
   add_action('plugins_loaded', function() {
     load_plugin_textdomain( PAKKASMARJA_MANAGEMENT_I18N_DOMAIN, false, dirname( plugin_basename(__FILE__) ) . '/lang/' );
