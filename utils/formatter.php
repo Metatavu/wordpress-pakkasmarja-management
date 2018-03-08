@@ -69,6 +69,23 @@
       }
 
       /**
+       * Formats document template type
+       * 
+       * @param string $type contract template type
+       * @return string formatted contract template type
+       */
+      public static function formatDocumentTemplateType($type) {
+        switch ($type) {
+          case "master":
+            return __('Master', 'pakkasmarja_management');
+          case "group":
+            return __('Group', 'pakkasmarja_management');
+        }
+
+        return $type;
+      }
+
+      /**
        * Returns date time as string
        * 
        * @param \DateTime $dateTime date time

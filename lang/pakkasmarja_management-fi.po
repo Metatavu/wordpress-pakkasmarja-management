@@ -5,8 +5,8 @@ msgstr ""
 "Project-Id-Version: Pakkasmarja Management 0.0.1\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/wordpress-"
 "pakkasmarja-management\n"
-"POT-Creation-Date: 2018-03-07 06:13:22+00:00\n"
-"PO-Revision-Date: 2018-03-07 08:17+0200\n"
+"POT-Creation-Date: 2018-03-08 14:10:15+00:00\n"
+"PO-Revision-Date: 2018-03-08 16:12+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: fi\n"
@@ -68,34 +68,36 @@ msgstr "Keskusteluketjuja ei löytynyt"
 msgid "No Chat Threads in trash"
 msgstr "Ei keskusteluketjuja roskakorissa"
 
-#: contracts/contracts-edit-view.php:50
+#: contracts/contracts-edit-view.php:51
 msgid "Edit Contract"
 msgstr "Muokkaa sopimusta"
 
-#: contracts/contracts-edit-view.php:72
+#: contracts/contracts-edit-view.php:73
+#: item-groups/item-groups-document-template-edit-view.php:55
 msgid "Failed to update contract"
 msgstr "Sopimuksen muokkaus epäonnistui\t"
 
-#: contracts/contracts-edit-view.php:80
+#: contracts/contracts-edit-view.php:81
+#: item-groups/item-groups-document-template-edit-view.php:67
 #: operations/operations-report-view.php:45
 msgid "Back"
 msgstr "Takaisin"
 
-#: contracts/contracts-edit-view.php:135 contracts/contracts-table.php:129
+#: contracts/contracts-edit-view.php:126 contracts/contracts-table.php:131
 msgid "Contract Quantity"
 msgstr "Sopimusmäärä"
 
-#: contracts/contracts-edit-view.php:136 contracts/contracts-table.php:127
+#: contracts/contracts-edit-view.php:127 contracts/contracts-table.php:129
 #: operations/operation-reports-table.php:118
 #: operations/operations-report-view.php:49
 msgid "Status"
 msgstr "Tila"
 
-#: contracts/contracts-edit-view.php:137
+#: contracts/contracts-edit-view.php:128
 msgid "Delivery Place"
 msgstr "Toimituspaikka"
 
-#: contracts/contracts-edit-view.php:138 contracts/contracts-table.php:132
+#: contracts/contracts-edit-view.php:129 contracts/contracts-table.php:134
 msgid "Remarks"
 msgstr "Huomautuskenttä"
 
@@ -103,45 +105,77 @@ msgstr "Huomautuskenttä"
 msgid "Contracts"
 msgstr "Sopimukset"
 
-#: contracts/contracts-table.php:113
+#: contracts/contracts-table.php:114
 msgid "Download XLSX"
 msgstr "Lataa XLSX -tiedostona"
 
-#: contracts/contracts-table.php:126
+#: contracts/contracts-table.php:128
 msgid "Company"
 msgstr "Toimittajan nimi"
 
-#: contracts/contracts-table.php:128
+#: contracts/contracts-table.php:130
 msgid "Item Group"
 msgstr "Marjalaji"
 
-#: contracts/contracts-table.php:130
+#: contracts/contracts-table.php:132
 msgid "Delivered Quantity"
 msgstr "Toimitettu määrä"
 
-#: contracts/contracts-table.php:131
+#: contracts/contracts-table.php:133
 msgid "Place"
 msgstr "Toimituspaikka"
 
-#: contracts/contracts-table.php:133
+#: contracts/contracts-table.php:135
 msgid "Sign date"
 msgstr "Viljelijän allekirjoituspäivä"
 
-#: contracts/contracts-table.php:134
+#: contracts/contracts-table.php:136
 msgid "Start date"
 msgstr "Alkupäivä"
 
-#: contracts/contracts-table.php:135
+#: contracts/contracts-table.php:137
 msgid "End date"
 msgstr "Loppupäivä"
 
-#: contracts/contracts-table.php:136
+#: contracts/contracts-table.php:138
 msgid "Approval date"
 msgstr "Pakkasmarjan hyväksyntäpäivä"
 
-#: contracts/contracts-table.php:180
+#: contracts/contracts-table.php:184
 msgid "Edit"
 msgstr "Muokkaa\t"
+
+#: contracts/contracts-table.php:189
+msgid "Preview (%s)"
+msgstr "Esikatsele (%s)"
+
+#: item-groups/item-groups-document-template-edit-view.php:33
+msgid "Edit Item Group Document Template"
+msgstr "Muokkaa marjalajin sopimusmallia"
+
+#: item-groups/item-groups-document-template-edit-view.php:103
+msgid "Contents"
+msgstr "Sisältö"
+
+#: item-groups/item-groups-document-template-edit-view.php:104
+msgid "Header"
+msgstr "Ylätunniste"
+
+#: item-groups/item-groups-document-template-edit-view.php:105
+msgid "Footer"
+msgstr "Alatunniste"
+
+#: item-groups/item-groups-menu.php:19 item-groups/item-groups-menu.php:29
+msgid "Item Groups"
+msgstr "Marjalajit"
+
+#: item-groups/item-groups-table.php:78
+msgid "Name"
+msgstr "Nimi"
+
+#: item-groups/item-groups-table.php:126
+msgid "Edit template %s"
+msgstr "Muokkaa sopimusmallia"
 
 #: operations/operation-reports-table.php:87
 msgid "Operation"
@@ -248,32 +282,32 @@ msgstr "Kysymysryhmiä ei löytynyt"
 msgid "No Question Groups in trash"
 msgstr "Ei kysymysryhmiä roskakorissa"
 
-#: settings/settings-ui.php:22
+#: settings/settings-ui.php:18
 msgid "Pakkasmarja Settings"
 msgstr "Pakkasmarja Asetukset"
 
-#: settings/settings-ui.php:27
+#: settings/settings-ui.php:23
 msgid "API Settings"
 msgstr "API-asetukset"
 
-#: settings/settings-ui.php:28
+#: settings/settings-ui.php:24
 msgid "API URL"
 msgstr "API-osoite"
 
-#: settings/settings-ui.php:29
+#: settings/settings-ui.php:25
 msgid "Client Id"
 msgstr ""
 
-#: settings/settings-ui.php:30
+#: settings/settings-ui.php:26
 msgid "Client Secret"
 msgstr ""
 
-#: settings/settings-ui.php:49
+#: settings/settings-ui.php:45
 msgid "You do not have sufficient permissions to access this page."
 msgstr "Oikeutesi eivät riitä tämän sivun katseluun"
 
 #. Plugin Name of the plugin/theme
-#: settings/settings-ui.php:53
+#: settings/settings-ui.php:49
 msgid "Pakkasmarja Management"
 msgstr "Pakkasmarja hallinta"
 
@@ -316,6 +350,14 @@ msgstr "Vedos"
 #: utils/formatter.php:67
 msgid "Terminated"
 msgstr "Päättynyt"
+
+#: utils/formatter.php:80
+msgid "Master"
+msgstr "Pääsopimus"
+
+#: utils/formatter.php:82
+msgid "Group"
+msgstr "Ryhmä"
 
 #. Description of the plugin/theme
 msgid "Management functions for Pakkasmarja Application"

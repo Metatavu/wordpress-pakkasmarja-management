@@ -79,6 +79,7 @@
         foreach ($response["items"] as $contract) {
           $this->items[] = [
             "id" => $contract["id"],
+            "itemGroupId" => $contract["itemGroupId"],
             "companyName" => Formatter::getCompanyName($contract["contactId"]),
             "status" => Formatter::formatContractStatus($contract["status"]),
             "itemGroupName" => Formatter::getItemGroupName($contract["itemGroupId"]),
@@ -123,6 +124,7 @@
       public function get_columns() {
         $columns = [
           'id' => 'ID',
+          'itemGroupId' => 'itemGroupId',
           "companyName" => __('Company', 'pakkasmarja_management'),
           'status' => __('Status', 'pakkasmarja_management'),
           "itemGroupName" => __('Item Group', 'pakkasmarja_management'),
@@ -144,7 +146,7 @@
        * @return array hidden columns
        */
       public function get_hidden_columns() {
-        return ['id'];
+        return ['id', 'itemGroupId'];
       }
       
       /**
@@ -174,10 +176,19 @@
        */
       public function column_companyName($item) {
         $id = $item['id'];
+        $itemGroupId = $item['itemGroupId'];
+        $actions = [];
+
         $companyName = $item['companyName'];
         $editUrl = sprintf("?page=pakkasmarja-contract-edit-view.php&action=%s&id=%s", "edit", $id);
-        $actions = [];
         $actions['edit'] = sprintf('<a href="%s">%s</a>', $editUrl, __('Edit', 'pakkasmarja_management'));
+
+        $itemGroupDocumentTemplates = $this->itemGroupsApi->listItemGroupDocumentTemplates($itemGroupId);
+        foreach ($itemGroupDocumentTemplates as $itemGroupDocumentTemplate) {
+          $pdfUrl = sprintf("?page=contract.php&action=%s&id=%s&type=%s", "single-pdf", $id, $itemGroupDocumentTemplate->getType());
+          $actions['pdf-' . $itemGroupDocumentTemplate->getId()] = sprintf('<a href="%s">%s</a>', $pdfUrl, sprintf(__('Preview (%s)', 'pakkasmarja_management'), Formatter::formatDocumentTemplateType($itemGroupDocumentTemplate->getType())));
+        }
+
         return sprintf('%1$s%2$s', sprintf('<a href="%s">%s</a>', $editUrl, $companyName), $this->row_actions($actions));
       }
 
