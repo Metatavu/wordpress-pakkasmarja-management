@@ -67,9 +67,9 @@
             $contractQuantity = $this->getPostInt("contract-quantity");
             $status = $this->getPostString("status");
             $deliveryPlaceId = $this->getPostString("delivery-place");
-            $remarks = $this->getPostString("remarks");
+            $remarks = $this->getMemoPostString("remarks");
             
-            if (!$this->updateContract($contract, $contractQuantity, $status, $deliveryPlaceId)) {
+            if (!$this->updateContract($contract, $contractQuantity, $status, $deliveryPlaceId, $remarks)) {
               echo sprintf('<div class="notice-error notice">%s</div>', htmlspecialchars(__('Failed to update contract', 'pakkasmarja_management')));
             }
           }
@@ -192,13 +192,15 @@
        * @param int $contractQuantity new contract quantity
        * @param String $status new status
        * @param String $deliveryPlaceId new delivery place id
+       * @param String $remarks remark
        * @return \Metatavu\Pakkasmarja\Api\Model\Contract updated contract
        */
-      private function updateContract($contract, $contractQuantity, $status, $deliveryPlaceId) {
+      private function updateContract($contract, $contractQuantity, $status, $deliveryPlaceId, $remarks) {
         try {
           $contract->setContractQuantity($contractQuantity);
           $contract->setStatus($status);
           $contract->setDeliveryPlaceId($deliveryPlaceId);
+          $contract->setRemarks($remarks);
           return $this->contractsApi->updateContract($contract->getId(), $contract);
         } catch (\Metatavu\Pakkasmarja\ApiException $e) {
           echo '<div class="error notice">';
