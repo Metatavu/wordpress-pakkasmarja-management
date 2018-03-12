@@ -106,6 +106,16 @@
       }
 
       /**
+       * Returns multiline string value from POST request
+       * 
+       * @param String $name variable name
+       * @return String value
+       */
+      protected function getMemoPostString($name) {
+        return sanitize_textarea_field($this->getRawPostString($name));
+      }
+
+      /**
        * Returns raw string value from POST request
        * 
        * @param String $name variable name
