@@ -11,6 +11,24 @@
     class AbstractEditView {
 
       /**
+       * @var \Metatavu\Pakkasmarja\Api\ContractsApi
+       */
+      private $contractsApi;
+
+      /**
+       * @var \Metatavu\Pakkasmarja\Api\ItemGroupsApi
+       */
+      private $itemGroupsApi;
+
+      /**
+       * Constructorr
+       */
+      public function __construct() {
+        $this->contractsApi = \Metatavu\Pakkasmarja\Api\ApiClient::getContractsApi();
+        $this->itemGroupsApi = \Metatavu\Pakkasmarja\Api\ApiClient::getItemGroupsApi();
+      }
+
+      /**
        * Renders contract form start
        */
       protected function renderFormStart($action) {
@@ -123,6 +141,61 @@
        */
       protected function getPostInt($name) {
         return intval($this->getPostString($name));
+      }
+
+      /**
+       * Finds an item group by id
+       * 
+       * @return array array containing delivery places  
+       */
+      protected function findItemGroupById($id) {
+        try {
+          return $this->itemGroupsApi->findItemGroup($id);
+        } catch (\Metatavu\Pakkasmarja\ApiException $e) {
+          echo '<div class="error notice">';
+          if ($e->getResponseBody()) {
+            echo print_r($e->getResponseBody());
+          } else {
+            echo $e;
+          }
+
+          echo '</div>';
+        }
+      }
+
+      /**
+       * Finds an item group document template
+       *
+       * @param string $itemGroupId item group id (required)
+       * @param string $itemGroupDocumentTemplateId item group document template id (required)
+       *
+       * @return \Metatavu\Pakkasmarja\Api\Model\ContractItemGroupDocumentTemplate
+       */
+      protected function findItemGroupDocumentTemplate($itemGroupId, $itemGroupDocumentTemplateId) {
+        try {
+          return $this->itemGroupsApi->findItemGroupDocumentTemplate($itemGroupId, $itemGroupDocumentTemplateId);
+        } catch (\Metatavu\Pakkasmarja\ApiException | \InvalidArgumentException $e) {
+          $message = $e->getMessage();
+          error_log("Failed to find item group document template #$itemGroupDocumentTemplateId: $message");
+          return null;
+        }
+      }
+
+      /**
+       * Finds a contract by id
+       *
+       * @param string $contractId contract id (required)
+       *
+       * @return \Metatavu\Pakkasmarja\Api\Model\Contract
+       */
+      protected function findContractById($contractId) {
+        try {
+          return $this->contractsApi->findContract($contractId);
+        } catch (\Metatavu\Pakkasmarja\ApiException | \InvalidArgumentException $e) {
+          $message = $e->getMessage();
+          error_log("Failed to find contract #$contractId: $message");
+          return null;
+        }
       }
     }
 

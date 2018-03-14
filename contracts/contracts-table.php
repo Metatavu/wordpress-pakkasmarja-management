@@ -186,6 +186,8 @@
         $itemGroupDocumentTemplates = $this->itemGroupsApi->listItemGroupDocumentTemplates($itemGroupId);
         foreach ($itemGroupDocumentTemplates as $itemGroupDocumentTemplate) {
           $pdfUrl = sprintf("?page=contract.php&action=%s&id=%s&type=%s", "single-pdf", $id, $itemGroupDocumentTemplate->getType());
+          $editDocumentTemplateUrl = sprintf("?page=pakkasmarja-contracts-document-template-edit-view.php&item-group-document-template-id=%s&item-group-id=%s&contract-id=%s", $itemGroupDocumentTemplate->getId(), $itemGroupDocumentTemplate->getItemGroupId(), $id);
+          $actions['edit-document-template-' . $itemGroupDocumentTemplate->getId()] = sprintf('<a href="%s">%s</a>', $editDocumentTemplateUrl, sprintf(__('Customize (%s)', 'pakkasmarja_management'), Formatter::formatDocumentTemplateType($itemGroupDocumentTemplate->getType())));
           $actions['pdf-' . $itemGroupDocumentTemplate->getId()] = sprintf('<a href="%s">%s</a>', $pdfUrl, sprintf(__('Preview (%s)', 'pakkasmarja_management'), Formatter::formatDocumentTemplateType($itemGroupDocumentTemplate->getType())));
         }
 
