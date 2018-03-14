@@ -5,6 +5,8 @@
   if (!defined('ABSPATH')) { 
     exit;
   }
+  
+  require_once( __DIR__ . '/../vendor/autoload.php');
 
   if (!class_exists( '\Metatavu\Pakkasmarja\Utils\AbstractEditView' ) ) {
     
@@ -174,7 +176,11 @@
       protected function findItemGroupDocumentTemplate($itemGroupId, $itemGroupDocumentTemplateId) {
         try {
           return $this->itemGroupsApi->findItemGroupDocumentTemplate($itemGroupId, $itemGroupDocumentTemplateId);
-        } catch (\Metatavu\Pakkasmarja\ApiException | \InvalidArgumentException $e) {
+        } catch (\InvalidArgumentException $e) {
+          $message = $e->getMessage();
+          error_log("Failed to find item group document template #$itemGroupDocumentTemplateId: $message");
+          return null;
+        } catch (\Metatavu\Pakkasmarja\ApiException $e) {
           $message = $e->getMessage();
           error_log("Failed to find item group document template #$itemGroupDocumentTemplateId: $message");
           return null;
@@ -191,7 +197,11 @@
       protected function findContractById($contractId) {
         try {
           return $this->contractsApi->findContract($contractId);
-        } catch (\Metatavu\Pakkasmarja\ApiException | \InvalidArgumentException $e) {
+        } catch (\InvalidArgumentException $e) {
+          $message = $e->getMessage();
+          error_log("Failed to find contract #$contractId: $message");
+          return null;
+        } catch (\Metatavu\Pakkasmarja\ApiException $e) {
           $message = $e->getMessage();
           error_log("Failed to find contract #$contractId: $message");
           return null;

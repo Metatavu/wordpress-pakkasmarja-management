@@ -6,6 +6,8 @@
     exit;
   }
 
+  require_once( __DIR__ . '/../vendor/autoload.php');
+
   if (!class_exists( '\Metatavu\Pakkasmarja\Utils\Formatter' ) ) {
     
     class Formatter {
@@ -158,7 +160,11 @@
       private static function findItemGroupById($itemGroupId) {
         try {
           return \Metatavu\Pakkasmarja\Api\ApiClient::getItemGroupsApi()->findItemGroup($itemGroupId);
-        } catch (\Metatavu\Pakkasmarja\ApiException | \InvalidArgumentException $e) {
+        } catch (\InvalidArgumentException $e) {
+          $message = $e->getMessage();
+          error_log("Failed to find item group #$itemGroupId: $message");
+          return null;
+        } catch (\InvalidArgumentException $e) {
           $message = $e->getMessage();
           error_log("Failed to find item group #$itemGroupId: $message");
           return null;
@@ -175,7 +181,11 @@
       private static function findContactById($contactId) {
         try {
           return \Metatavu\Pakkasmarja\Api\ApiClient::getContactsApi()->findContact($contactId);
-        } catch (\Metatavu\Pakkasmarja\ApiException | \InvalidArgumentException $e) {
+        } catch (\InvalidArgumentException $e) {
+          $message = $e->getMessage();
+          error_log("Failed to find contact #$contactId: $message");
+          return null;
+        } catch (\Metatavu\Pakkasmarja\ApiException $e) {
           $message = $e->getMessage();
           error_log("Failed to find contact #$contactId: $message");
           return null;
@@ -192,7 +202,11 @@
       private static function findDeliveryPlaceById($deliveryPlaceId) {
         try {
           return \Metatavu\Pakkasmarja\Api\ApiClient::getDeliveryPlacesApi()->findDeliveryPlace($deliveryPlaceId);
-        } catch (\Metatavu\Pakkasmarja\ApiException | \InvalidArgumentException $e) {
+        } catch (\InvalidArgumentException $e) {
+          $message = $e->getMessage();
+          error_log("Failed to find delivery place #$deliveryPlaceId: $message");
+          return null;
+        } catch (\Metatavu\Pakkasmarja\ApiException $e) {
           $message = $e->getMessage();
           error_log("Failed to find delivery place #$deliveryPlaceId: $message");
           return null;
