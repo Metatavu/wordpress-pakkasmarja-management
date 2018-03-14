@@ -29,6 +29,8 @@
             return __('SAP Item Groups synchronization', 'pakkasmarja_management');
           case "SAP_CONTRACT_SYNC":
             return __('SAP Contracts synchronization', 'pakkasmarja_management');
+          case "ITEM_GROUP_DEFAULT_DOCUMENT_TEMPLATES":
+            return __('Item Group default document templates', 'pakkasmarja_management');
         }
       }
 
