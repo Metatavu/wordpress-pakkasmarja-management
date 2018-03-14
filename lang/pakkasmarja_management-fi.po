@@ -5,8 +5,8 @@ msgstr ""
 "Project-Id-Version: Pakkasmarja Management 0.0.1\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/wordpress-"
 "pakkasmarja-management\n"
-"POT-Creation-Date: 2018-03-08 14:10:15+00:00\n"
-"PO-Revision-Date: 2018-03-08 16:12+0200\n"
+"POT-Creation-Date: 2018-03-14 05:45:53+00:00\n"
+"PO-Revision-Date: 2018-03-14 08:26+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: fi\n"
@@ -68,20 +68,56 @@ msgstr "Keskusteluketjuja ei löytynyt"
 msgid "No Chat Threads in trash"
 msgstr "Ei keskusteluketjuja roskakorissa"
 
+#: contracts/contracts-document-template-edit-view.php:35
+msgid "Edit Contract Document Template"
+msgstr "Muokkaa sopimuksen sopimusmallia"
+
+#: contracts/contracts-document-template-edit-view.php:60
+msgid "Failed to update contract document template"
+msgstr "Sopimuksen muokkaus epäonnistui"
+
+#: contracts/contracts-document-template-edit-view.php:65
+msgid "Edit %s document template %s"
+msgstr "Muokkaa sopimuksen %s sopimusmallia %s"
+
+#: contracts/contracts-document-template-edit-view.php:69
+#: contracts/contracts-edit-view.php:81
+#: item-groups/item-groups-document-template-edit-view.php:69
+#: operations/operations-report-view.php:45
+msgid "Back"
+msgstr "Takaisin"
+
+#: contracts/contracts-document-template-edit-view.php:113
+msgid ""
+"Please not that saving this will create customized version of the contract "
+"document template"
+msgstr ""
+"Huomaathan, että mallin tallentaminen luo sopimukselle erillisen mallin ja "
+"eriyttää mallin marjaryhmän pohjamalista"
+
+#: contracts/contracts-document-template-edit-view.php:120
+#: item-groups/item-groups-document-template-edit-view.php:105
+msgid "Contents"
+msgstr "Sisältö"
+
+#: contracts/contracts-document-template-edit-view.php:121
+#: item-groups/item-groups-document-template-edit-view.php:106
+msgid "Header"
+msgstr "Ylätunniste"
+
+#: contracts/contracts-document-template-edit-view.php:122
+#: item-groups/item-groups-document-template-edit-view.php:107
+msgid "Footer"
+msgstr "Alatunniste"
+
 #: contracts/contracts-edit-view.php:51
 msgid "Edit Contract"
 msgstr "Muokkaa sopimusta"
 
 #: contracts/contracts-edit-view.php:73
-#: item-groups/item-groups-document-template-edit-view.php:55
+#: item-groups/item-groups-document-template-edit-view.php:57
 msgid "Failed to update contract"
-msgstr "Sopimuksen muokkaus epäonnistui\t"
-
-#: contracts/contracts-edit-view.php:81
-#: item-groups/item-groups-document-template-edit-view.php:67
-#: operations/operations-report-view.php:45
-msgid "Back"
-msgstr "Takaisin"
+msgstr "Sopimuksen muokkaus epäonnistui"
 
 #: contracts/contracts-edit-view.php:126 contracts/contracts-table.php:131
 msgid "Contract Quantity"
@@ -143,27 +179,19 @@ msgstr "Pakkasmarjan hyväksyntäpäivä"
 
 #: contracts/contracts-table.php:184
 msgid "Edit"
-msgstr "Muokkaa\t"
+msgstr "Muokkaa"
 
-#: contracts/contracts-table.php:189
+#: contracts/contracts-table.php:190
+msgid "Customize (%s)"
+msgstr "Muokkaa mallia (%s)"
+
+#: contracts/contracts-table.php:191
 msgid "Preview (%s)"
 msgstr "Esikatsele (%s)"
 
-#: item-groups/item-groups-document-template-edit-view.php:33
+#: item-groups/item-groups-document-template-edit-view.php:35
 msgid "Edit Item Group Document Template"
 msgstr "Muokkaa marjalajin sopimusmallia"
-
-#: item-groups/item-groups-document-template-edit-view.php:103
-msgid "Contents"
-msgstr "Sisältö"
-
-#: item-groups/item-groups-document-template-edit-view.php:104
-msgid "Header"
-msgstr "Ylätunniste"
-
-#: item-groups/item-groups-document-template-edit-view.php:105
-msgid "Footer"
-msgstr "Alatunniste"
 
 #: item-groups/item-groups-menu.php:19 item-groups/item-groups-menu.php:29
 msgid "Item Groups"
@@ -175,7 +203,7 @@ msgstr "Nimi"
 
 #: item-groups/item-groups-table.php:126
 msgid "Edit template %s"
-msgstr "Muokkaa sopimusmallia"
+msgstr "Muokkaa sopimusmallia %s"
 
 #: operations/operation-reports-table.php:87
 msgid "Operation"
@@ -225,7 +253,7 @@ msgstr "Sisältää virheitä (%d / %d)"
 msgid "Errored"
 msgstr "Epäonnistunut"
 
-#: operations/operation-reports-table.php:187 utils/formatter.php:48
+#: operations/operation-reports-table.php:187 utils/formatter.php:52
 msgid "Success"
 msgstr "Onnistunut"
 
@@ -239,7 +267,7 @@ msgstr "Näytä toimenpide"
 
 #: operations/operations-report-view.php:49
 msgid "Message"
-msgstr "Viesti\t"
+msgstr "Viesti"
 
 #: question-groups/question-groups-type.php:11
 #: question-groups/question-groups-type.php:21
@@ -304,58 +332,62 @@ msgstr ""
 
 #: settings/settings-ui.php:45
 msgid "You do not have sufficient permissions to access this page."
-msgstr "Oikeutesi eivät riitä tämän sivun katseluun"
+msgstr "Oikeutesi eivät riitä tämän sivun katseluun."
 
 #. Plugin Name of the plugin/theme
 #: settings/settings-ui.php:49
 msgid "Pakkasmarja Management"
 msgstr "Pakkasmarja hallinta"
 
-#: utils/formatter.php:25
+#: utils/formatter.php:27
 msgid "SAP Contacts synchronization"
 msgstr "SAP Yhteystietojen synkronointi"
 
-#: utils/formatter.php:27
+#: utils/formatter.php:29
 msgid "SAP Delivery Places synchronization"
 msgstr "SAP toimituspaikkojen synkronointi"
 
-#: utils/formatter.php:29
+#: utils/formatter.php:31
 msgid "SAP Item Groups synchronization"
 msgstr "SAP marjalajien synkronointi"
 
-#: utils/formatter.php:31
+#: utils/formatter.php:33
 msgid "SAP Contracts synchronization"
 msgstr "SAP sopimusten synkronointi"
 
-#: utils/formatter.php:44
+#: utils/formatter.php:35
+msgid "Item Group default document templates"
+msgstr "Marjalajien oletus sopimusmallit"
+
+#: utils/formatter.php:48
 msgid "Pending"
 msgstr "Odottaa"
 
-#: utils/formatter.php:46
+#: utils/formatter.php:50
 msgid "Failure"
 msgstr "Epäonnistunut"
 
-#: utils/formatter.php:61
+#: utils/formatter.php:65
 msgid "Approved"
 msgstr "Hyväksytty"
 
-#: utils/formatter.php:63
+#: utils/formatter.php:67
 msgid "On Hold"
 msgstr "Odottaa"
 
-#: utils/formatter.php:65
+#: utils/formatter.php:69
 msgid "Draft"
 msgstr "Vedos"
 
-#: utils/formatter.php:67
+#: utils/formatter.php:71
 msgid "Terminated"
 msgstr "Päättynyt"
 
-#: utils/formatter.php:80
+#: utils/formatter.php:84
 msgid "Master"
 msgstr "Pääsopimus"
 
-#: utils/formatter.php:82
+#: utils/formatter.php:86
 msgid "Group"
 msgstr "Ryhmä"
 
