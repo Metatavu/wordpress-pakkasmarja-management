@@ -22,7 +22,7 @@
      */
     class OperationReportsTable extends \WP_List_Table {
 
-      private static $SUPPORTED_OPERATION_TYPES = ["SAP_CONTACT_SYNC", "SAP_DELIVERY_PLACE_SYNC", "SAP_ITEM_GROUP_SYNC", "SAP_CONTRACT_SYNC"]; 
+      private static $SUPPORTED_OPERATION_TYPES = ["SAP_CONTACT_SYNC", "SAP_DELIVERY_PLACE_SYNC", "SAP_ITEM_GROUP_SYNC", "SAP_CONTRACT_SYNC", "ITEM_GROUP_DEFAULT_DOCUMENT_TEMPLATES"]; 
       private $perPage = 10;
       
       /**

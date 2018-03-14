@@ -214,23 +214,6 @@
       }
 
       /**
-       * Finds a contract by id
-       *
-       * @param string $contractId contract id (required)
-       *
-       * @return \Metatavu\Pakkasmarja\Api\Model\Contract
-       */
-      private function findContractById($contractId) {
-        try {
-          return $this->contractsApi->findContract($contractId);
-        } catch (\Metatavu\Pakkasmarja\ApiException | \InvalidArgumentException $e) {
-          $message = $e->getMessage();
-          error_log("Failed to find contract #$contractId: $message");
-          return null;
-        }
-      }
-
-      /**
        * Lists delivery places
        * 
        * @return array array containing delivery places  

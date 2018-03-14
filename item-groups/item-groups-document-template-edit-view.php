@@ -27,6 +27,8 @@
        * Constructorr
        */
       public function __construct() {
+        parent::__construct();
+
         $this->itemGroupsApi = \Metatavu\Pakkasmarja\Api\ApiClient::getItemGroupsApi();
 
         add_action( 'admin_menu', function () {
@@ -150,24 +152,6 @@
           echo '</div>';
         }
       }
-      
-      /**
-       * Finds an item group document template
-       *
-       * @param string $itemGroupId item group id (required)
-       * @param string $itemGroupDocumentTemplateId item group document template id (required)
-       *
-       * @return \Metatavu\Pakkasmarja\Api\Model\ContractItemGroupDocumentTemplate
-       */
-      private function findItemGroupDocumentTemplate($itemGroupId, $itemGroupDocumentTemplateId) {
-        try {
-          return $this->itemGroupsApi->findItemGroupDocumentTemplate($itemGroupId, $itemGroupDocumentTemplateId);
-        } catch (\Metatavu\Pakkasmarja\ApiException | \InvalidArgumentException $e) {
-          $message = $e->getMessage();
-          error_log("Failed to find item group document template #$itemGroupDocumentTemplateId: $message");
-          return null;
-        }
-      }
 
       /**
        * Updates item group document template
@@ -187,26 +171,6 @@
           $message = $e->getMessage();
           error_log("Failed to find item group document template #$itemGroupDocumentTemplateId: $message");
           return null;
-        }
-      }
-
-      /**
-       * Finds a item group by id
-       * 
-       * @return array array containing delivery places  
-       */
-      private function findItemGroupById($id) {
-        try {
-          return $this->itemGroupsApi->findItemGroup($id);
-        } catch (\Metatavu\Pakkasmarja\ApiException $e) {
-          echo '<div class="error notice">';
-          if ($e->getResponseBody()) {
-            echo print_r($e->getResponseBody());
-          } else {
-            echo $e;
-          }
-
-          echo '</div>';
         }
       }
 

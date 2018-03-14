@@ -5,10 +5,14 @@ All URIs are relative to *https://localhost/rest/v1*
 Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**createContractDocumentSignRequest**](ContractsApi.md#createContractDocumentSignRequest) | **POST** /contracts/{id}/documents/{type}/signRequests | Requests contract document electronic signing
+[**createContractDocumentTemplate**](ContractsApi.md#createContractDocumentTemplate) | **POST** /contracts/{contractId}/documentTemplates | Create contract document template
 [**findContract**](ContractsApi.md#findContract) | **GET** /contracts/{id} | Find contract
+[**findContractDocumentTemplate**](ContractsApi.md#findContractDocumentTemplate) | **GET** /contracts/{contractId}/documentTemplates/{contractDocumentTemplateId} | Find contract document template
 [**getContractDocument**](ContractsApi.md#getContractDocument) | **GET** /contracts/{id}/documents/{type} | Returns contract document
+[**listContractDocumentTemplates**](ContractsApi.md#listContractDocumentTemplates) | **GET** /contracts/{contractId}/documentTemplates | List contract document templates
 [**listContracts**](ContractsApi.md#listContracts) | **GET** /contracts | Lists contracts
 [**updateContract**](ContractsApi.md#updateContract) | **PUT** /contracts/{id} | Update contract
+[**updateContractDocumentTemplate**](ContractsApi.md#updateContractDocumentTemplate) | **PUT** /contracts/{contractId}/documentTemplates/{contractDocumentTemplateId} | Updates contract document template
 
 
 # **createContractDocumentSignRequest**
@@ -53,6 +57,58 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**\Metatavu\Pakkasmarja\Api\Model\ContractDocumentSignRequest**](../Model/ContractDocumentSignRequest.md)
+
+### Authorization
+
+[bearer](../../README.md#bearer)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json;charset=utf-8
+ - **Accept**: application/json;charset=utf-8
+
+[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
+
+# **createContractDocumentTemplate**
+> \Metatavu\Pakkasmarja\Api\Model\ContractDocumentTemplate createContractDocumentTemplate($contractId, $body)
+
+Create contract document template
+
+Create new contract document template
+
+### Example
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+// Configure API key authorization: bearer
+Metatavu\Pakkasmarja\Configuration::getDefaultConfiguration()->setApiKey('Authorization', 'YOUR_API_KEY');
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+// Metatavu\Pakkasmarja\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Authorization', 'Bearer');
+
+$api_instance = new Metatavu\Pakkasmarja\Api\ContractsApi(new \Http\Adapter\Guzzle6\Client());
+$contractId = "contractId_example"; // string | contract id
+$body = new \Metatavu\Pakkasmarja\Api\Model\ContractDocumentTemplate(); // \Metatavu\Pakkasmarja\Api\Model\ContractDocumentTemplate | Payload
+
+try {
+    $result = $api_instance->createContractDocumentTemplate($contractId, $body);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling ContractsApi->createContractDocumentTemplate: ', $e->getMessage(), PHP_EOL;
+}
+?>
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **contractId** | **string**| contract id |
+ **body** | [**\Metatavu\Pakkasmarja\Api\Model\ContractDocumentTemplate**](../Model/ContractDocumentTemplate.md)| Payload |
+
+### Return type
+
+[**\Metatavu\Pakkasmarja\Api\Model\ContractDocumentTemplate**](../Model/ContractDocumentTemplate.md)
 
 ### Authorization
 
@@ -117,6 +173,58 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
+# **findContractDocumentTemplate**
+> \Metatavu\Pakkasmarja\Api\Model\ContractDocumentTemplate findContractDocumentTemplate($contractId, $contractDocumentTemplateId)
+
+Find contract document template
+
+Finds a contract templates
+
+### Example
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+// Configure API key authorization: bearer
+Metatavu\Pakkasmarja\Configuration::getDefaultConfiguration()->setApiKey('Authorization', 'YOUR_API_KEY');
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+// Metatavu\Pakkasmarja\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Authorization', 'Bearer');
+
+$api_instance = new Metatavu\Pakkasmarja\Api\ContractsApi(new \Http\Adapter\Guzzle6\Client());
+$contractId = "contractId_example"; // string | contract id
+$contractDocumentTemplateId = "contractDocumentTemplateId_example"; // string | contract id
+
+try {
+    $result = $api_instance->findContractDocumentTemplate($contractId, $contractDocumentTemplateId);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling ContractsApi->findContractDocumentTemplate: ', $e->getMessage(), PHP_EOL;
+}
+?>
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **contractId** | **string**| contract id |
+ **contractDocumentTemplateId** | **string**| contract id |
+
+### Return type
+
+[**\Metatavu\Pakkasmarja\Api\Model\ContractDocumentTemplate**](../Model/ContractDocumentTemplate.md)
+
+### Authorization
+
+[bearer](../../README.md#bearer)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json;charset=utf-8
+ - **Accept**: application/json;charset=utf-8
+
+[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
+
 # **getContractDocument**
 > string getContractDocument($id, $type, $format)
 
@@ -159,6 +267,58 @@ Name | Type | Description  | Notes
 ### Return type
 
 **string**
+
+### Authorization
+
+[bearer](../../README.md#bearer)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json;charset=utf-8
+ - **Accept**: application/json;charset=utf-8
+
+[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
+
+# **listContractDocumentTemplates**
+> \Metatavu\Pakkasmarja\Api\Model\ContractDocumentTemplate[] listContractDocumentTemplates($contractId, $type)
+
+List contract document templates
+
+Lists contract templates
+
+### Example
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+// Configure API key authorization: bearer
+Metatavu\Pakkasmarja\Configuration::getDefaultConfiguration()->setApiKey('Authorization', 'YOUR_API_KEY');
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+// Metatavu\Pakkasmarja\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Authorization', 'Bearer');
+
+$api_instance = new Metatavu\Pakkasmarja\Api\ContractsApi(new \Http\Adapter\Guzzle6\Client());
+$contractId = "contractId_example"; // string | contract id
+$type = "type_example"; // string | Filter results by document template type
+
+try {
+    $result = $api_instance->listContractDocumentTemplates($contractId, $type);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling ContractsApi->listContractDocumentTemplates: ', $e->getMessage(), PHP_EOL;
+}
+?>
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **contractId** | **string**| contract id |
+ **type** | **string**| Filter results by document template type | [optional]
+
+### Return type
+
+[**\Metatavu\Pakkasmarja\Api\Model\ContractDocumentTemplate[]**](../Model/ContractDocumentTemplate.md)
 
 ### Authorization
 
@@ -261,6 +421,60 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**\Metatavu\Pakkasmarja\Api\Model\Contract**](../Model/Contract.md)
+
+### Authorization
+
+[bearer](../../README.md#bearer)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json;charset=utf-8
+ - **Accept**: application/json;charset=utf-8
+
+[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
+
+# **updateContractDocumentTemplate**
+> \Metatavu\Pakkasmarja\Api\Model\ContractDocumentTemplate updateContractDocumentTemplate($contractId, $contractDocumentTemplateId, $body)
+
+Updates contract document template
+
+Updates a contract templates
+
+### Example
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+// Configure API key authorization: bearer
+Metatavu\Pakkasmarja\Configuration::getDefaultConfiguration()->setApiKey('Authorization', 'YOUR_API_KEY');
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+// Metatavu\Pakkasmarja\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Authorization', 'Bearer');
+
+$api_instance = new Metatavu\Pakkasmarja\Api\ContractsApi(new \Http\Adapter\Guzzle6\Client());
+$contractId = "contractId_example"; // string | contract id
+$contractDocumentTemplateId = "contractDocumentTemplateId_example"; // string | contract id
+$body = new \Metatavu\Pakkasmarja\Api\Model\ContractDocumentTemplate(); // \Metatavu\Pakkasmarja\Api\Model\ContractDocumentTemplate | Payload
+
+try {
+    $result = $api_instance->updateContractDocumentTemplate($contractId, $contractDocumentTemplateId, $body);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling ContractsApi->updateContractDocumentTemplate: ', $e->getMessage(), PHP_EOL;
+}
+?>
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **contractId** | **string**| contract id |
+ **contractDocumentTemplateId** | **string**| contract id |
+ **body** | [**\Metatavu\Pakkasmarja\Api\Model\ContractDocumentTemplate**](../Model/ContractDocumentTemplate.md)| Payload |
+
+### Return type
+
+[**\Metatavu\Pakkasmarja\Api\Model\ContractDocumentTemplate**](../Model/ContractDocumentTemplate.md)
 
 ### Authorization
 
