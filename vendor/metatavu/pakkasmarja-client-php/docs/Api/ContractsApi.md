@@ -332,7 +332,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 # **listContracts**
-> \Metatavu\Pakkasmarja\Api\Model\Contract[] listContracts($accept)
+> \Metatavu\Pakkasmarja\Api\Model\Contract[] listContracts($accept, $listAll, $itemGroupCategory)
 
 Lists contracts
 
@@ -350,9 +350,11 @@ Metatavu\Pakkasmarja\Configuration::getDefaultConfiguration()->setApiKey('Author
 
 $api_instance = new Metatavu\Pakkasmarja\Api\ContractsApi(new \Http\Adapter\Guzzle6\Client());
 $accept = "accept_example"; // string | Expected response format. Accepted values application/json for JSON reponse (default) and application/vnd.openxmlformats-officedocument.spreadsheetml.sheet for Excel response
+$listAll = true; // bool | Returns all contracts instead of just user's own contracts. User must have permission to do this.
+$itemGroupCategory = "itemGroupCategory_example"; // string | Filters results by item group category.
 
 try {
-    $result = $api_instance->listContracts($accept);
+    $result = $api_instance->listContracts($accept, $listAll, $itemGroupCategory);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling ContractsApi->listContracts: ', $e->getMessage(), PHP_EOL;
@@ -365,6 +367,8 @@ try {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **accept** | **string**| Expected response format. Accepted values application/json for JSON reponse (default) and application/vnd.openxmlformats-officedocument.spreadsheetml.sheet for Excel response | [optional]
+ **listAll** | **bool**| Returns all contracts instead of just user&#39;s own contracts. User must have permission to do this. | [optional]
+ **itemGroupCategory** | **string**| Filters results by item group category. | [optional]
 
 ### Return type
 
