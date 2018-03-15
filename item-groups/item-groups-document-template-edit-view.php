@@ -167,7 +167,11 @@
           $itemGroupDocumentTemplate->setHeader($header);
           $itemGroupDocumentTemplate->setFooter($footer);
           return $this->itemGroupsApi->updateItemGroupDocumentTemplate($itemGroupDocumentTemplate->getItemGroupId(), $itemGroupDocumentTemplate->getId(), $itemGroupDocumentTemplate);
-        } catch (\Metatavu\Pakkasmarja\ApiException | \InvalidArgumentException $e) {
+        } catch (\Metatavu\Pakkasmarja\ApiException $e) {
+          $message = $e->getMessage();
+          error_log("Failed to find item group document template #$itemGroupDocumentTemplateId: $message");
+          return null;
+        } catch (\InvalidArgumentException $e) {
           $message = $e->getMessage();
           error_log("Failed to find item group document template #$itemGroupDocumentTemplateId: $message");
           return null;

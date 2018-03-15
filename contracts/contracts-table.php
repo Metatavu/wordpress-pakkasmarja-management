@@ -202,14 +202,14 @@
        * @return array associative array containing items and pageCount  
        */
       private function listContracts($page, $pageSize) {
-        $type = null;
-        $sortBy = null;
-        $sortDir = null;
         $firstResult = ($page - 1) * $pageSize;
         $maxResults = $pageSize;
+        $accept = null;
+        $listAll = "true";
+        $itemGroupCategory = null;
 
         try {
-          $result = $this->contractsApi->listContractsWithHttpInfo($type, $sortBy, $sortDir, $firstResult, $maxResults);
+          $result = $this->contractsApi->listContractsWithHttpInfo($accept, $listAll, $itemGroupCategory, $firstResult, $maxResults);
           $headers = $result[2];
           $totalCountHeader = $headers["Total-Count"];
           $totalCount = is_array($totalCountHeader) ? $totalCountHeader[0] : null;
