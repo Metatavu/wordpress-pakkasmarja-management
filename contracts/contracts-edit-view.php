@@ -42,6 +42,8 @@
        * Constructorr
        */
       public function __construct() {
+        parent::__construct();
+        
         $this->contractsApi = \Metatavu\Pakkasmarja\Api\ApiClient::getContractsApi();
         $this->contactsApi = \Metatavu\Pakkasmarja\Api\ApiClient::getContactsApi();
         $this->itemGroupsApi = \Metatavu\Pakkasmarja\Api\ApiClient::getItemGroupsApi();
