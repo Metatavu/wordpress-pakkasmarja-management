@@ -240,17 +240,17 @@
     },
     {
         "name": "metatavu/pakkasmarja-client-php",
-        "version": "0.0.9",
-        "version_normalized": "0.0.9.0",
+        "version": "0.0.10",
+        "version_normalized": "0.0.10.0",
         "source": {
             "type": "git",
             "url": "https://github.com/Metatavu/pakkasmarja-client-php.git",
-            "reference": "60a799751e4ea83153355782e45b76c33a96319a"
+            "reference": "35866848c2c61c37afb01ffd7d6744857f8e6023"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/Metatavu/pakkasmarja-client-php/zipball/60a799751e4ea83153355782e45b76c33a96319a",
-            "reference": "60a799751e4ea83153355782e45b76c33a96319a",
+            "url": "https://api.github.com/repos/Metatavu/pakkasmarja-client-php/zipball/35866848c2c61c37afb01ffd7d6744857f8e6023",
+            "reference": "35866848c2c61c37afb01ffd7d6744857f8e6023",
             "shasum": ""
         },
         "require": {
@@ -265,7 +265,7 @@
             "phpunit/phpunit": "^4.8",
             "squizlabs/php_codesniffer": "~2.6"
         },
-        "time": "2018-03-12T05:54:55+00:00",
+        "time": "2018-03-15T04:07:55+00:00",
         "type": "library",
         "installation-source": "dist",
         "autoload": {
