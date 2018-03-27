@@ -5,8 +5,8 @@ msgstr ""
 "Project-Id-Version: Pakkasmarja Management 0.0.1\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/wordpress-"
 "pakkasmarja-management\n"
-"POT-Creation-Date: 2018-03-14 05:45:53+00:00\n"
-"PO-Revision-Date: 2018-03-14 08:26+0200\n"
+"POT-Creation-Date: 2018-03-27 16:48:13+00:00\n"
+"PO-Revision-Date: 2018-03-27 19:49+0300\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: fi\n"
@@ -81,8 +81,9 @@ msgid "Edit %s document template %s"
 msgstr "Muokkaa sopimuksen %s sopimusmallia %s"
 
 #: contracts/contracts-document-template-edit-view.php:69
-#: contracts/contracts-edit-view.php:81
+#: contracts/contracts-edit-view.php:83
 #: item-groups/item-groups-document-template-edit-view.php:69
+#: item-groups/item-groups-price-edit-view.php:64
 #: operations/operations-report-view.php:45
 msgid "Back"
 msgstr "Takaisin"
@@ -110,30 +111,30 @@ msgstr "Ylätunniste"
 msgid "Footer"
 msgstr "Alatunniste"
 
-#: contracts/contracts-edit-view.php:51
+#: contracts/contracts-edit-view.php:53
 msgid "Edit Contract"
 msgstr "Muokkaa sopimusta"
 
-#: contracts/contracts-edit-view.php:73
+#: contracts/contracts-edit-view.php:75
 #: item-groups/item-groups-document-template-edit-view.php:57
 msgid "Failed to update contract"
 msgstr "Sopimuksen muokkaus epäonnistui"
 
-#: contracts/contracts-edit-view.php:126 contracts/contracts-table.php:131
+#: contracts/contracts-edit-view.php:128 contracts/contracts-table.php:131
 msgid "Contract Quantity"
 msgstr "Sopimusmäärä"
 
-#: contracts/contracts-edit-view.php:127 contracts/contracts-table.php:129
+#: contracts/contracts-edit-view.php:129 contracts/contracts-table.php:129
 #: operations/operation-reports-table.php:118
 #: operations/operations-report-view.php:49
 msgid "Status"
 msgstr "Tila"
 
-#: contracts/contracts-edit-view.php:128
+#: contracts/contracts-edit-view.php:130
 msgid "Delivery Place"
 msgstr "Toimituspaikka"
 
-#: contracts/contracts-edit-view.php:129 contracts/contracts-table.php:134
+#: contracts/contracts-edit-view.php:131 contracts/contracts-table.php:134
 msgid "Remarks"
 msgstr "Huomautuskenttä"
 
@@ -197,6 +198,38 @@ msgstr "Muokkaa marjalajin sopimusmallia"
 msgid "Item Groups"
 msgstr "Marjalajit"
 
+#: item-groups/item-groups-price-edit-view.php:35
+msgid "Edit Item Group Price"
+msgstr "Muokkaa marjalajin hintoja"
+
+#: item-groups/item-groups-price-edit-view.php:67
+msgid "Prices"
+msgstr "Hinnat"
+
+#: item-groups/item-groups-price-edit-view.php:130
+msgid "Year"
+msgstr "Vuosi"
+
+#: item-groups/item-groups-price-edit-view.php:131 utils/formatter.php:86
+msgid "Group"
+msgstr "Ryhmä"
+
+#: item-groups/item-groups-price-edit-view.php:132
+msgid "Price"
+msgstr "Hinta"
+
+#: item-groups/item-groups-price-edit-view.php:133
+msgid "Unit"
+msgstr "Yksikkö"
+
+#: item-groups/item-groups-price-edit-view.php:150
+msgid "Add Price"
+msgstr "Lisää hinta"
+
+#: item-groups/item-groups-price-edit-view.php:171
+msgid "Remove"
+msgstr "Poista"
+
 #: item-groups/item-groups-table.php:78
 msgid "Name"
 msgstr "Nimi"
@@ -204,6 +237,10 @@ msgstr "Nimi"
 #: item-groups/item-groups-table.php:126
 msgid "Edit template %s"
 msgstr "Muokkaa sopimusmallia %s"
+
+#: item-groups/item-groups-table.php:131
+msgid "Edit prices"
+msgstr "Muokkaa hintoja"
 
 #: operations/operation-reports-table.php:87
 msgid "Operation"
@@ -386,10 +423,6 @@ msgstr "Päättynyt"
 #: utils/formatter.php:84
 msgid "Master"
 msgstr "Pääsopimus"
-
-#: utils/formatter.php:86
-msgid "Group"
-msgstr "Ryhmä"
 
 #. Description of the plugin/theme
 msgid "Management functions for Pakkasmarja Application"

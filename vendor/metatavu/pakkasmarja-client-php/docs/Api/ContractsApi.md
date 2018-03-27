@@ -10,13 +10,14 @@ Method | HTTP request | Description
 [**findContractDocumentTemplate**](ContractsApi.md#findContractDocumentTemplate) | **GET** /contracts/{contractId}/documentTemplates/{contractDocumentTemplateId} | Find contract document template
 [**getContractDocument**](ContractsApi.md#getContractDocument) | **GET** /contracts/{id}/documents/{type} | Returns contract document
 [**listContractDocumentTemplates**](ContractsApi.md#listContractDocumentTemplates) | **GET** /contracts/{contractId}/documentTemplates | List contract document templates
+[**listContractPrices**](ContractsApi.md#listContractPrices) | **GET** /contracts/{contractId}/prices | List contract prices
 [**listContracts**](ContractsApi.md#listContracts) | **GET** /contracts | Lists contracts
 [**updateContract**](ContractsApi.md#updateContract) | **PUT** /contracts/{id} | Update contract
 [**updateContractDocumentTemplate**](ContractsApi.md#updateContractDocumentTemplate) | **PUT** /contracts/{contractId}/documentTemplates/{contractDocumentTemplateId} | Updates contract document template
 
 
 # **createContractDocumentSignRequest**
-> \Metatavu\Pakkasmarja\Api\Model\ContractDocumentSignRequest createContractDocumentSignRequest($id, $type, $body)
+> \Metatavu\Pakkasmarja\Api\Model\ContractDocumentSignRequest createContractDocumentSignRequest($id, $type, $ssn, $authService, $body)
 
 Requests contract document electronic signing
 
@@ -35,10 +36,12 @@ Metatavu\Pakkasmarja\Configuration::getDefaultConfiguration()->setApiKey('Author
 $api_instance = new Metatavu\Pakkasmarja\Api\ContractsApi(new \Http\Adapter\Guzzle6\Client());
 $id = "id_example"; // string | contract id
 $type = "type_example"; // string | document type
+$ssn = "ssn_example"; // string | Social security number
+$authService = "authService_example"; // string | Used auth service name
 $body = new \Metatavu\Pakkasmarja\Api\Model\ContractDocumentSignRequest(); // \Metatavu\Pakkasmarja\Api\Model\ContractDocumentSignRequest | Payload
 
 try {
-    $result = $api_instance->createContractDocumentSignRequest($id, $type, $body);
+    $result = $api_instance->createContractDocumentSignRequest($id, $type, $ssn, $authService, $body);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling ContractsApi->createContractDocumentSignRequest: ', $e->getMessage(), PHP_EOL;
@@ -52,6 +55,8 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **string**| contract id |
  **type** | **string**| document type |
+ **ssn** | **string**| Social security number |
+ **authService** | **string**| Used auth service name |
  **body** | [**\Metatavu\Pakkasmarja\Api\Model\ContractDocumentSignRequest**](../Model/ContractDocumentSignRequest.md)| Payload |
 
 ### Return type
@@ -319,6 +324,64 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**\Metatavu\Pakkasmarja\Api\Model\ContractDocumentTemplate[]**](../Model/ContractDocumentTemplate.md)
+
+### Authorization
+
+[bearer](../../README.md#bearer)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json;charset=utf-8
+ - **Accept**: application/json;charset=utf-8
+
+[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
+
+# **listContractPrices**
+> \Metatavu\Pakkasmarja\Api\Model\Price[] listContractPrices($contractId, $sortBy, $sortDir, $firstResult, $maxResults)
+
+List contract prices
+
+Lists contract prices
+
+### Example
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+// Configure API key authorization: bearer
+Metatavu\Pakkasmarja\Configuration::getDefaultConfiguration()->setApiKey('Authorization', 'YOUR_API_KEY');
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+// Metatavu\Pakkasmarja\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Authorization', 'Bearer');
+
+$api_instance = new Metatavu\Pakkasmarja\Api\ContractsApi(new \Http\Adapter\Guzzle6\Client());
+$contractId = "contractId_example"; // string | contract id
+$sortBy = "sortBy_example"; // string | sort by (YEAR)
+$sortDir = "sortDir_example"; // string | sort direction (ASC, DESC)
+$firstResult = 789; // int | Offset of first result. Defaults to 0
+$maxResults = 789; // int | Max results. Defaults to 5
+
+try {
+    $result = $api_instance->listContractPrices($contractId, $sortBy, $sortDir, $firstResult, $maxResults);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling ContractsApi->listContractPrices: ', $e->getMessage(), PHP_EOL;
+}
+?>
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **contractId** | **string**| contract id |
+ **sortBy** | **string**| sort by (YEAR) | [optional]
+ **sortDir** | **string**| sort direction (ASC, DESC) | [optional]
+ **firstResult** | **int**| Offset of first result. Defaults to 0 | [optional]
+ **maxResults** | **int**| Max results. Defaults to 5 | [optional]
+
+### Return type
+
+[**\Metatavu\Pakkasmarja\Api\Model\Price[]**](../Model/Price.md)
 
 ### Authorization
 

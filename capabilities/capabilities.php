@@ -21,7 +21,8 @@
         'pakkasmarja_contract_document_templates_edit',
         'pakkasmarja_item_groups_view',
         'pakkasmarja_item_group_document_templates_view',
-        'pakkasmarja_item_group_document_templates_edit'
+        'pakkasmarja_item_group_document_templates_edit',
+        'pakkasmarja_item_group_prices_edit'
       ];
       
       /**

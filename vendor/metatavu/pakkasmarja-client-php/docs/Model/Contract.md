@@ -9,6 +9,7 @@ Name | Type | Description | Notes
 **itemGroupId** | **string** |  | [optional] 
 **contractQuantity** | **double** |  | [optional] 
 **deliveredQuantity** | **double** |  | [optional] 
+**proposedQuantity** | **double** |  | [optional] 
 **startDate** | [**\DateTime**](\DateTime.md) |  | [optional] 
 **endDate** | [**\DateTime**](\DateTime.md) |  | [optional] 
 **signDate** | [**\DateTime**](\DateTime.md) |  | [optional] 
