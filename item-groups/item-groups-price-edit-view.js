@@ -7,7 +7,11 @@
       return $(td).html();
     }).get();
 
-    var dataTable = $('table.prices-table').DataTable({ });
+    var dataTable = $('table.prices-table').DataTable({ 
+      "language": {
+        "url": "https://cdn.metatavu.io/libs/datatables.net/1.10.16/i18n/finnish.json"
+      }
+    });
 
     $(document).on('click', '.remove-price', function(event) {
       event.preventDefault();
