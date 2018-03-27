@@ -62,6 +62,7 @@ class Contract implements ModelInterface, ArrayAccess
         'itemGroupId' => 'string',
         'contractQuantity' => 'double',
         'deliveredQuantity' => 'double',
+        'proposedQuantity' => 'double',
         'startDate' => '\DateTime',
         'endDate' => '\DateTime',
         'signDate' => '\DateTime',
@@ -82,6 +83,7 @@ class Contract implements ModelInterface, ArrayAccess
         'itemGroupId' => 'uuid',
         'contractQuantity' => 'double',
         'deliveredQuantity' => 'double',
+        'proposedQuantity' => 'double',
         'startDate' => 'date',
         'endDate' => 'date',
         'signDate' => 'date',
@@ -123,6 +125,7 @@ class Contract implements ModelInterface, ArrayAccess
         'itemGroupId' => 'itemGroupId',
         'contractQuantity' => 'contractQuantity',
         'deliveredQuantity' => 'deliveredQuantity',
+        'proposedQuantity' => 'proposedQuantity',
         'startDate' => 'startDate',
         'endDate' => 'endDate',
         'signDate' => 'signDate',
@@ -143,6 +146,7 @@ class Contract implements ModelInterface, ArrayAccess
         'itemGroupId' => 'setItemGroupId',
         'contractQuantity' => 'setContractQuantity',
         'deliveredQuantity' => 'setDeliveredQuantity',
+        'proposedQuantity' => 'setProposedQuantity',
         'startDate' => 'setStartDate',
         'endDate' => 'setEndDate',
         'signDate' => 'setSignDate',
@@ -163,6 +167,7 @@ class Contract implements ModelInterface, ArrayAccess
         'itemGroupId' => 'getItemGroupId',
         'contractQuantity' => 'getContractQuantity',
         'deliveredQuantity' => 'getDeliveredQuantity',
+        'proposedQuantity' => 'getProposedQuantity',
         'startDate' => 'getStartDate',
         'endDate' => 'getEndDate',
         'signDate' => 'getSignDate',
@@ -256,6 +261,7 @@ class Contract implements ModelInterface, ArrayAccess
         $this->container['itemGroupId'] = isset($data['itemGroupId']) ? $data['itemGroupId'] : null;
         $this->container['contractQuantity'] = isset($data['contractQuantity']) ? $data['contractQuantity'] : null;
         $this->container['deliveredQuantity'] = isset($data['deliveredQuantity']) ? $data['deliveredQuantity'] : null;
+        $this->container['proposedQuantity'] = isset($data['proposedQuantity']) ? $data['proposedQuantity'] : null;
         $this->container['startDate'] = isset($data['startDate']) ? $data['startDate'] : null;
         $this->container['endDate'] = isset($data['endDate']) ? $data['endDate'] : null;
         $this->container['signDate'] = isset($data['signDate']) ? $data['signDate'] : null;
@@ -441,6 +447,30 @@ class Contract implements ModelInterface, ArrayAccess
     public function setDeliveredQuantity($deliveredQuantity)
     {
         $this->container['deliveredQuantity'] = $deliveredQuantity;
+
+        return $this;
+    }
+
+    /**
+     * Gets proposedQuantity
+     *
+     * @return double
+     */
+    public function getProposedQuantity()
+    {
+        return $this->container['proposedQuantity'];
+    }
+
+    /**
+     * Sets proposedQuantity
+     *
+     * @param double $proposedQuantity
+     *
+     * @return $this
+     */
+    public function setProposedQuantity($proposedQuantity)
+    {
+        $this->container['proposedQuantity'] = $proposedQuantity;
 
         return $this;
     }

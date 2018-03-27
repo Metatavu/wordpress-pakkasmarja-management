@@ -81,6 +81,306 @@ class ItemGroupsApi
     }
 
     /**
+     * Operation createItemGroupPrice
+     *
+     * Creates item group price
+     *
+     * @param  string $itemGroupId item group id (required)
+     * @param  \Metatavu\Pakkasmarja\Api\Model\Price $body Payload (required)
+     *
+     * @throws \Metatavu\Pakkasmarja\ApiException on non-2xx response
+     * @throws \InvalidArgumentException
+     * @return \Metatavu\Pakkasmarja\Api\Model\Price
+     */
+    public function createItemGroupPrice($itemGroupId, $body)
+    {
+        list($response) = $this->createItemGroupPriceWithHttpInfo($itemGroupId, $body);
+        return $response;
+    }
+
+    /**
+     * Operation createItemGroupPriceWithHttpInfo
+     *
+     * Creates item group price
+     *
+     * @param  string $itemGroupId item group id (required)
+     * @param  \Metatavu\Pakkasmarja\Api\Model\Price $body Payload (required)
+     *
+     * @throws \Metatavu\Pakkasmarja\ApiException on non-2xx response
+     * @throws \InvalidArgumentException
+     * @return array of \Metatavu\Pakkasmarja\Api\Model\Price, HTTP status code, HTTP response headers (array of strings)
+     */
+    public function createItemGroupPriceWithHttpInfo($itemGroupId, $body)
+    {
+        $returnType = '\Metatavu\Pakkasmarja\Api\Model\Price';
+        $request = $this->createItemGroupPriceRequest($itemGroupId, $body);
+
+        try {
+
+            try {
+                $response = $this->client->send($request);
+            } catch (RequestException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    $e->getCode(),
+                    $e->getResponse() ? $e->getResponse()->getHeaders() : null
+                );
+            }
+
+            $statusCode = $response->getStatusCode();
+
+            if ($statusCode < 200 || $statusCode > 299) {
+                throw new ApiException(
+                    sprintf(
+                        '[%d] Error connecting to the API (%s)',
+                        $statusCode,
+                        $request->getUri()
+                    ),
+                    $statusCode,
+                    $response->getHeaders(),
+                    $response->getBody()
+                );
+            }
+
+            $responseBody = $response->getBody();
+            if ($returnType === '\SplFileObject') {
+                $content = $responseBody; //stream goes to serializer
+            } else {
+                $content = $responseBody->getContents();
+                if ($returnType !== 'string') {
+                    $content = json_decode($content);
+                }
+            }
+
+            return [
+                ObjectSerializer::deserialize($content, $returnType, []),
+                $response->getStatusCode(),
+                $response->getHeaders()
+            ];
+
+        } catch (ApiException $e) {
+            switch ($e->getCode()) {
+                case 200:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Metatavu\Pakkasmarja\Api\Model\Price',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 400:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Metatavu\Pakkasmarja\Api\Model\BadRequest',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 403:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Metatavu\Pakkasmarja\Api\Model\Forbidden',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 500:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Metatavu\Pakkasmarja\Api\Model\InternalServerError',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+            }
+            throw $e;
+        }
+    }
+
+    /**
+     * Operation createItemGroupPriceAsync
+     *
+     * Creates item group price
+     *
+     * @param  string $itemGroupId item group id (required)
+     * @param  \Metatavu\Pakkasmarja\Api\Model\Price $body Payload (required)
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function createItemGroupPriceAsync($itemGroupId, $body)
+    {
+        return $this->createItemGroupPriceAsyncWithHttpInfo($itemGroupId, $body)
+            ->then(
+                function ($response) {
+                    return $response[0];
+                }
+            );
+    }
+
+    /**
+     * Operation createItemGroupPriceAsyncWithHttpInfo
+     *
+     * Creates item group price
+     *
+     * @param  string $itemGroupId item group id (required)
+     * @param  \Metatavu\Pakkasmarja\Api\Model\Price $body Payload (required)
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function createItemGroupPriceAsyncWithHttpInfo($itemGroupId, $body)
+    {
+        $returnType = '\Metatavu\Pakkasmarja\Api\Model\Price';
+        $request = $this->createItemGroupPriceRequest($itemGroupId, $body);
+
+        return $this->client
+            ->sendAsync($request)
+            ->then(
+                function ($response) use ($returnType) {
+                    $responseBody = $response->getBody();
+                    if ($returnType === '\SplFileObject') {
+                        $content = $responseBody; //stream goes to serializer
+                    } else {
+                        $content = $responseBody->getContents();
+                        if ($returnType !== 'string') {
+                            $content = json_decode($content);
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, $returnType, []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                },
+                function ($exception) {
+                    $response = $exception->getResponse();
+                    $statusCode = $response->getStatusCode();
+                    throw new ApiException(
+                        sprintf(
+                            '[%d] Error connecting to the API (%s)',
+                            $statusCode,
+                            $exception->getRequest()->getUri()
+                        ),
+                        $statusCode,
+                        $response->getHeaders(),
+                        $response->getBody()
+                    );
+                }
+            );
+    }
+
+    /**
+     * Create request for operation 'createItemGroupPrice'
+     *
+     * @param  string $itemGroupId item group id (required)
+     * @param  \Metatavu\Pakkasmarja\Api\Model\Price $body Payload (required)
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Psr7\Request
+     */
+    protected function createItemGroupPriceRequest($itemGroupId, $body)
+    {
+        // verify the required parameter 'itemGroupId' is set
+        if ($itemGroupId === null) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $itemGroupId when calling createItemGroupPrice'
+            );
+        }
+        // verify the required parameter 'body' is set
+        if ($body === null) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $body when calling createItemGroupPrice'
+            );
+        }
+
+        $resourcePath = '/itemGroups/{itemGroupId}/prices';
+        $formParams = [];
+        $queryParams = [];
+        $headerParams = [];
+        $httpBody = '';
+        $multipart = false;
+
+
+        // path params
+        if ($itemGroupId !== null) {
+            $resourcePath = str_replace(
+                '{' . 'itemGroupId' . '}',
+                ObjectSerializer::toPathValue($itemGroupId),
+                $resourcePath
+            );
+        }
+
+        // body params
+        $_tempBody = null;
+        if (isset($body)) {
+            $_tempBody = $body;
+        }
+
+        if ($multipart) {
+            $headers= $this->headerSelector->selectHeadersForMultipart(
+                ['application/json;charset=utf-8']
+            );
+        } else {
+            $headers = $this->headerSelector->selectHeaders(
+                ['application/json;charset=utf-8'],
+                ['application/json;charset=utf-8']
+            );
+        }
+
+        // for model (json/xml)
+        if (isset($_tempBody)) {
+            $httpBody = $_tempBody; // $_tempBody is the method argument, if present
+
+        } elseif (count($formParams) > 0) {
+            if ($multipart) {
+                $multipartContents = [];
+                foreach ($formParams as $formParamName => $formParamValue) {
+                    $multipartContents[] = [
+                        'name' => $formParamName,
+                        'contents' => $formParamValue
+                    ];
+                }
+                // for HTTP post (form)
+                $httpBody = new MultipartStream($multipartContents);
+
+            } elseif ($headers['Content-Type'] === 'application/json') {
+                $httpBody = \GuzzleHttp\json_encode($formParams);
+
+            } else {
+                // for HTTP post (form)
+                $httpBody = \GuzzleHttp\Psr7\build_query($formParams);
+            }
+        }
+
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
+        if ($apiKey !== null) {
+            $headers['Authorization'] = $apiKey;
+        }
+
+        $defaultHeaders = [];
+        if ($this->config->getUserAgent()) {
+            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
+        }
+
+        $headers = array_merge(
+            $defaultHeaders,
+            $headerParams,
+            $headers
+        );
+
+        $query = \GuzzleHttp\Psr7\build_query($queryParams);
+        return new Request(
+            'POST',
+            $this->config->getHost() . $resourcePath . ($query ? "?{$query}" : ''),
+            $headers,
+            $httpBody
+        );
+    }
+
+    /**
      * Operation findItemGroup
      *
      * Find item group
@@ -672,6 +972,311 @@ class ItemGroupsApi
     }
 
     /**
+     * Operation findItemGroupPrice
+     *
+     * Find item group price
+     *
+     * @param  string $itemGroupId item group id (required)
+     * @param  string $priceId price id (required)
+     *
+     * @throws \Metatavu\Pakkasmarja\ApiException on non-2xx response
+     * @throws \InvalidArgumentException
+     * @return \Metatavu\Pakkasmarja\Api\Model\Price
+     */
+    public function findItemGroupPrice($itemGroupId, $priceId)
+    {
+        list($response) = $this->findItemGroupPriceWithHttpInfo($itemGroupId, $priceId);
+        return $response;
+    }
+
+    /**
+     * Operation findItemGroupPriceWithHttpInfo
+     *
+     * Find item group price
+     *
+     * @param  string $itemGroupId item group id (required)
+     * @param  string $priceId price id (required)
+     *
+     * @throws \Metatavu\Pakkasmarja\ApiException on non-2xx response
+     * @throws \InvalidArgumentException
+     * @return array of \Metatavu\Pakkasmarja\Api\Model\Price, HTTP status code, HTTP response headers (array of strings)
+     */
+    public function findItemGroupPriceWithHttpInfo($itemGroupId, $priceId)
+    {
+        $returnType = '\Metatavu\Pakkasmarja\Api\Model\Price';
+        $request = $this->findItemGroupPriceRequest($itemGroupId, $priceId);
+
+        try {
+
+            try {
+                $response = $this->client->send($request);
+            } catch (RequestException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    $e->getCode(),
+                    $e->getResponse() ? $e->getResponse()->getHeaders() : null
+                );
+            }
+
+            $statusCode = $response->getStatusCode();
+
+            if ($statusCode < 200 || $statusCode > 299) {
+                throw new ApiException(
+                    sprintf(
+                        '[%d] Error connecting to the API (%s)',
+                        $statusCode,
+                        $request->getUri()
+                    ),
+                    $statusCode,
+                    $response->getHeaders(),
+                    $response->getBody()
+                );
+            }
+
+            $responseBody = $response->getBody();
+            if ($returnType === '\SplFileObject') {
+                $content = $responseBody; //stream goes to serializer
+            } else {
+                $content = $responseBody->getContents();
+                if ($returnType !== 'string') {
+                    $content = json_decode($content);
+                }
+            }
+
+            return [
+                ObjectSerializer::deserialize($content, $returnType, []),
+                $response->getStatusCode(),
+                $response->getHeaders()
+            ];
+
+        } catch (ApiException $e) {
+            switch ($e->getCode()) {
+                case 200:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Metatavu\Pakkasmarja\Api\Model\Price',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 400:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Metatavu\Pakkasmarja\Api\Model\BadRequest',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 403:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Metatavu\Pakkasmarja\Api\Model\Forbidden',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 500:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Metatavu\Pakkasmarja\Api\Model\InternalServerError',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+            }
+            throw $e;
+        }
+    }
+
+    /**
+     * Operation findItemGroupPriceAsync
+     *
+     * Find item group price
+     *
+     * @param  string $itemGroupId item group id (required)
+     * @param  string $priceId price id (required)
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function findItemGroupPriceAsync($itemGroupId, $priceId)
+    {
+        return $this->findItemGroupPriceAsyncWithHttpInfo($itemGroupId, $priceId)
+            ->then(
+                function ($response) {
+                    return $response[0];
+                }
+            );
+    }
+
+    /**
+     * Operation findItemGroupPriceAsyncWithHttpInfo
+     *
+     * Find item group price
+     *
+     * @param  string $itemGroupId item group id (required)
+     * @param  string $priceId price id (required)
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function findItemGroupPriceAsyncWithHttpInfo($itemGroupId, $priceId)
+    {
+        $returnType = '\Metatavu\Pakkasmarja\Api\Model\Price';
+        $request = $this->findItemGroupPriceRequest($itemGroupId, $priceId);
+
+        return $this->client
+            ->sendAsync($request)
+            ->then(
+                function ($response) use ($returnType) {
+                    $responseBody = $response->getBody();
+                    if ($returnType === '\SplFileObject') {
+                        $content = $responseBody; //stream goes to serializer
+                    } else {
+                        $content = $responseBody->getContents();
+                        if ($returnType !== 'string') {
+                            $content = json_decode($content);
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, $returnType, []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                },
+                function ($exception) {
+                    $response = $exception->getResponse();
+                    $statusCode = $response->getStatusCode();
+                    throw new ApiException(
+                        sprintf(
+                            '[%d] Error connecting to the API (%s)',
+                            $statusCode,
+                            $exception->getRequest()->getUri()
+                        ),
+                        $statusCode,
+                        $response->getHeaders(),
+                        $response->getBody()
+                    );
+                }
+            );
+    }
+
+    /**
+     * Create request for operation 'findItemGroupPrice'
+     *
+     * @param  string $itemGroupId item group id (required)
+     * @param  string $priceId price id (required)
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Psr7\Request
+     */
+    protected function findItemGroupPriceRequest($itemGroupId, $priceId)
+    {
+        // verify the required parameter 'itemGroupId' is set
+        if ($itemGroupId === null) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $itemGroupId when calling findItemGroupPrice'
+            );
+        }
+        // verify the required parameter 'priceId' is set
+        if ($priceId === null) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $priceId when calling findItemGroupPrice'
+            );
+        }
+
+        $resourcePath = '/itemGroups/{itemGroupId}/prices/{priceId}';
+        $formParams = [];
+        $queryParams = [];
+        $headerParams = [];
+        $httpBody = '';
+        $multipart = false;
+
+
+        // path params
+        if ($itemGroupId !== null) {
+            $resourcePath = str_replace(
+                '{' . 'itemGroupId' . '}',
+                ObjectSerializer::toPathValue($itemGroupId),
+                $resourcePath
+            );
+        }
+        // path params
+        if ($priceId !== null) {
+            $resourcePath = str_replace(
+                '{' . 'priceId' . '}',
+                ObjectSerializer::toPathValue($priceId),
+                $resourcePath
+            );
+        }
+
+        // body params
+        $_tempBody = null;
+
+        if ($multipart) {
+            $headers= $this->headerSelector->selectHeadersForMultipart(
+                ['application/json;charset=utf-8']
+            );
+        } else {
+            $headers = $this->headerSelector->selectHeaders(
+                ['application/json;charset=utf-8'],
+                ['application/json;charset=utf-8']
+            );
+        }
+
+        // for model (json/xml)
+        if (isset($_tempBody)) {
+            $httpBody = $_tempBody; // $_tempBody is the method argument, if present
+
+        } elseif (count($formParams) > 0) {
+            if ($multipart) {
+                $multipartContents = [];
+                foreach ($formParams as $formParamName => $formParamValue) {
+                    $multipartContents[] = [
+                        'name' => $formParamName,
+                        'contents' => $formParamValue
+                    ];
+                }
+                // for HTTP post (form)
+                $httpBody = new MultipartStream($multipartContents);
+
+            } elseif ($headers['Content-Type'] === 'application/json') {
+                $httpBody = \GuzzleHttp\json_encode($formParams);
+
+            } else {
+                // for HTTP post (form)
+                $httpBody = \GuzzleHttp\Psr7\build_query($formParams);
+            }
+        }
+
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
+        if ($apiKey !== null) {
+            $headers['Authorization'] = $apiKey;
+        }
+
+        $defaultHeaders = [];
+        if ($this->config->getUserAgent()) {
+            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
+        }
+
+        $headers = array_merge(
+            $defaultHeaders,
+            $headerParams,
+            $headers
+        );
+
+        $query = \GuzzleHttp\Psr7\build_query($queryParams);
+        return new Request(
+            'GET',
+            $this->config->getHost() . $resourcePath . ($query ? "?{$query}" : ''),
+            $headers,
+            $httpBody
+        );
+    }
+
+    /**
      * Operation listItemGroupDocumentTemplates
      *
      * List item group document templates
@@ -882,6 +1487,328 @@ class ItemGroupsApi
         $httpBody = '';
         $multipart = false;
 
+
+        // path params
+        if ($itemGroupId !== null) {
+            $resourcePath = str_replace(
+                '{' . 'itemGroupId' . '}',
+                ObjectSerializer::toPathValue($itemGroupId),
+                $resourcePath
+            );
+        }
+
+        // body params
+        $_tempBody = null;
+
+        if ($multipart) {
+            $headers= $this->headerSelector->selectHeadersForMultipart(
+                ['application/json;charset=utf-8']
+            );
+        } else {
+            $headers = $this->headerSelector->selectHeaders(
+                ['application/json;charset=utf-8'],
+                ['application/json;charset=utf-8']
+            );
+        }
+
+        // for model (json/xml)
+        if (isset($_tempBody)) {
+            $httpBody = $_tempBody; // $_tempBody is the method argument, if present
+
+        } elseif (count($formParams) > 0) {
+            if ($multipart) {
+                $multipartContents = [];
+                foreach ($formParams as $formParamName => $formParamValue) {
+                    $multipartContents[] = [
+                        'name' => $formParamName,
+                        'contents' => $formParamValue
+                    ];
+                }
+                // for HTTP post (form)
+                $httpBody = new MultipartStream($multipartContents);
+
+            } elseif ($headers['Content-Type'] === 'application/json') {
+                $httpBody = \GuzzleHttp\json_encode($formParams);
+
+            } else {
+                // for HTTP post (form)
+                $httpBody = \GuzzleHttp\Psr7\build_query($formParams);
+            }
+        }
+
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
+        if ($apiKey !== null) {
+            $headers['Authorization'] = $apiKey;
+        }
+
+        $defaultHeaders = [];
+        if ($this->config->getUserAgent()) {
+            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
+        }
+
+        $headers = array_merge(
+            $defaultHeaders,
+            $headerParams,
+            $headers
+        );
+
+        $query = \GuzzleHttp\Psr7\build_query($queryParams);
+        return new Request(
+            'GET',
+            $this->config->getHost() . $resourcePath . ($query ? "?{$query}" : ''),
+            $headers,
+            $httpBody
+        );
+    }
+
+    /**
+     * Operation listItemGroupPrices
+     *
+     * List item group prices
+     *
+     * @param  string $itemGroupId item group id (required)
+     * @param  string $sortBy sort by (YEAR) (optional)
+     * @param  string $sortDir sort direction (ASC, DESC) (optional)
+     * @param  int $firstResult Offset of first result. Defaults to 0 (optional)
+     * @param  int $maxResults Max results. Defaults to 5 (optional)
+     *
+     * @throws \Metatavu\Pakkasmarja\ApiException on non-2xx response
+     * @throws \InvalidArgumentException
+     * @return \Metatavu\Pakkasmarja\Api\Model\Price[]
+     */
+    public function listItemGroupPrices($itemGroupId, $sortBy = null, $sortDir = null, $firstResult = null, $maxResults = null)
+    {
+        list($response) = $this->listItemGroupPricesWithHttpInfo($itemGroupId, $sortBy, $sortDir, $firstResult, $maxResults);
+        return $response;
+    }
+
+    /**
+     * Operation listItemGroupPricesWithHttpInfo
+     *
+     * List item group prices
+     *
+     * @param  string $itemGroupId item group id (required)
+     * @param  string $sortBy sort by (YEAR) (optional)
+     * @param  string $sortDir sort direction (ASC, DESC) (optional)
+     * @param  int $firstResult Offset of first result. Defaults to 0 (optional)
+     * @param  int $maxResults Max results. Defaults to 5 (optional)
+     *
+     * @throws \Metatavu\Pakkasmarja\ApiException on non-2xx response
+     * @throws \InvalidArgumentException
+     * @return array of \Metatavu\Pakkasmarja\Api\Model\Price[], HTTP status code, HTTP response headers (array of strings)
+     */
+    public function listItemGroupPricesWithHttpInfo($itemGroupId, $sortBy = null, $sortDir = null, $firstResult = null, $maxResults = null)
+    {
+        $returnType = '\Metatavu\Pakkasmarja\Api\Model\Price[]';
+        $request = $this->listItemGroupPricesRequest($itemGroupId, $sortBy, $sortDir, $firstResult, $maxResults);
+
+        try {
+
+            try {
+                $response = $this->client->send($request);
+            } catch (RequestException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    $e->getCode(),
+                    $e->getResponse() ? $e->getResponse()->getHeaders() : null
+                );
+            }
+
+            $statusCode = $response->getStatusCode();
+
+            if ($statusCode < 200 || $statusCode > 299) {
+                throw new ApiException(
+                    sprintf(
+                        '[%d] Error connecting to the API (%s)',
+                        $statusCode,
+                        $request->getUri()
+                    ),
+                    $statusCode,
+                    $response->getHeaders(),
+                    $response->getBody()
+                );
+            }
+
+            $responseBody = $response->getBody();
+            if ($returnType === '\SplFileObject') {
+                $content = $responseBody; //stream goes to serializer
+            } else {
+                $content = $responseBody->getContents();
+                if ($returnType !== 'string') {
+                    $content = json_decode($content);
+                }
+            }
+
+            return [
+                ObjectSerializer::deserialize($content, $returnType, []),
+                $response->getStatusCode(),
+                $response->getHeaders()
+            ];
+
+        } catch (ApiException $e) {
+            switch ($e->getCode()) {
+                case 200:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Metatavu\Pakkasmarja\Api\Model\Price[]',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 400:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Metatavu\Pakkasmarja\Api\Model\BadRequest',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 403:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Metatavu\Pakkasmarja\Api\Model\Forbidden',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 500:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Metatavu\Pakkasmarja\Api\Model\InternalServerError',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+            }
+            throw $e;
+        }
+    }
+
+    /**
+     * Operation listItemGroupPricesAsync
+     *
+     * List item group prices
+     *
+     * @param  string $itemGroupId item group id (required)
+     * @param  string $sortBy sort by (YEAR) (optional)
+     * @param  string $sortDir sort direction (ASC, DESC) (optional)
+     * @param  int $firstResult Offset of first result. Defaults to 0 (optional)
+     * @param  int $maxResults Max results. Defaults to 5 (optional)
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function listItemGroupPricesAsync($itemGroupId, $sortBy = null, $sortDir = null, $firstResult = null, $maxResults = null)
+    {
+        return $this->listItemGroupPricesAsyncWithHttpInfo($itemGroupId, $sortBy, $sortDir, $firstResult, $maxResults)
+            ->then(
+                function ($response) {
+                    return $response[0];
+                }
+            );
+    }
+
+    /**
+     * Operation listItemGroupPricesAsyncWithHttpInfo
+     *
+     * List item group prices
+     *
+     * @param  string $itemGroupId item group id (required)
+     * @param  string $sortBy sort by (YEAR) (optional)
+     * @param  string $sortDir sort direction (ASC, DESC) (optional)
+     * @param  int $firstResult Offset of first result. Defaults to 0 (optional)
+     * @param  int $maxResults Max results. Defaults to 5 (optional)
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function listItemGroupPricesAsyncWithHttpInfo($itemGroupId, $sortBy = null, $sortDir = null, $firstResult = null, $maxResults = null)
+    {
+        $returnType = '\Metatavu\Pakkasmarja\Api\Model\Price[]';
+        $request = $this->listItemGroupPricesRequest($itemGroupId, $sortBy, $sortDir, $firstResult, $maxResults);
+
+        return $this->client
+            ->sendAsync($request)
+            ->then(
+                function ($response) use ($returnType) {
+                    $responseBody = $response->getBody();
+                    if ($returnType === '\SplFileObject') {
+                        $content = $responseBody; //stream goes to serializer
+                    } else {
+                        $content = $responseBody->getContents();
+                        if ($returnType !== 'string') {
+                            $content = json_decode($content);
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, $returnType, []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                },
+                function ($exception) {
+                    $response = $exception->getResponse();
+                    $statusCode = $response->getStatusCode();
+                    throw new ApiException(
+                        sprintf(
+                            '[%d] Error connecting to the API (%s)',
+                            $statusCode,
+                            $exception->getRequest()->getUri()
+                        ),
+                        $statusCode,
+                        $response->getHeaders(),
+                        $response->getBody()
+                    );
+                }
+            );
+    }
+
+    /**
+     * Create request for operation 'listItemGroupPrices'
+     *
+     * @param  string $itemGroupId item group id (required)
+     * @param  string $sortBy sort by (YEAR) (optional)
+     * @param  string $sortDir sort direction (ASC, DESC) (optional)
+     * @param  int $firstResult Offset of first result. Defaults to 0 (optional)
+     * @param  int $maxResults Max results. Defaults to 5 (optional)
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Psr7\Request
+     */
+    protected function listItemGroupPricesRequest($itemGroupId, $sortBy = null, $sortDir = null, $firstResult = null, $maxResults = null)
+    {
+        // verify the required parameter 'itemGroupId' is set
+        if ($itemGroupId === null) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $itemGroupId when calling listItemGroupPrices'
+            );
+        }
+
+        $resourcePath = '/itemGroups/{itemGroupId}/prices';
+        $formParams = [];
+        $queryParams = [];
+        $headerParams = [];
+        $httpBody = '';
+        $multipart = false;
+
+        // query params
+        if ($sortBy !== null) {
+            $queryParams['sortBy'] = ObjectSerializer::toQueryValue($sortBy);
+        }
+        // query params
+        if ($sortDir !== null) {
+            $queryParams['sortDir'] = ObjectSerializer::toQueryValue($sortDir);
+        }
+        // query params
+        if ($firstResult !== null) {
+            $queryParams['firstResult'] = ObjectSerializer::toQueryValue($firstResult);
+        }
+        // query params
+        if ($maxResults !== null) {
+            $queryParams['maxResults'] = ObjectSerializer::toQueryValue($maxResults);
+        }
 
         // path params
         if ($itemGroupId !== null) {
@@ -1471,6 +2398,325 @@ class ItemGroupsApi
             $resourcePath = str_replace(
                 '{' . 'id' . '}',
                 ObjectSerializer::toPathValue($id),
+                $resourcePath
+            );
+        }
+
+        // body params
+        $_tempBody = null;
+        if (isset($body)) {
+            $_tempBody = $body;
+        }
+
+        if ($multipart) {
+            $headers= $this->headerSelector->selectHeadersForMultipart(
+                ['application/json;charset=utf-8']
+            );
+        } else {
+            $headers = $this->headerSelector->selectHeaders(
+                ['application/json;charset=utf-8'],
+                ['application/json;charset=utf-8']
+            );
+        }
+
+        // for model (json/xml)
+        if (isset($_tempBody)) {
+            $httpBody = $_tempBody; // $_tempBody is the method argument, if present
+
+        } elseif (count($formParams) > 0) {
+            if ($multipart) {
+                $multipartContents = [];
+                foreach ($formParams as $formParamName => $formParamValue) {
+                    $multipartContents[] = [
+                        'name' => $formParamName,
+                        'contents' => $formParamValue
+                    ];
+                }
+                // for HTTP post (form)
+                $httpBody = new MultipartStream($multipartContents);
+
+            } elseif ($headers['Content-Type'] === 'application/json') {
+                $httpBody = \GuzzleHttp\json_encode($formParams);
+
+            } else {
+                // for HTTP post (form)
+                $httpBody = \GuzzleHttp\Psr7\build_query($formParams);
+            }
+        }
+
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
+        if ($apiKey !== null) {
+            $headers['Authorization'] = $apiKey;
+        }
+
+        $defaultHeaders = [];
+        if ($this->config->getUserAgent()) {
+            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
+        }
+
+        $headers = array_merge(
+            $defaultHeaders,
+            $headerParams,
+            $headers
+        );
+
+        $query = \GuzzleHttp\Psr7\build_query($queryParams);
+        return new Request(
+            'PUT',
+            $this->config->getHost() . $resourcePath . ($query ? "?{$query}" : ''),
+            $headers,
+            $httpBody
+        );
+    }
+
+    /**
+     * Operation updateItemGroupPrice
+     *
+     * Update item group price
+     *
+     * @param  string $itemGroupId item group id (required)
+     * @param  string $priceId price id (required)
+     * @param  \Metatavu\Pakkasmarja\Api\Model\Price $body Payload (required)
+     *
+     * @throws \Metatavu\Pakkasmarja\ApiException on non-2xx response
+     * @throws \InvalidArgumentException
+     * @return \Metatavu\Pakkasmarja\Api\Model\Price
+     */
+    public function updateItemGroupPrice($itemGroupId, $priceId, $body)
+    {
+        list($response) = $this->updateItemGroupPriceWithHttpInfo($itemGroupId, $priceId, $body);
+        return $response;
+    }
+
+    /**
+     * Operation updateItemGroupPriceWithHttpInfo
+     *
+     * Update item group price
+     *
+     * @param  string $itemGroupId item group id (required)
+     * @param  string $priceId price id (required)
+     * @param  \Metatavu\Pakkasmarja\Api\Model\Price $body Payload (required)
+     *
+     * @throws \Metatavu\Pakkasmarja\ApiException on non-2xx response
+     * @throws \InvalidArgumentException
+     * @return array of \Metatavu\Pakkasmarja\Api\Model\Price, HTTP status code, HTTP response headers (array of strings)
+     */
+    public function updateItemGroupPriceWithHttpInfo($itemGroupId, $priceId, $body)
+    {
+        $returnType = '\Metatavu\Pakkasmarja\Api\Model\Price';
+        $request = $this->updateItemGroupPriceRequest($itemGroupId, $priceId, $body);
+
+        try {
+
+            try {
+                $response = $this->client->send($request);
+            } catch (RequestException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    $e->getCode(),
+                    $e->getResponse() ? $e->getResponse()->getHeaders() : null
+                );
+            }
+
+            $statusCode = $response->getStatusCode();
+
+            if ($statusCode < 200 || $statusCode > 299) {
+                throw new ApiException(
+                    sprintf(
+                        '[%d] Error connecting to the API (%s)',
+                        $statusCode,
+                        $request->getUri()
+                    ),
+                    $statusCode,
+                    $response->getHeaders(),
+                    $response->getBody()
+                );
+            }
+
+            $responseBody = $response->getBody();
+            if ($returnType === '\SplFileObject') {
+                $content = $responseBody; //stream goes to serializer
+            } else {
+                $content = $responseBody->getContents();
+                if ($returnType !== 'string') {
+                    $content = json_decode($content);
+                }
+            }
+
+            return [
+                ObjectSerializer::deserialize($content, $returnType, []),
+                $response->getStatusCode(),
+                $response->getHeaders()
+            ];
+
+        } catch (ApiException $e) {
+            switch ($e->getCode()) {
+                case 200:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Metatavu\Pakkasmarja\Api\Model\Price',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 400:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Metatavu\Pakkasmarja\Api\Model\BadRequest',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 403:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Metatavu\Pakkasmarja\Api\Model\Forbidden',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 500:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Metatavu\Pakkasmarja\Api\Model\InternalServerError',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+            }
+            throw $e;
+        }
+    }
+
+    /**
+     * Operation updateItemGroupPriceAsync
+     *
+     * Update item group price
+     *
+     * @param  string $itemGroupId item group id (required)
+     * @param  string $priceId price id (required)
+     * @param  \Metatavu\Pakkasmarja\Api\Model\Price $body Payload (required)
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function updateItemGroupPriceAsync($itemGroupId, $priceId, $body)
+    {
+        return $this->updateItemGroupPriceAsyncWithHttpInfo($itemGroupId, $priceId, $body)
+            ->then(
+                function ($response) {
+                    return $response[0];
+                }
+            );
+    }
+
+    /**
+     * Operation updateItemGroupPriceAsyncWithHttpInfo
+     *
+     * Update item group price
+     *
+     * @param  string $itemGroupId item group id (required)
+     * @param  string $priceId price id (required)
+     * @param  \Metatavu\Pakkasmarja\Api\Model\Price $body Payload (required)
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function updateItemGroupPriceAsyncWithHttpInfo($itemGroupId, $priceId, $body)
+    {
+        $returnType = '\Metatavu\Pakkasmarja\Api\Model\Price';
+        $request = $this->updateItemGroupPriceRequest($itemGroupId, $priceId, $body);
+
+        return $this->client
+            ->sendAsync($request)
+            ->then(
+                function ($response) use ($returnType) {
+                    $responseBody = $response->getBody();
+                    if ($returnType === '\SplFileObject') {
+                        $content = $responseBody; //stream goes to serializer
+                    } else {
+                        $content = $responseBody->getContents();
+                        if ($returnType !== 'string') {
+                            $content = json_decode($content);
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, $returnType, []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                },
+                function ($exception) {
+                    $response = $exception->getResponse();
+                    $statusCode = $response->getStatusCode();
+                    throw new ApiException(
+                        sprintf(
+                            '[%d] Error connecting to the API (%s)',
+                            $statusCode,
+                            $exception->getRequest()->getUri()
+                        ),
+                        $statusCode,
+                        $response->getHeaders(),
+                        $response->getBody()
+                    );
+                }
+            );
+    }
+
+    /**
+     * Create request for operation 'updateItemGroupPrice'
+     *
+     * @param  string $itemGroupId item group id (required)
+     * @param  string $priceId price id (required)
+     * @param  \Metatavu\Pakkasmarja\Api\Model\Price $body Payload (required)
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Psr7\Request
+     */
+    protected function updateItemGroupPriceRequest($itemGroupId, $priceId, $body)
+    {
+        // verify the required parameter 'itemGroupId' is set
+        if ($itemGroupId === null) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $itemGroupId when calling updateItemGroupPrice'
+            );
+        }
+        // verify the required parameter 'priceId' is set
+        if ($priceId === null) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $priceId when calling updateItemGroupPrice'
+            );
+        }
+        // verify the required parameter 'body' is set
+        if ($body === null) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $body when calling updateItemGroupPrice'
+            );
+        }
+
+        $resourcePath = '/itemGroups/{itemGroupId}/prices/{priceId}';
+        $formParams = [];
+        $queryParams = [];
+        $headerParams = [];
+        $httpBody = '';
+        $multipart = false;
+
+
+        // path params
+        if ($itemGroupId !== null) {
+            $resourcePath = str_replace(
+                '{' . 'itemGroupId' . '}',
+                ObjectSerializer::toPathValue($itemGroupId),
+                $resourcePath
+            );
+        }
+        // path params
+        if ($priceId !== null) {
+            $resourcePath = str_replace(
+                '{' . 'priceId' . '}',
+                ObjectSerializer::toPathValue($priceId),
                 $resourcePath
             );
         }

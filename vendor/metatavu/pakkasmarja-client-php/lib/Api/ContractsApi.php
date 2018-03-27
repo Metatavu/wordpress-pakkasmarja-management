@@ -87,15 +87,17 @@ class ContractsApi
      *
      * @param  string $id contract id (required)
      * @param  string $type document type (required)
+     * @param  string $ssn Social security number (required)
+     * @param  string $authService Used auth service name (required)
      * @param  \Metatavu\Pakkasmarja\Api\Model\ContractDocumentSignRequest $body Payload (required)
      *
      * @throws \Metatavu\Pakkasmarja\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return \Metatavu\Pakkasmarja\Api\Model\ContractDocumentSignRequest
      */
-    public function createContractDocumentSignRequest($id, $type, $body)
+    public function createContractDocumentSignRequest($id, $type, $ssn, $authService, $body)
     {
-        list($response) = $this->createContractDocumentSignRequestWithHttpInfo($id, $type, $body);
+        list($response) = $this->createContractDocumentSignRequestWithHttpInfo($id, $type, $ssn, $authService, $body);
         return $response;
     }
 
@@ -106,16 +108,18 @@ class ContractsApi
      *
      * @param  string $id contract id (required)
      * @param  string $type document type (required)
+     * @param  string $ssn Social security number (required)
+     * @param  string $authService Used auth service name (required)
      * @param  \Metatavu\Pakkasmarja\Api\Model\ContractDocumentSignRequest $body Payload (required)
      *
      * @throws \Metatavu\Pakkasmarja\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return array of \Metatavu\Pakkasmarja\Api\Model\ContractDocumentSignRequest, HTTP status code, HTTP response headers (array of strings)
      */
-    public function createContractDocumentSignRequestWithHttpInfo($id, $type, $body)
+    public function createContractDocumentSignRequestWithHttpInfo($id, $type, $ssn, $authService, $body)
     {
         $returnType = '\Metatavu\Pakkasmarja\Api\Model\ContractDocumentSignRequest';
-        $request = $this->createContractDocumentSignRequestRequest($id, $type, $body);
+        $request = $this->createContractDocumentSignRequestRequest($id, $type, $ssn, $authService, $body);
 
         try {
 
@@ -206,14 +210,16 @@ class ContractsApi
      *
      * @param  string $id contract id (required)
      * @param  string $type document type (required)
+     * @param  string $ssn Social security number (required)
+     * @param  string $authService Used auth service name (required)
      * @param  \Metatavu\Pakkasmarja\Api\Model\ContractDocumentSignRequest $body Payload (required)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function createContractDocumentSignRequestAsync($id, $type, $body)
+    public function createContractDocumentSignRequestAsync($id, $type, $ssn, $authService, $body)
     {
-        return $this->createContractDocumentSignRequestAsyncWithHttpInfo($id, $type, $body)
+        return $this->createContractDocumentSignRequestAsyncWithHttpInfo($id, $type, $ssn, $authService, $body)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -228,15 +234,17 @@ class ContractsApi
      *
      * @param  string $id contract id (required)
      * @param  string $type document type (required)
+     * @param  string $ssn Social security number (required)
+     * @param  string $authService Used auth service name (required)
      * @param  \Metatavu\Pakkasmarja\Api\Model\ContractDocumentSignRequest $body Payload (required)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function createContractDocumentSignRequestAsyncWithHttpInfo($id, $type, $body)
+    public function createContractDocumentSignRequestAsyncWithHttpInfo($id, $type, $ssn, $authService, $body)
     {
         $returnType = '\Metatavu\Pakkasmarja\Api\Model\ContractDocumentSignRequest';
-        $request = $this->createContractDocumentSignRequestRequest($id, $type, $body);
+        $request = $this->createContractDocumentSignRequestRequest($id, $type, $ssn, $authService, $body);
 
         return $this->client
             ->sendAsync($request)
@@ -280,12 +288,14 @@ class ContractsApi
      *
      * @param  string $id contract id (required)
      * @param  string $type document type (required)
+     * @param  string $ssn Social security number (required)
+     * @param  string $authService Used auth service name (required)
      * @param  \Metatavu\Pakkasmarja\Api\Model\ContractDocumentSignRequest $body Payload (required)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    protected function createContractDocumentSignRequestRequest($id, $type, $body)
+    protected function createContractDocumentSignRequestRequest($id, $type, $ssn, $authService, $body)
     {
         // verify the required parameter 'id' is set
         if ($id === null) {
@@ -297,6 +307,18 @@ class ContractsApi
         if ($type === null) {
             throw new \InvalidArgumentException(
                 'Missing the required parameter $type when calling createContractDocumentSignRequest'
+            );
+        }
+        // verify the required parameter 'ssn' is set
+        if ($ssn === null) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $ssn when calling createContractDocumentSignRequest'
+            );
+        }
+        // verify the required parameter 'authService' is set
+        if ($authService === null) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $authService when calling createContractDocumentSignRequest'
             );
         }
         // verify the required parameter 'body' is set
@@ -313,6 +335,14 @@ class ContractsApi
         $httpBody = '';
         $multipart = false;
 
+        // query params
+        if ($ssn !== null) {
+            $queryParams['ssn'] = ObjectSerializer::toQueryValue($ssn);
+        }
+        // query params
+        if ($authService !== null) {
+            $queryParams['authService'] = ObjectSerializer::toQueryValue($authService);
+        }
 
         // path params
         if ($id !== null) {
@@ -1838,6 +1868,328 @@ class ContractsApi
         // query params
         if ($type !== null) {
             $queryParams['type'] = ObjectSerializer::toQueryValue($type);
+        }
+
+        // path params
+        if ($contractId !== null) {
+            $resourcePath = str_replace(
+                '{' . 'contractId' . '}',
+                ObjectSerializer::toPathValue($contractId),
+                $resourcePath
+            );
+        }
+
+        // body params
+        $_tempBody = null;
+
+        if ($multipart) {
+            $headers= $this->headerSelector->selectHeadersForMultipart(
+                ['application/json;charset=utf-8']
+            );
+        } else {
+            $headers = $this->headerSelector->selectHeaders(
+                ['application/json;charset=utf-8'],
+                ['application/json;charset=utf-8']
+            );
+        }
+
+        // for model (json/xml)
+        if (isset($_tempBody)) {
+            $httpBody = $_tempBody; // $_tempBody is the method argument, if present
+
+        } elseif (count($formParams) > 0) {
+            if ($multipart) {
+                $multipartContents = [];
+                foreach ($formParams as $formParamName => $formParamValue) {
+                    $multipartContents[] = [
+                        'name' => $formParamName,
+                        'contents' => $formParamValue
+                    ];
+                }
+                // for HTTP post (form)
+                $httpBody = new MultipartStream($multipartContents);
+
+            } elseif ($headers['Content-Type'] === 'application/json') {
+                $httpBody = \GuzzleHttp\json_encode($formParams);
+
+            } else {
+                // for HTTP post (form)
+                $httpBody = \GuzzleHttp\Psr7\build_query($formParams);
+            }
+        }
+
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
+        if ($apiKey !== null) {
+            $headers['Authorization'] = $apiKey;
+        }
+
+        $defaultHeaders = [];
+        if ($this->config->getUserAgent()) {
+            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
+        }
+
+        $headers = array_merge(
+            $defaultHeaders,
+            $headerParams,
+            $headers
+        );
+
+        $query = \GuzzleHttp\Psr7\build_query($queryParams);
+        return new Request(
+            'GET',
+            $this->config->getHost() . $resourcePath . ($query ? "?{$query}" : ''),
+            $headers,
+            $httpBody
+        );
+    }
+
+    /**
+     * Operation listContractPrices
+     *
+     * List contract prices
+     *
+     * @param  string $contractId contract id (required)
+     * @param  string $sortBy sort by (YEAR) (optional)
+     * @param  string $sortDir sort direction (ASC, DESC) (optional)
+     * @param  int $firstResult Offset of first result. Defaults to 0 (optional)
+     * @param  int $maxResults Max results. Defaults to 5 (optional)
+     *
+     * @throws \Metatavu\Pakkasmarja\ApiException on non-2xx response
+     * @throws \InvalidArgumentException
+     * @return \Metatavu\Pakkasmarja\Api\Model\Price[]
+     */
+    public function listContractPrices($contractId, $sortBy = null, $sortDir = null, $firstResult = null, $maxResults = null)
+    {
+        list($response) = $this->listContractPricesWithHttpInfo($contractId, $sortBy, $sortDir, $firstResult, $maxResults);
+        return $response;
+    }
+
+    /**
+     * Operation listContractPricesWithHttpInfo
+     *
+     * List contract prices
+     *
+     * @param  string $contractId contract id (required)
+     * @param  string $sortBy sort by (YEAR) (optional)
+     * @param  string $sortDir sort direction (ASC, DESC) (optional)
+     * @param  int $firstResult Offset of first result. Defaults to 0 (optional)
+     * @param  int $maxResults Max results. Defaults to 5 (optional)
+     *
+     * @throws \Metatavu\Pakkasmarja\ApiException on non-2xx response
+     * @throws \InvalidArgumentException
+     * @return array of \Metatavu\Pakkasmarja\Api\Model\Price[], HTTP status code, HTTP response headers (array of strings)
+     */
+    public function listContractPricesWithHttpInfo($contractId, $sortBy = null, $sortDir = null, $firstResult = null, $maxResults = null)
+    {
+        $returnType = '\Metatavu\Pakkasmarja\Api\Model\Price[]';
+        $request = $this->listContractPricesRequest($contractId, $sortBy, $sortDir, $firstResult, $maxResults);
+
+        try {
+
+            try {
+                $response = $this->client->send($request);
+            } catch (RequestException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    $e->getCode(),
+                    $e->getResponse() ? $e->getResponse()->getHeaders() : null
+                );
+            }
+
+            $statusCode = $response->getStatusCode();
+
+            if ($statusCode < 200 || $statusCode > 299) {
+                throw new ApiException(
+                    sprintf(
+                        '[%d] Error connecting to the API (%s)',
+                        $statusCode,
+                        $request->getUri()
+                    ),
+                    $statusCode,
+                    $response->getHeaders(),
+                    $response->getBody()
+                );
+            }
+
+            $responseBody = $response->getBody();
+            if ($returnType === '\SplFileObject') {
+                $content = $responseBody; //stream goes to serializer
+            } else {
+                $content = $responseBody->getContents();
+                if ($returnType !== 'string') {
+                    $content = json_decode($content);
+                }
+            }
+
+            return [
+                ObjectSerializer::deserialize($content, $returnType, []),
+                $response->getStatusCode(),
+                $response->getHeaders()
+            ];
+
+        } catch (ApiException $e) {
+            switch ($e->getCode()) {
+                case 200:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Metatavu\Pakkasmarja\Api\Model\Price[]',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 400:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Metatavu\Pakkasmarja\Api\Model\BadRequest',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 403:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Metatavu\Pakkasmarja\Api\Model\Forbidden',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 500:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Metatavu\Pakkasmarja\Api\Model\InternalServerError',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+            }
+            throw $e;
+        }
+    }
+
+    /**
+     * Operation listContractPricesAsync
+     *
+     * List contract prices
+     *
+     * @param  string $contractId contract id (required)
+     * @param  string $sortBy sort by (YEAR) (optional)
+     * @param  string $sortDir sort direction (ASC, DESC) (optional)
+     * @param  int $firstResult Offset of first result. Defaults to 0 (optional)
+     * @param  int $maxResults Max results. Defaults to 5 (optional)
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function listContractPricesAsync($contractId, $sortBy = null, $sortDir = null, $firstResult = null, $maxResults = null)
+    {
+        return $this->listContractPricesAsyncWithHttpInfo($contractId, $sortBy, $sortDir, $firstResult, $maxResults)
+            ->then(
+                function ($response) {
+                    return $response[0];
+                }
+            );
+    }
+
+    /**
+     * Operation listContractPricesAsyncWithHttpInfo
+     *
+     * List contract prices
+     *
+     * @param  string $contractId contract id (required)
+     * @param  string $sortBy sort by (YEAR) (optional)
+     * @param  string $sortDir sort direction (ASC, DESC) (optional)
+     * @param  int $firstResult Offset of first result. Defaults to 0 (optional)
+     * @param  int $maxResults Max results. Defaults to 5 (optional)
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function listContractPricesAsyncWithHttpInfo($contractId, $sortBy = null, $sortDir = null, $firstResult = null, $maxResults = null)
+    {
+        $returnType = '\Metatavu\Pakkasmarja\Api\Model\Price[]';
+        $request = $this->listContractPricesRequest($contractId, $sortBy, $sortDir, $firstResult, $maxResults);
+
+        return $this->client
+            ->sendAsync($request)
+            ->then(
+                function ($response) use ($returnType) {
+                    $responseBody = $response->getBody();
+                    if ($returnType === '\SplFileObject') {
+                        $content = $responseBody; //stream goes to serializer
+                    } else {
+                        $content = $responseBody->getContents();
+                        if ($returnType !== 'string') {
+                            $content = json_decode($content);
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, $returnType, []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                },
+                function ($exception) {
+                    $response = $exception->getResponse();
+                    $statusCode = $response->getStatusCode();
+                    throw new ApiException(
+                        sprintf(
+                            '[%d] Error connecting to the API (%s)',
+                            $statusCode,
+                            $exception->getRequest()->getUri()
+                        ),
+                        $statusCode,
+                        $response->getHeaders(),
+                        $response->getBody()
+                    );
+                }
+            );
+    }
+
+    /**
+     * Create request for operation 'listContractPrices'
+     *
+     * @param  string $contractId contract id (required)
+     * @param  string $sortBy sort by (YEAR) (optional)
+     * @param  string $sortDir sort direction (ASC, DESC) (optional)
+     * @param  int $firstResult Offset of first result. Defaults to 0 (optional)
+     * @param  int $maxResults Max results. Defaults to 5 (optional)
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Psr7\Request
+     */
+    protected function listContractPricesRequest($contractId, $sortBy = null, $sortDir = null, $firstResult = null, $maxResults = null)
+    {
+        // verify the required parameter 'contractId' is set
+        if ($contractId === null) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $contractId when calling listContractPrices'
+            );
+        }
+
+        $resourcePath = '/contracts/{contractId}/prices';
+        $formParams = [];
+        $queryParams = [];
+        $headerParams = [];
+        $httpBody = '';
+        $multipart = false;
+
+        // query params
+        if ($sortBy !== null) {
+            $queryParams['sortBy'] = ObjectSerializer::toQueryValue($sortBy);
+        }
+        // query params
+        if ($sortDir !== null) {
+            $queryParams['sortDir'] = ObjectSerializer::toQueryValue($sortDir);
+        }
+        // query params
+        if ($firstResult !== null) {
+            $queryParams['firstResult'] = ObjectSerializer::toQueryValue($firstResult);
+        }
+        // query params
+        if ($maxResults !== null) {
+            $queryParams['maxResults'] = ObjectSerializer::toQueryValue($maxResults);
         }
 
         // path params
