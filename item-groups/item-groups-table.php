@@ -126,6 +126,9 @@
           $title = sprintf(__('Edit template %s', 'pakkasmarja_management'), Formatter::formatDocumentTemplateType($itemGroupDocumentTemplate->getType()));
           $actions["edit-template-" . $itemGroupDocumentTemplate->getId()] = sprintf('<a href="%s">%s</a>', $editUrl, $title);
         }
+
+        $editPricesUrl = sprintf("?page=pakkasmarja-item-group-price-edit-view.php&item-group-id=%s", $id);
+        $actions["edit-prices"] = sprintf('<a href="%s">%s</a>', $editPricesUrl, __('Edit prices', 'pakkasmarja_management'));
         
         return sprintf('%1$s%2$s', $name, $this->row_actions($actions));
       }
