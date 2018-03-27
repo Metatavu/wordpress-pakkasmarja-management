@@ -53,7 +53,7 @@
           if ($validateMessage) {
             echo '<div class="notice-error notice">' . $validateMessage . '</div>';
           } else {
-            $this->save();
+            $this->save($itemGroupId);
           }
         }
 
@@ -72,8 +72,10 @@
 
       /**
        * Saves form
+       * 
+       * @param String $itemGroupId item group id
        */
-      private function save() {
+      private function save($itemGroupId) {
         $priceCount = $this->getPostInt('price-count');
 
         for ($i = 0; $i < $priceCount; $i++) {
