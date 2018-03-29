@@ -395,7 +395,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 # **listContracts**
-> \Metatavu\Pakkasmarja\Api\Model\Contract[] listContracts($accept, $listAll, $itemGroupCategory, $itemGroupId, $year, $status)
+> \Metatavu\Pakkasmarja\Api\Model\Contract[] listContracts($accept, $listAll, $itemGroupCategory, $itemGroupId, $year, $status, $firstResult, $maxResults)
 
 Lists contracts
 
@@ -418,9 +418,11 @@ $itemGroupCategory = "itemGroupCategory_example"; // string | Filters results by
 $itemGroupId = "itemGroupId_example"; // string | Filters results by item group id.
 $year = 56; // int | Filters results by year.
 $status = "status_example"; // string | Filters results by status
+$firstResult = 789; // int | Offset of first result. Defaults to 0
+$maxResults = 789; // int | Max results. Defaults to 5
 
 try {
-    $result = $api_instance->listContracts($accept, $listAll, $itemGroupCategory, $itemGroupId, $year, $status);
+    $result = $api_instance->listContracts($accept, $listAll, $itemGroupCategory, $itemGroupId, $year, $status, $firstResult, $maxResults);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling ContractsApi->listContracts: ', $e->getMessage(), PHP_EOL;
@@ -438,6 +440,8 @@ Name | Type | Description  | Notes
  **itemGroupId** | **string**| Filters results by item group id. | [optional]
  **year** | **int**| Filters results by year. | [optional]
  **status** | **string**| Filters results by status | [optional]
+ **firstResult** | **int**| Offset of first result. Defaults to 0 | [optional]
+ **maxResults** | **int**| Max results. Defaults to 5 | [optional]
 
 ### Return type
 

@@ -2277,14 +2277,16 @@ class ContractsApi
      * @param  string $itemGroupId Filters results by item group id. (optional)
      * @param  int $year Filters results by year. (optional)
      * @param  string $status Filters results by status (optional)
+     * @param  int $firstResult Offset of first result. Defaults to 0 (optional)
+     * @param  int $maxResults Max results. Defaults to 5 (optional)
      *
      * @throws \Metatavu\Pakkasmarja\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return \Metatavu\Pakkasmarja\Api\Model\Contract[]
      */
-    public function listContracts($accept = null, $listAll = null, $itemGroupCategory = null, $itemGroupId = null, $year = null, $status = null)
+    public function listContracts($accept = null, $listAll = null, $itemGroupCategory = null, $itemGroupId = null, $year = null, $status = null, $firstResult = null, $maxResults = null)
     {
-        list($response) = $this->listContractsWithHttpInfo($accept, $listAll, $itemGroupCategory, $itemGroupId, $year, $status);
+        list($response) = $this->listContractsWithHttpInfo($accept, $listAll, $itemGroupCategory, $itemGroupId, $year, $status, $firstResult, $maxResults);
         return $response;
     }
 
@@ -2299,15 +2301,17 @@ class ContractsApi
      * @param  string $itemGroupId Filters results by item group id. (optional)
      * @param  int $year Filters results by year. (optional)
      * @param  string $status Filters results by status (optional)
+     * @param  int $firstResult Offset of first result. Defaults to 0 (optional)
+     * @param  int $maxResults Max results. Defaults to 5 (optional)
      *
      * @throws \Metatavu\Pakkasmarja\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return array of \Metatavu\Pakkasmarja\Api\Model\Contract[], HTTP status code, HTTP response headers (array of strings)
      */
-    public function listContractsWithHttpInfo($accept = null, $listAll = null, $itemGroupCategory = null, $itemGroupId = null, $year = null, $status = null)
+    public function listContractsWithHttpInfo($accept = null, $listAll = null, $itemGroupCategory = null, $itemGroupId = null, $year = null, $status = null, $firstResult = null, $maxResults = null)
     {
         $returnType = '\Metatavu\Pakkasmarja\Api\Model\Contract[]';
-        $request = $this->listContractsRequest($accept, $listAll, $itemGroupCategory, $itemGroupId, $year, $status);
+        $request = $this->listContractsRequest($accept, $listAll, $itemGroupCategory, $itemGroupId, $year, $status, $firstResult, $maxResults);
 
         try {
 
@@ -2402,13 +2406,15 @@ class ContractsApi
      * @param  string $itemGroupId Filters results by item group id. (optional)
      * @param  int $year Filters results by year. (optional)
      * @param  string $status Filters results by status (optional)
+     * @param  int $firstResult Offset of first result. Defaults to 0 (optional)
+     * @param  int $maxResults Max results. Defaults to 5 (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function listContractsAsync($accept = null, $listAll = null, $itemGroupCategory = null, $itemGroupId = null, $year = null, $status = null)
+    public function listContractsAsync($accept = null, $listAll = null, $itemGroupCategory = null, $itemGroupId = null, $year = null, $status = null, $firstResult = null, $maxResults = null)
     {
-        return $this->listContractsAsyncWithHttpInfo($accept, $listAll, $itemGroupCategory, $itemGroupId, $year, $status)
+        return $this->listContractsAsyncWithHttpInfo($accept, $listAll, $itemGroupCategory, $itemGroupId, $year, $status, $firstResult, $maxResults)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -2427,14 +2433,16 @@ class ContractsApi
      * @param  string $itemGroupId Filters results by item group id. (optional)
      * @param  int $year Filters results by year. (optional)
      * @param  string $status Filters results by status (optional)
+     * @param  int $firstResult Offset of first result. Defaults to 0 (optional)
+     * @param  int $maxResults Max results. Defaults to 5 (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function listContractsAsyncWithHttpInfo($accept = null, $listAll = null, $itemGroupCategory = null, $itemGroupId = null, $year = null, $status = null)
+    public function listContractsAsyncWithHttpInfo($accept = null, $listAll = null, $itemGroupCategory = null, $itemGroupId = null, $year = null, $status = null, $firstResult = null, $maxResults = null)
     {
         $returnType = '\Metatavu\Pakkasmarja\Api\Model\Contract[]';
-        $request = $this->listContractsRequest($accept, $listAll, $itemGroupCategory, $itemGroupId, $year, $status);
+        $request = $this->listContractsRequest($accept, $listAll, $itemGroupCategory, $itemGroupId, $year, $status, $firstResult, $maxResults);
 
         return $this->client
             ->sendAsync($request)
@@ -2482,11 +2490,13 @@ class ContractsApi
      * @param  string $itemGroupId Filters results by item group id. (optional)
      * @param  int $year Filters results by year. (optional)
      * @param  string $status Filters results by status (optional)
+     * @param  int $firstResult Offset of first result. Defaults to 0 (optional)
+     * @param  int $maxResults Max results. Defaults to 5 (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    protected function listContractsRequest($accept = null, $listAll = null, $itemGroupCategory = null, $itemGroupId = null, $year = null, $status = null)
+    protected function listContractsRequest($accept = null, $listAll = null, $itemGroupCategory = null, $itemGroupId = null, $year = null, $status = null, $firstResult = null, $maxResults = null)
     {
 
         $resourcePath = '/contracts';
@@ -2515,6 +2525,14 @@ class ContractsApi
         // query params
         if ($status !== null) {
             $queryParams['status'] = ObjectSerializer::toQueryValue($status);
+        }
+        // query params
+        if ($firstResult !== null) {
+            $queryParams['firstResult'] = ObjectSerializer::toQueryValue($firstResult);
+        }
+        // query params
+        if ($maxResults !== null) {
+            $queryParams['maxResults'] = ObjectSerializer::toQueryValue($maxResults);
         }
         // header params
         if ($accept !== null) {
