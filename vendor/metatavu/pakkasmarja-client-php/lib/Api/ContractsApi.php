@@ -2274,14 +2274,17 @@ class ContractsApi
      * @param  string $accept Expected response format. Accepted values application/json for JSON reponse (default) and application/vnd.openxmlformats-officedocument.spreadsheetml.sheet for Excel response (optional)
      * @param  bool $listAll Returns all contracts instead of just user&#39;s own contracts. User must have permission to do this. (optional)
      * @param  string $itemGroupCategory Filters results by item group category. (optional)
+     * @param  string $itemGroupId Filters results by item group id. (optional)
+     * @param  int $year Filters results by year. (optional)
+     * @param  string $status Filters results by status (optional)
      *
      * @throws \Metatavu\Pakkasmarja\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return \Metatavu\Pakkasmarja\Api\Model\Contract[]
      */
-    public function listContracts($accept = null, $listAll = null, $itemGroupCategory = null)
+    public function listContracts($accept = null, $listAll = null, $itemGroupCategory = null, $itemGroupId = null, $year = null, $status = null)
     {
-        list($response) = $this->listContractsWithHttpInfo($accept, $listAll, $itemGroupCategory);
+        list($response) = $this->listContractsWithHttpInfo($accept, $listAll, $itemGroupCategory, $itemGroupId, $year, $status);
         return $response;
     }
 
@@ -2293,15 +2296,18 @@ class ContractsApi
      * @param  string $accept Expected response format. Accepted values application/json for JSON reponse (default) and application/vnd.openxmlformats-officedocument.spreadsheetml.sheet for Excel response (optional)
      * @param  bool $listAll Returns all contracts instead of just user&#39;s own contracts. User must have permission to do this. (optional)
      * @param  string $itemGroupCategory Filters results by item group category. (optional)
+     * @param  string $itemGroupId Filters results by item group id. (optional)
+     * @param  int $year Filters results by year. (optional)
+     * @param  string $status Filters results by status (optional)
      *
      * @throws \Metatavu\Pakkasmarja\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return array of \Metatavu\Pakkasmarja\Api\Model\Contract[], HTTP status code, HTTP response headers (array of strings)
      */
-    public function listContractsWithHttpInfo($accept = null, $listAll = null, $itemGroupCategory = null)
+    public function listContractsWithHttpInfo($accept = null, $listAll = null, $itemGroupCategory = null, $itemGroupId = null, $year = null, $status = null)
     {
         $returnType = '\Metatavu\Pakkasmarja\Api\Model\Contract[]';
-        $request = $this->listContractsRequest($accept, $listAll, $itemGroupCategory);
+        $request = $this->listContractsRequest($accept, $listAll, $itemGroupCategory, $itemGroupId, $year, $status);
 
         try {
 
@@ -2393,13 +2399,16 @@ class ContractsApi
      * @param  string $accept Expected response format. Accepted values application/json for JSON reponse (default) and application/vnd.openxmlformats-officedocument.spreadsheetml.sheet for Excel response (optional)
      * @param  bool $listAll Returns all contracts instead of just user&#39;s own contracts. User must have permission to do this. (optional)
      * @param  string $itemGroupCategory Filters results by item group category. (optional)
+     * @param  string $itemGroupId Filters results by item group id. (optional)
+     * @param  int $year Filters results by year. (optional)
+     * @param  string $status Filters results by status (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function listContractsAsync($accept = null, $listAll = null, $itemGroupCategory = null)
+    public function listContractsAsync($accept = null, $listAll = null, $itemGroupCategory = null, $itemGroupId = null, $year = null, $status = null)
     {
-        return $this->listContractsAsyncWithHttpInfo($accept, $listAll, $itemGroupCategory)
+        return $this->listContractsAsyncWithHttpInfo($accept, $listAll, $itemGroupCategory, $itemGroupId, $year, $status)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -2415,14 +2424,17 @@ class ContractsApi
      * @param  string $accept Expected response format. Accepted values application/json for JSON reponse (default) and application/vnd.openxmlformats-officedocument.spreadsheetml.sheet for Excel response (optional)
      * @param  bool $listAll Returns all contracts instead of just user&#39;s own contracts. User must have permission to do this. (optional)
      * @param  string $itemGroupCategory Filters results by item group category. (optional)
+     * @param  string $itemGroupId Filters results by item group id. (optional)
+     * @param  int $year Filters results by year. (optional)
+     * @param  string $status Filters results by status (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function listContractsAsyncWithHttpInfo($accept = null, $listAll = null, $itemGroupCategory = null)
+    public function listContractsAsyncWithHttpInfo($accept = null, $listAll = null, $itemGroupCategory = null, $itemGroupId = null, $year = null, $status = null)
     {
         $returnType = '\Metatavu\Pakkasmarja\Api\Model\Contract[]';
-        $request = $this->listContractsRequest($accept, $listAll, $itemGroupCategory);
+        $request = $this->listContractsRequest($accept, $listAll, $itemGroupCategory, $itemGroupId, $year, $status);
 
         return $this->client
             ->sendAsync($request)
@@ -2467,11 +2479,14 @@ class ContractsApi
      * @param  string $accept Expected response format. Accepted values application/json for JSON reponse (default) and application/vnd.openxmlformats-officedocument.spreadsheetml.sheet for Excel response (optional)
      * @param  bool $listAll Returns all contracts instead of just user&#39;s own contracts. User must have permission to do this. (optional)
      * @param  string $itemGroupCategory Filters results by item group category. (optional)
+     * @param  string $itemGroupId Filters results by item group id. (optional)
+     * @param  int $year Filters results by year. (optional)
+     * @param  string $status Filters results by status (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    protected function listContractsRequest($accept = null, $listAll = null, $itemGroupCategory = null)
+    protected function listContractsRequest($accept = null, $listAll = null, $itemGroupCategory = null, $itemGroupId = null, $year = null, $status = null)
     {
 
         $resourcePath = '/contracts';
@@ -2488,6 +2503,18 @@ class ContractsApi
         // query params
         if ($itemGroupCategory !== null) {
             $queryParams['itemGroupCategory'] = ObjectSerializer::toQueryValue($itemGroupCategory);
+        }
+        // query params
+        if ($itemGroupId !== null) {
+            $queryParams['itemGroupId'] = ObjectSerializer::toQueryValue($itemGroupId);
+        }
+        // query params
+        if ($year !== null) {
+            $queryParams['year'] = ObjectSerializer::toQueryValue($year);
+        }
+        // query params
+        if ($status !== null) {
+            $queryParams['status'] = ObjectSerializer::toQueryValue($status);
         }
         // header params
         if ($accept !== null) {

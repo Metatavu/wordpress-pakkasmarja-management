@@ -58,6 +58,7 @@ class ItemGroup implements ModelInterface, ArrayAccess
     protected static $swaggerTypes = [
         'id' => 'string',
         'name' => 'string',
+        'displayName' => 'string',
         'category' => 'string'
     ];
 
@@ -69,6 +70,7 @@ class ItemGroup implements ModelInterface, ArrayAccess
     protected static $swaggerFormats = [
         'id' => 'uuid',
         'name' => null,
+        'displayName' => null,
         'category' => null
     ];
 
@@ -101,6 +103,7 @@ class ItemGroup implements ModelInterface, ArrayAccess
     protected static $attributeMap = [
         'id' => 'id',
         'name' => 'name',
+        'displayName' => 'displayName',
         'category' => 'category'
     ];
 
@@ -112,6 +115,7 @@ class ItemGroup implements ModelInterface, ArrayAccess
     protected static $setters = [
         'id' => 'setId',
         'name' => 'setName',
+        'displayName' => 'setDisplayName',
         'category' => 'setCategory'
     ];
 
@@ -123,6 +127,7 @@ class ItemGroup implements ModelInterface, ArrayAccess
     protected static $getters = [
         'id' => 'getId',
         'name' => 'getName',
+        'displayName' => 'getDisplayName',
         'category' => 'getCategory'
     ];
 
@@ -188,6 +193,7 @@ class ItemGroup implements ModelInterface, ArrayAccess
     {
         $this->container['id'] = isset($data['id']) ? $data['id'] : null;
         $this->container['name'] = isset($data['name']) ? $data['name'] : null;
+        $this->container['displayName'] = isset($data['displayName']) ? $data['displayName'] : null;
         $this->container['category'] = isset($data['category']) ? $data['category'] : null;
     }
 
@@ -260,6 +266,30 @@ class ItemGroup implements ModelInterface, ArrayAccess
     public function setName($name)
     {
         $this->container['name'] = $name;
+
+        return $this;
+    }
+
+    /**
+     * Gets displayName
+     *
+     * @return string
+     */
+    public function getDisplayName()
+    {
+        return $this->container['displayName'];
+    }
+
+    /**
+     * Sets displayName
+     *
+     * @param string $displayName
+     *
+     * @return $this
+     */
+    public function setDisplayName($displayName)
+    {
+        $this->container['displayName'] = $displayName;
 
         return $this;
     }

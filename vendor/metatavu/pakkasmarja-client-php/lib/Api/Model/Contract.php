@@ -59,14 +59,18 @@ class Contract implements ModelInterface, ArrayAccess
         'id' => 'string',
         'contactId' => 'string',
         'deliveryPlaceId' => 'string',
+        'deliveryPlaceComment' => 'string',
         'itemGroupId' => 'string',
+        'year' => 'int',
         'contractQuantity' => 'double',
         'deliveredQuantity' => 'double',
         'proposedQuantity' => 'double',
+        'quantityComment' => 'string',
         'startDate' => '\DateTime',
         'endDate' => '\DateTime',
         'signDate' => '\DateTime',
         'termDate' => '\DateTime',
+        'rejectComment' => 'string',
         'status' => 'string',
         'remarks' => 'string'
     ];
@@ -80,14 +84,18 @@ class Contract implements ModelInterface, ArrayAccess
         'id' => 'uuid',
         'contactId' => 'uuid',
         'deliveryPlaceId' => 'uuid',
+        'deliveryPlaceComment' => null,
         'itemGroupId' => 'uuid',
+        'year' => 'int32',
         'contractQuantity' => 'double',
         'deliveredQuantity' => 'double',
         'proposedQuantity' => 'double',
+        'quantityComment' => null,
         'startDate' => 'date',
         'endDate' => 'date',
         'signDate' => 'date',
         'termDate' => 'date',
+        'rejectComment' => null,
         'status' => null,
         'remarks' => null
     ];
@@ -122,14 +130,18 @@ class Contract implements ModelInterface, ArrayAccess
         'id' => 'id',
         'contactId' => 'contactId',
         'deliveryPlaceId' => 'deliveryPlaceId',
+        'deliveryPlaceComment' => 'deliveryPlaceComment',
         'itemGroupId' => 'itemGroupId',
+        'year' => 'year',
         'contractQuantity' => 'contractQuantity',
         'deliveredQuantity' => 'deliveredQuantity',
         'proposedQuantity' => 'proposedQuantity',
+        'quantityComment' => 'quantityComment',
         'startDate' => 'startDate',
         'endDate' => 'endDate',
         'signDate' => 'signDate',
         'termDate' => 'termDate',
+        'rejectComment' => 'rejectComment',
         'status' => 'status',
         'remarks' => 'remarks'
     ];
@@ -143,14 +155,18 @@ class Contract implements ModelInterface, ArrayAccess
         'id' => 'setId',
         'contactId' => 'setContactId',
         'deliveryPlaceId' => 'setDeliveryPlaceId',
+        'deliveryPlaceComment' => 'setDeliveryPlaceComment',
         'itemGroupId' => 'setItemGroupId',
+        'year' => 'setYear',
         'contractQuantity' => 'setContractQuantity',
         'deliveredQuantity' => 'setDeliveredQuantity',
         'proposedQuantity' => 'setProposedQuantity',
+        'quantityComment' => 'setQuantityComment',
         'startDate' => 'setStartDate',
         'endDate' => 'setEndDate',
         'signDate' => 'setSignDate',
         'termDate' => 'setTermDate',
+        'rejectComment' => 'setRejectComment',
         'status' => 'setStatus',
         'remarks' => 'setRemarks'
     ];
@@ -164,14 +180,18 @@ class Contract implements ModelInterface, ArrayAccess
         'id' => 'getId',
         'contactId' => 'getContactId',
         'deliveryPlaceId' => 'getDeliveryPlaceId',
+        'deliveryPlaceComment' => 'getDeliveryPlaceComment',
         'itemGroupId' => 'getItemGroupId',
+        'year' => 'getYear',
         'contractQuantity' => 'getContractQuantity',
         'deliveredQuantity' => 'getDeliveredQuantity',
         'proposedQuantity' => 'getProposedQuantity',
+        'quantityComment' => 'getQuantityComment',
         'startDate' => 'getStartDate',
         'endDate' => 'getEndDate',
         'signDate' => 'getSignDate',
         'termDate' => 'getTermDate',
+        'rejectComment' => 'getRejectComment',
         'status' => 'getStatus',
         'remarks' => 'getRemarks'
     ];
@@ -221,6 +241,7 @@ class Contract implements ModelInterface, ArrayAccess
     const STATUS_ON_HOLD = 'ON_HOLD';
     const STATUS_DRAFT = 'DRAFT';
     const STATUS_TERMINATED = 'TERMINATED';
+    const STATUS_REJECTED = 'REJECTED';
     
 
     
@@ -236,6 +257,7 @@ class Contract implements ModelInterface, ArrayAccess
             self::STATUS_ON_HOLD,
             self::STATUS_DRAFT,
             self::STATUS_TERMINATED,
+            self::STATUS_REJECTED,
         ];
     }
     
@@ -258,14 +280,18 @@ class Contract implements ModelInterface, ArrayAccess
         $this->container['id'] = isset($data['id']) ? $data['id'] : null;
         $this->container['contactId'] = isset($data['contactId']) ? $data['contactId'] : null;
         $this->container['deliveryPlaceId'] = isset($data['deliveryPlaceId']) ? $data['deliveryPlaceId'] : null;
+        $this->container['deliveryPlaceComment'] = isset($data['deliveryPlaceComment']) ? $data['deliveryPlaceComment'] : null;
         $this->container['itemGroupId'] = isset($data['itemGroupId']) ? $data['itemGroupId'] : null;
+        $this->container['year'] = isset($data['year']) ? $data['year'] : null;
         $this->container['contractQuantity'] = isset($data['contractQuantity']) ? $data['contractQuantity'] : null;
         $this->container['deliveredQuantity'] = isset($data['deliveredQuantity']) ? $data['deliveredQuantity'] : null;
         $this->container['proposedQuantity'] = isset($data['proposedQuantity']) ? $data['proposedQuantity'] : null;
+        $this->container['quantityComment'] = isset($data['quantityComment']) ? $data['quantityComment'] : null;
         $this->container['startDate'] = isset($data['startDate']) ? $data['startDate'] : null;
         $this->container['endDate'] = isset($data['endDate']) ? $data['endDate'] : null;
         $this->container['signDate'] = isset($data['signDate']) ? $data['signDate'] : null;
         $this->container['termDate'] = isset($data['termDate']) ? $data['termDate'] : null;
+        $this->container['rejectComment'] = isset($data['rejectComment']) ? $data['rejectComment'] : null;
         $this->container['status'] = isset($data['status']) ? $data['status'] : null;
         $this->container['remarks'] = isset($data['remarks']) ? $data['remarks'] : null;
     }
@@ -380,6 +406,30 @@ class Contract implements ModelInterface, ArrayAccess
     }
 
     /**
+     * Gets deliveryPlaceComment
+     *
+     * @return string
+     */
+    public function getDeliveryPlaceComment()
+    {
+        return $this->container['deliveryPlaceComment'];
+    }
+
+    /**
+     * Sets deliveryPlaceComment
+     *
+     * @param string $deliveryPlaceComment
+     *
+     * @return $this
+     */
+    public function setDeliveryPlaceComment($deliveryPlaceComment)
+    {
+        $this->container['deliveryPlaceComment'] = $deliveryPlaceComment;
+
+        return $this;
+    }
+
+    /**
      * Gets itemGroupId
      *
      * @return string
@@ -399,6 +449,30 @@ class Contract implements ModelInterface, ArrayAccess
     public function setItemGroupId($itemGroupId)
     {
         $this->container['itemGroupId'] = $itemGroupId;
+
+        return $this;
+    }
+
+    /**
+     * Gets year
+     *
+     * @return int
+     */
+    public function getYear()
+    {
+        return $this->container['year'];
+    }
+
+    /**
+     * Sets year
+     *
+     * @param int $year
+     *
+     * @return $this
+     */
+    public function setYear($year)
+    {
+        $this->container['year'] = $year;
 
         return $this;
     }
@@ -471,6 +545,30 @@ class Contract implements ModelInterface, ArrayAccess
     public function setProposedQuantity($proposedQuantity)
     {
         $this->container['proposedQuantity'] = $proposedQuantity;
+
+        return $this;
+    }
+
+    /**
+     * Gets quantityComment
+     *
+     * @return string
+     */
+    public function getQuantityComment()
+    {
+        return $this->container['quantityComment'];
+    }
+
+    /**
+     * Sets quantityComment
+     *
+     * @param string $quantityComment
+     *
+     * @return $this
+     */
+    public function setQuantityComment($quantityComment)
+    {
+        $this->container['quantityComment'] = $quantityComment;
 
         return $this;
     }
@@ -567,6 +665,30 @@ class Contract implements ModelInterface, ArrayAccess
     public function setTermDate($termDate)
     {
         $this->container['termDate'] = $termDate;
+
+        return $this;
+    }
+
+    /**
+     * Gets rejectComment
+     *
+     * @return string
+     */
+    public function getRejectComment()
+    {
+        return $this->container['rejectComment'];
+    }
+
+    /**
+     * Sets rejectComment
+     *
+     * @param string $rejectComment
+     *
+     * @return $this
+     */
+    public function setRejectComment($rejectComment)
+    {
+        $this->container['rejectComment'] = $rejectComment;
 
         return $this;
     }
