@@ -395,7 +395,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 # **listContracts**
-> \Metatavu\Pakkasmarja\Api\Model\Contract[] listContracts($accept, $listAll, $itemGroupCategory)
+> \Metatavu\Pakkasmarja\Api\Model\Contract[] listContracts($accept, $listAll, $itemGroupCategory, $itemGroupId, $year, $status, $firstResult, $maxResults)
 
 Lists contracts
 
@@ -415,9 +415,14 @@ $api_instance = new Metatavu\Pakkasmarja\Api\ContractsApi(new \Http\Adapter\Guzz
 $accept = "accept_example"; // string | Expected response format. Accepted values application/json for JSON reponse (default) and application/vnd.openxmlformats-officedocument.spreadsheetml.sheet for Excel response
 $listAll = true; // bool | Returns all contracts instead of just user's own contracts. User must have permission to do this.
 $itemGroupCategory = "itemGroupCategory_example"; // string | Filters results by item group category.
+$itemGroupId = "itemGroupId_example"; // string | Filters results by item group id.
+$year = 56; // int | Filters results by year.
+$status = "status_example"; // string | Filters results by status
+$firstResult = 789; // int | Offset of first result. Defaults to 0
+$maxResults = 789; // int | Max results. Defaults to 5
 
 try {
-    $result = $api_instance->listContracts($accept, $listAll, $itemGroupCategory);
+    $result = $api_instance->listContracts($accept, $listAll, $itemGroupCategory, $itemGroupId, $year, $status, $firstResult, $maxResults);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling ContractsApi->listContracts: ', $e->getMessage(), PHP_EOL;
@@ -432,6 +437,11 @@ Name | Type | Description  | Notes
  **accept** | **string**| Expected response format. Accepted values application/json for JSON reponse (default) and application/vnd.openxmlformats-officedocument.spreadsheetml.sheet for Excel response | [optional]
  **listAll** | **bool**| Returns all contracts instead of just user&#39;s own contracts. User must have permission to do this. | [optional]
  **itemGroupCategory** | **string**| Filters results by item group category. | [optional]
+ **itemGroupId** | **string**| Filters results by item group id. | [optional]
+ **year** | **int**| Filters results by year. | [optional]
+ **status** | **string**| Filters results by status | [optional]
+ **firstResult** | **int**| Offset of first result. Defaults to 0 | [optional]
+ **maxResults** | **int**| Max results. Defaults to 5 | [optional]
 
 ### Return type
 

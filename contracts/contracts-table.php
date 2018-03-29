@@ -7,13 +7,15 @@
   }
   
   use \Metatavu\Pakkasmarja\Utils\Formatter;
+  use \Metatavu\Pakkasmarja\Utils\Consts;
 
   if (!class_exists( 'WP_List_Table' ) ) {
     require_once(ABSPATH . 'wp-admin/includes/class-wp-list-table.php' );
   }
   
   require_once( __DIR__ . '/../api/api-client.php');
-  
+  require_once( __DIR__ . '/../utils/consts.php');
+
   if (!class_exists( '\Metatavu\Pakkasmarja\Contracts\ContractsTable' ) ) {
     
     /**
@@ -44,6 +46,11 @@
       private $deliveryPlaceApi;
 
       /**
+       * @var \Metatavu\Pakkasmarja\Api\Model\ItemGroup[]
+       */
+      private $itemGroups;
+
+      /**
        * Constructor
        */
       public function __construct() {        
@@ -55,7 +62,7 @@
         
         wp_enqueue_script('jquery');
         wp_enqueue_script('jquery-ui-dialog', null, ['jquery']);
-        wp_enqueue_script('contract-reports-table', plugin_dir_url(__FILE__) . 'contract-reports-table.js', null, ['jquery-ui-dialog' ]);
+        wp_enqueue_script('contracts-table', plugin_dir_url(__FILE__) . 'contracts-table.js', null, ['jquery-ui-dialog' ]);
         
         wp_register_style('jquery-ui', 'https://cdn.metatavu.io/libs/jquery-ui/1.12.1/jquery-ui.min.css');
         wp_enqueue_style('jquery-ui');
@@ -64,6 +71,8 @@
         $this->contactsApi = \Metatavu\Pakkasmarja\Api\ApiClient::getContactsApi();
         $this->itemGroupsApi = \Metatavu\Pakkasmarja\Api\ApiClient::getItemGroupsApi();
         $this->deliveryPlaceApi = \Metatavu\Pakkasmarja\Api\ApiClient::getDeliveryPlacesApi();
+
+        $this->itemGroups = $this->itemGroupsApi->listItemGroups();
       }
       
       /**
@@ -107,13 +116,76 @@
        * Renders actions bar into the table
        * @param string $which which bar is in question (top or bottom)
        */
-      public function extra_tablenav($which) {
-        if ($which === "top" && current_user_can('pakkasmarja_contracts_view')) {
-          if (current_user_can('pakkasmarja_contracts_view')) {
-            $xlsxUrl = "?page=contract.php&action=xlsx";
-            echo sprintf('<a class="button" style="display: inline-block; margin-left:-7px" href="%s">%s</a>', $xlsxUrl, __('Download XLSX', 'pakkasmarja_management'));
+      protected function extra_tablenav($which) {
+        if ($which === "top") {
+          $selectedItemGroup = sanitize_text_field($_REQUEST["item-group-id"]);
+          $itemGroupOptions = [];
+          foreach ($this->itemGroups as $itemGroup) {
+            $text = $itemGroup->getDisplayName();
+            if (!$text) {
+              $text = $itemGroup->getName();
+            }
+
+            $itemGroupOptions[] = [
+              "value" => $itemGroup->getId(),
+              "text" => $text,
+              "selected" => $selectedItemGroup === $itemGroup->getId()
+            ];
           }
+
+          $this->printExtraNavSelect("item-group-select", __('Show item group', 'pakkasmarja_management'), "item-group-id", $itemGroupOptions);
+
+          $statusOptions = [];
+          $selectedStatus = sanitize_text_field($_REQUEST["status"]); 
+          $statuses = Consts::CONTRACT_STATUSES;
+          foreach ($statuses as $status) {
+            $text = Formatter::formatContractStatus($status);
+            $statusOptions[] = [
+              "value" => $status,
+              "text" => $text,
+              "selected" => $selectedStatus === $status
+            ];
+          }
+
+          $this->printExtraNavSelect("status-select", __('Show status', 'pakkasmarja_management'), "status", $statusOptions);
+
+          $yearOptions = [];
+          $currentYear = intval(date("Y"));
+          $selectedYear = intval(sanitize_text_field($_REQUEST["year"])); 
+
+          for ($year = $currentYear; $year >= $currentYear - 10; $year--) {
+            $yearOptions[] = [
+              "value" => $year,
+              "text" => $year,
+              "selected" => $selectedYear === $year
+            ];
+          };
+
+          $this->printExtraNavSelect("year-select", __('Show year', 'pakkasmarja_management'), "year", $yearOptions);
+
+          $xlsxUrl = "?page=contract.php&action=xlsx";
+          echo sprintf('<a class="button" style="display: inline-block; href="%s">%s</a>', $xlsxUrl, __('Download XLSX', 'pakkasmarja_management'));
         }
+      }
+
+      /**
+       * Prints a select field into extra nav section
+       * 
+       * @param String $name field name
+       * @param String $label field label
+       * @param Array[] $selectOptions field options
+       */
+      private function printExtraNavSelect($name, $label, $variable, $selectOptions) {
+        echo '<div style="display:inline-block; vertical-align: text-top; margin-right:5px">';
+        echo sprintf('<label for="%s">%s</label>', $name, $label);
+        
+        echo sprintf('<select id="%s" data-variable="%s" class="table-nav-query-select">', $name, $variable);
+        foreach ($selectOptions as $option) {
+          echo sprintf('<option value="%s"%s>%s</option>', $option['value'], $option['selected'] ? ' selected=selected' : '', $option['text']);
+        }
+        echo "</select>";
+
+        echo '</div>';
       }
        
       /**
@@ -207,9 +279,21 @@
         $accept = null;
         $listAll = "true";
         $itemGroupCategory = null;
+        $itemGroupId = sanitize_text_field($_REQUEST["item-group-id"]);
+        $year = sanitize_text_field($_REQUEST["year"]);
+        $status = sanitize_text_field($_REQUEST["status"]);
+
+        if (!$itemGroupId) {
+          $itemGroupId = $this->itemGroups[0]->getId();
+        }
+
+        if (!$year) {
+          $year = intval(date("Y"));
+        }
 
         try {
-          $result = $this->contractsApi->listContractsWithHttpInfo($accept, $listAll, $itemGroupCategory, $firstResult, $maxResults);
+          $result = $this->contractsApi->listContractsWithHttpInfo($accept, $listAll, $itemGroupCategory, $itemGroupId, $year, $status, $firstResult, $maxResults);
+            
           $headers = $result[2];
           $totalCountHeader = $headers["Total-Count"];
           $totalCount = is_array($totalCountHeader) ? $totalCountHeader[0] : null;

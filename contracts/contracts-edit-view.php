@@ -11,6 +11,7 @@
   require_once( __DIR__ . '/../api/api-client.php');
   require_once( __DIR__ . '/../utils/formatter.php');
   require_once( __DIR__ . '/../utils/abstract-edit-view.php');
+  require_once( __DIR__ . '/../utils/consts.php');
   
   if (!class_exists( '\Metatavu\Pakkasmarja\Contracts\ContractEditView' ) ) {
     
@@ -139,7 +140,7 @@
        * @param String $value input value
        */
       private function renderStatusInput($label, $name, $value) {
-        $statuses = ["APPROVED", "ON_HOLD", "DRAFT", "TERMINATED"];
+        $statuses = \Metatavu\Pakkasmarja\Utils\Consts::CONTRACT_STATUSES;
         $options = [];
         
         foreach ($statuses as $status) {
