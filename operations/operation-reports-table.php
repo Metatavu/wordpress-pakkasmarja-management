@@ -173,11 +173,11 @@
        */
       private function getStatus($pendingCount, $failedCount, $successCount) {
         if ($pendingCount > 0) {
-          return sprintf(__('In Progress (%d / %d)', 'pakkasmarja_management'), $failedCount + $successCount, $pendingCount);
+          return sprintf(__('In Progress (%d / %d)', 'pakkasmarja_management'), $failedCount + $successCount, $failedCount + $successCount + $pendingCount);
         }
 
         if ($successCount > 0 && $failedCount > 0) {
-          return sprintf(__('Contains Errors (%d / %d)', 'pakkasmarja_management'), $successCount, $failedCount);
+          return sprintf(__('Contains Errors (%d / %d)', 'pakkasmarja_management'), $successCount, $failedCount + $successCount);
         }
 
         if ($successCount === 0 && $failedCount > 0) {

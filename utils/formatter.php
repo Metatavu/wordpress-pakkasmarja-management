@@ -69,6 +69,8 @@
             return __('Draft', 'pakkasmarja_management');
           case "TERMINATED":
             return __('Terminated', 'pakkasmarja_management');
+          case "REJECTED":
+            return __('Rejected', 'pakkasmarja_management');
         }
       }
 
