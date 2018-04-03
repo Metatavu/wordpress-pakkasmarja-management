@@ -312,7 +312,7 @@
           $contract->setRemarks($remarks);
           $contract->setQuantityComment($quantityComment);
           $contract->setDeliveryPlaceComment($deliveryPlaceComment);
-          return $this->contractsApi->updateContract($contract);
+          return $this->contractsApi->updateContract($contract->getId(), $contract);
         } catch (\Metatavu\Pakkasmarja\ApiException $e) {
           echo '<div class="error notice">';
           if ($e->getResponseBody()) {
