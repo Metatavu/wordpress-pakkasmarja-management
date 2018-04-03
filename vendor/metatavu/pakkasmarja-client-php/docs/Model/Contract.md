@@ -6,6 +6,7 @@ Name | Type | Description | Notes
 **id** | **string** |  | [optional] 
 **contactId** | **string** |  | [optional] 
 **deliveryPlaceId** | **string** |  | [optional] 
+**proposedDeliveryPlaceId** | **string** |  | [optional] 
 **deliveryPlaceComment** | **string** |  | [optional] 
 **itemGroupId** | **string** |  | [optional] 
 **year** | **int** |  | [optional] 

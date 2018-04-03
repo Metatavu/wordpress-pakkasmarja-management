@@ -59,6 +59,7 @@ class Contract implements ModelInterface, ArrayAccess
         'id' => 'string',
         'contactId' => 'string',
         'deliveryPlaceId' => 'string',
+        'proposedDeliveryPlaceId' => 'string',
         'deliveryPlaceComment' => 'string',
         'itemGroupId' => 'string',
         'year' => 'int',
@@ -84,6 +85,7 @@ class Contract implements ModelInterface, ArrayAccess
         'id' => 'uuid',
         'contactId' => 'uuid',
         'deliveryPlaceId' => 'uuid',
+        'proposedDeliveryPlaceId' => 'uuid',
         'deliveryPlaceComment' => null,
         'itemGroupId' => 'uuid',
         'year' => 'int32',
@@ -130,6 +132,7 @@ class Contract implements ModelInterface, ArrayAccess
         'id' => 'id',
         'contactId' => 'contactId',
         'deliveryPlaceId' => 'deliveryPlaceId',
+        'proposedDeliveryPlaceId' => 'proposedDeliveryPlaceId',
         'deliveryPlaceComment' => 'deliveryPlaceComment',
         'itemGroupId' => 'itemGroupId',
         'year' => 'year',
@@ -155,6 +158,7 @@ class Contract implements ModelInterface, ArrayAccess
         'id' => 'setId',
         'contactId' => 'setContactId',
         'deliveryPlaceId' => 'setDeliveryPlaceId',
+        'proposedDeliveryPlaceId' => 'setProposedDeliveryPlaceId',
         'deliveryPlaceComment' => 'setDeliveryPlaceComment',
         'itemGroupId' => 'setItemGroupId',
         'year' => 'setYear',
@@ -180,6 +184,7 @@ class Contract implements ModelInterface, ArrayAccess
         'id' => 'getId',
         'contactId' => 'getContactId',
         'deliveryPlaceId' => 'getDeliveryPlaceId',
+        'proposedDeliveryPlaceId' => 'getProposedDeliveryPlaceId',
         'deliveryPlaceComment' => 'getDeliveryPlaceComment',
         'itemGroupId' => 'getItemGroupId',
         'year' => 'getYear',
@@ -280,6 +285,7 @@ class Contract implements ModelInterface, ArrayAccess
         $this->container['id'] = isset($data['id']) ? $data['id'] : null;
         $this->container['contactId'] = isset($data['contactId']) ? $data['contactId'] : null;
         $this->container['deliveryPlaceId'] = isset($data['deliveryPlaceId']) ? $data['deliveryPlaceId'] : null;
+        $this->container['proposedDeliveryPlaceId'] = isset($data['proposedDeliveryPlaceId']) ? $data['proposedDeliveryPlaceId'] : null;
         $this->container['deliveryPlaceComment'] = isset($data['deliveryPlaceComment']) ? $data['deliveryPlaceComment'] : null;
         $this->container['itemGroupId'] = isset($data['itemGroupId']) ? $data['itemGroupId'] : null;
         $this->container['year'] = isset($data['year']) ? $data['year'] : null;
@@ -401,6 +407,30 @@ class Contract implements ModelInterface, ArrayAccess
     public function setDeliveryPlaceId($deliveryPlaceId)
     {
         $this->container['deliveryPlaceId'] = $deliveryPlaceId;
+
+        return $this;
+    }
+
+    /**
+     * Gets proposedDeliveryPlaceId
+     *
+     * @return string
+     */
+    public function getProposedDeliveryPlaceId()
+    {
+        return $this->container['proposedDeliveryPlaceId'];
+    }
+
+    /**
+     * Sets proposedDeliveryPlaceId
+     *
+     * @param string $proposedDeliveryPlaceId
+     *
+     * @return $this
+     */
+    public function setProposedDeliveryPlaceId($proposedDeliveryPlaceId)
+    {
+        $this->container['proposedDeliveryPlaceId'] = $proposedDeliveryPlaceId;
 
         return $this;
     }
