@@ -273,8 +273,10 @@
           $contract->setContactId($contactId);
           $contract->setItemGroupId($itemGroupId);
           $contract->setContractQuantity($contractQuantity);
+          $contract->setProposedQuantity($contractQuantity);
           $contract->setStatus($status);
           $contract->setDeliveryPlaceId($deliveryPlaceId);
+          $contract->setProposedDeliveryPlaceId($deliveryPlaceId);
           $contract->setRemarks($remarks);
           $contract->setQuantityComment($quantityComment);
           $contract->setDeliveryPlaceComment($deliveryPlaceComment);
