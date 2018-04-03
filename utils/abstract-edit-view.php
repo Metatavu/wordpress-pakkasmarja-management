@@ -116,6 +116,38 @@
       }
 
       /**
+       * Renders a text field
+       * 
+       * @param String $label input label
+       * @param String $value input value
+       */
+      protected function renderTextField($label, $value) {
+        if ($value) {
+          echo sprintf('<h3>%s</h3>', $label);
+          echo sprintf('<p>%s</p>', htmlspecialchars($value));
+        }
+      }
+
+      /**
+       * Renders an inline text field
+       * 
+       * @param String $label input label
+       * @param String $value input value
+       */
+      protected function renderInlineTextField($label, $value) {
+        if ($value) {
+          echo sprintf('<p style="font-size: 18px;">%s: <b>%s</b></p>', $label, htmlspecialchars($value));
+        }
+      }
+
+      /**
+       * Renders a line
+       */
+      protected function renderLine() {
+        echo '<br/><br/><hr/>';
+      }
+
+      /**
        * Returns string value from POST request
        * 
        * @param String $name variable name

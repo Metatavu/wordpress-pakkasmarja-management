@@ -116,7 +116,11 @@
       public static function getCompanyName($contactId) {
         $contact = self::findContactById($contactId);
         if ($contact) {
-          return $contact->getCompanyName();
+          if ($contact->getCompanyName()) {
+            return $contact->getCompanyName();
+          }
+
+          return $contact->getLastName() . ', ' . $contact->getFirstName();
         }
 
         return null;

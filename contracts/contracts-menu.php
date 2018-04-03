@@ -26,8 +26,9 @@
       public function renderContractsPage() {
         echo '<div class="wrap">';
 
-        echo sprintf('<h1 class="wp-heading-inline">%s</h1>', __('Contracts', 'pakkasmarja_management'));
-
+        $newUrl = "admin.php?page=pakkasmarja-contract-edit-view.php&action=edit&id=NEW";
+        echo sprintf('<h1 class="wp-heading-inline">%s <a href="%s" class="page-title-action">%s</a></h1>', __('Contracts', 'pakkasmarja_management'), $newUrl, __('New Contract', 'pakkasmarja_management'));
+        
         $table = new ContractsTable();
         $table->prepare_items();
         $table->display();

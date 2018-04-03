@@ -60,7 +60,7 @@
        */
       public function renderContractEditView() {
         $id = sanitize_text_field($_GET['id']);
-        $contract = $this->findContractById($id);
+        $contract = $id !== 'NEW' ? $this->findContractById($id) : null;
 
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
           $validateMessage = $this->validatePost();
@@ -71,9 +71,23 @@
             $status = $this->getPostString("status");
             $deliveryPlaceId = $this->getPostString("delivery-place");
             $remarks = $this->getMemoPostString("remarks");
-            
-            if (!$this->updateContract($contract, $contractQuantity, $status, $deliveryPlaceId, $remarks)) {
-              echo sprintf('<div class="notice-error notice">%s</div>', htmlspecialchars(__('Failed to update contract', 'pakkasmarja_management')));
+            $quantityComment = $this->getMemoPostString("quantity-comment");
+            $deliveryPlaceComment = $this->getMemoPostString("delivery-place-comment");
+
+            if ($id === 'NEW') {
+              $contactId = $this->getPostString("contact-id");
+              $itemGroupId = $this->getPostString("item-group-id");
+              $contract = $this->createContract($contactId, $itemGroupId, $contractQuantity, $status, $deliveryPlaceId, $remarks, $quantityComment, $deliveryPlaceComment);
+              
+              if (!$contract) {
+                echo sprintf('<div class="notice-error notice">%s</div>', htmlspecialchars(__('Failed to create contract', 'pakkasmarja_management')));
+              } else {
+                $id = $contract->getId();
+              }
+            } else {
+              if (!$this->updateContract($contract, $contractQuantity, $status, $deliveryPlaceId, $remarks, $quantityComment, $deliveryPlaceComment)) {
+                echo sprintf('<div class="notice-error notice">%s</div>', htmlspecialchars(__('Failed to update contract', 'pakkasmarja_management')));
+              }
             }
           }
         }
@@ -82,7 +96,13 @@
 
         echo '<div class="wrap">';
         $backLink = sprintf('<a href="%s" class="page-title-action">%s</a>', "?page=contract.php", __('Back', 'pakkasmarja_management'));
-        echo sprintf('<h1 class="wp-heading-inline">%s - %s %s</h1><br/><br/>', $this->getCompanyName($contract), $this->getItemGroupName($contract), $backLink);
+
+        if ($contract) {
+          echo sprintf('<h1 class="wp-heading-inline">%s - %s %s</h1><br/><br/>', $this->getCompanyName($contract), $this->getItemGroupName($contract), $backLink);
+        } else {
+          echo sprintf('<h1 class="wp-heading-inline">%s %s</h1><br/><br/>', __('New Contract', 'pakkasmarja_management'), $backLink);
+        }
+
         echo '<hr class="wp-header-end"/>';
 
         $this->renderForm($contract);
@@ -114,7 +134,7 @@
        * Renders contract form start
        */
       private function renderContractFormStart($contract) {
-        $action = sprintf('admin.php?page=pakkasmarja-contract-edit-view.php&action=edit&id=%s', $contract->getId());
+        $action = sprintf('admin.php?page=pakkasmarja-contract-edit-view.php&action=edit&id=%s', $contract ? $contract->getId() : 'NEW');
         $this->renderFormStart($action);
       }
 
@@ -126,10 +146,23 @@
        * @param String $value input value
        */
       private function renderFormFields($contract) {
-        $this->renderNumberInput(__('Contract Quantity', 'pakkasmarja_management'), "contract-quantity", $contract->getContractQuantity());
-        $this->renderStatusInput(__('Status', 'pakkasmarja_management'), "status", $contract->getStatus());
-        $this->renderDeliveryPlaceInput(__('Delivery Place', 'pakkasmarja_management'), "delivery-place", $contract->getDeliveryPlaceId());
-        $this->renderMemoInput(__('Remarks', 'pakkasmarja_management'), "remarks", $contract->getRemarks());
+        if (!$contract) {
+          $this->renderContactInput(__('Contact', 'pakkasmarja_management'), "contact-id");
+          $this->renderItemGroupInput(__('Item Group', 'pakkasmarja_management'), "item-group-id");
+        }
+
+        $this->renderStatusInput(__('Status', 'pakkasmarja_management'), "status", $contract ? $contract->getStatus() : "DRAFT");
+        $this->renderInlineTextField(__('Reject Comment', 'pakkasmarja_management'), $contract ? $contract->getRejectComment() : null);
+        $this->renderLine();
+        $this->renderInlineTextField(__('Proposed Quantity', 'pakkasmarja_management'), $contract ? $contract->getProposedQuantity() : null);
+        $this->renderMemoInput(__('Quantity Comment', 'pakkasmarja_management'), "quantity-comment", $contract ? $contract->getQuantityComment() : null);
+        $this->renderNumberInput(__('Contract Quantity', 'pakkasmarja_management'), "contract-quantity", $contract ? $contract->getContractQuantity() : "0");
+        $this->renderLine();
+        $this->renderDeliveryPlaceInput(__('Delivery Place', 'pakkasmarja_management'), "delivery-place", $contract ? $contract->getDeliveryPlaceId() : null);
+        $this->renderInlineTextField(__('Proposed Delivery Place', 'pakkasmarja_management'), $contract ? Formatter::getDeliveryPlaceName($contract->getProposedDeliveryPlaceId()) : null);        
+        $this->renderMemoInput(__('Delivery Place Comment', 'pakkasmarja_management'), "delivery-place-comment", $contract ? $contract->getDeliveryPlaceComment() : null);
+        $this->renderLine();
+        $this->renderMemoInput(__('Remarks', 'pakkasmarja_management'), "remarks", $contract ? $contract->getRemarks() : null);
       }
 
       /**
@@ -168,6 +201,38 @@
         $this->renderDropdownInput($label, $name, $value, $options);
       }
 
+      /**
+       * Renders a contact dropdown input
+       * 
+       * @param String $label input label
+       * @param String $name input name
+       */
+      private function renderContactInput($label, $name) {
+        $options = [];
+        
+        foreach ($this->listContacts() as $contact) {
+          $options[$contact->getId()] = Formatter::getCompanyName($contact->getId());
+        }
+
+        $this->renderDropdownInput($label, $name, null, $options);
+      }
+
+      /**
+       * Renders a item group dropdown input
+       * 
+       * @param String $label input label
+       * @param String $name input name
+       */
+      private function renderItemGroupInput($label, $name) {
+        $options = [];
+        
+        foreach ($this->listItemGroups() as $itemGroup) {
+          $options[$itemGroup->getId()] = Formatter::getItemGroupName($itemGroup->getId());
+        }
+
+        $this->renderDropdownInput($label, $name, null, $options);
+      }
+
       /** 
        * Returns company name from contract
        * 
@@ -189,6 +254,45 @@
       }
 
       /**
+       * Creates a contract
+       * 
+       * @param String $contactId contact id
+       * @param String $itemGroupId item group id
+       * @param int $contractQuantity new contract quantity
+       * @param String $status new status
+       * @param String $deliveryPlaceId new delivery place id
+       * @param String $remarks remark
+       * @param String $quantityComment quantity comment
+       * @param String $deliveryPlaceComment delivery place comment
+       * @return \Metatavu\Pakkasmarja\Api\Model\Contract updated contract
+       */
+      private function createContract($contactId, $itemGroupId, $contractQuantity, $status, $deliveryPlaceId, $remarks, $quantityComment, $deliveryPlaceComment) {
+        try {
+          $contract = new \Metatavu\Pakkasmarja\Api\Model\Contract();
+
+          $contract->setContactId($contactId);
+          $contract->setItemGroupId($itemGroupId);
+          $contract->setContractQuantity($contractQuantity);
+          $contract->setStatus($status);
+          $contract->setDeliveryPlaceId($deliveryPlaceId);
+          $contract->setRemarks($remarks);
+          $contract->setQuantityComment($quantityComment);
+          $contract->setDeliveryPlaceComment($deliveryPlaceComment);
+          $contract->setYear(date("Y"));
+
+          return $this->contractsApi->createContract($contract);
+        } catch (\Metatavu\Pakkasmarja\ApiException $e) {
+          echo '<div class="error notice">';
+          if ($e->getResponseBody()) {
+            echo print_r($e->getResponseBody());
+          } else {
+            echo $e;
+          }
+          echo '</div>';
+        }
+      }
+
+      /**
        * Updates contract
        * 
        * @param \Metatavu\Pakkasmarja\Api\Model\Contract $contract contract
@@ -196,15 +300,19 @@
        * @param String $status new status
        * @param String $deliveryPlaceId new delivery place id
        * @param String $remarks remark
+       * @param String $quantityComment quantity comment
+       * @param String $deliveryPlaceComment delivery place comment
        * @return \Metatavu\Pakkasmarja\Api\Model\Contract updated contract
        */
-      private function updateContract($contract, $contractQuantity, $status, $deliveryPlaceId, $remarks) {
+      private function updateContract($contract, $contractQuantity, $status, $deliveryPlaceId, $remarks, $quantityComment, $deliveryPlaceComment) {
         try {
           $contract->setContractQuantity($contractQuantity);
           $contract->setStatus($status);
           $contract->setDeliveryPlaceId($deliveryPlaceId);
           $contract->setRemarks($remarks);
-          return $this->contractsApi->updateContract($contract->getId(), $contract);
+          $contract->setQuantityComment($quantityComment);
+          $contract->setDeliveryPlaceComment($deliveryPlaceComment);
+          return $this->contractsApi->updateContract($contract);
         } catch (\Metatavu\Pakkasmarja\ApiException $e) {
           echo '<div class="error notice">';
           if ($e->getResponseBody()) {
@@ -224,6 +332,46 @@
       private function listDeliveryPlaces() {
         try {
           return $this->deliveryPlacesApi->listDeliveryPlaces();
+        } catch (\Metatavu\Pakkasmarja\ApiException $e) {
+          echo '<div class="error notice">';
+          if ($e->getResponseBody()) {
+            echo print_r($e->getResponseBody());
+          } else {
+            echo $e;
+          }
+
+          echo '</div>';
+        }
+      }
+
+      /**
+       * Lists contacts
+       * 
+       * @return array array containing contacts
+       */
+      private function listContacts() {
+        try {
+          return $this->contactsApi->listContacts();
+        } catch (\Metatavu\Pakkasmarja\ApiException $e) {
+          echo '<div class="error notice">';
+          if ($e->getResponseBody()) {
+            echo print_r($e->getResponseBody());
+          } else {
+            echo $e;
+          }
+
+          echo '</div>';
+        }
+      }
+
+      /**
+       * Lists item groups
+       * 
+       * @return array array containing item groups
+       */
+      private function listItemGroups() {
+        try {
+          return $this->itemGroupsApi->listItemGroups();
         } catch (\Metatavu\Pakkasmarja\ApiException $e) {
           echo '<div class="error notice">';
           if ($e->getResponseBody()) {
