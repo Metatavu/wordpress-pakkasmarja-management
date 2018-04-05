@@ -933,4 +933,267 @@ class ContactsApi
         );
     }
 
+    /**
+     * Operation updateContactCredentials
+     *
+     * Update contact credentials
+     *
+     * @param  string $id contact id (required)
+     * @param  \Metatavu\Pakkasmarja\Api\Model\Credentials $body Payload (required)
+     *
+     * @throws \Metatavu\Pakkasmarja\ApiException on non-2xx response
+     * @throws \InvalidArgumentException
+     * @return void
+     */
+    public function updateContactCredentials($id, $body)
+    {
+        $this->updateContactCredentialsWithHttpInfo($id, $body);
+    }
+
+    /**
+     * Operation updateContactCredentialsWithHttpInfo
+     *
+     * Update contact credentials
+     *
+     * @param  string $id contact id (required)
+     * @param  \Metatavu\Pakkasmarja\Api\Model\Credentials $body Payload (required)
+     *
+     * @throws \Metatavu\Pakkasmarja\ApiException on non-2xx response
+     * @throws \InvalidArgumentException
+     * @return array of null, HTTP status code, HTTP response headers (array of strings)
+     */
+    public function updateContactCredentialsWithHttpInfo($id, $body)
+    {
+        $returnType = '';
+        $request = $this->updateContactCredentialsRequest($id, $body);
+
+        try {
+
+            try {
+                $response = $this->client->send($request);
+            } catch (RequestException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    $e->getCode(),
+                    $e->getResponse() ? $e->getResponse()->getHeaders() : null
+                );
+            }
+
+            $statusCode = $response->getStatusCode();
+
+            if ($statusCode < 200 || $statusCode > 299) {
+                throw new ApiException(
+                    sprintf(
+                        '[%d] Error connecting to the API (%s)',
+                        $statusCode,
+                        $request->getUri()
+                    ),
+                    $statusCode,
+                    $response->getHeaders(),
+                    $response->getBody()
+                );
+            }
+
+            return [null, $statusCode, $response->getHeaders()];
+
+        } catch (ApiException $e) {
+            switch ($e->getCode()) {
+                case 400:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Metatavu\Pakkasmarja\Api\Model\BadRequest',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 403:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Metatavu\Pakkasmarja\Api\Model\Forbidden',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 500:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Metatavu\Pakkasmarja\Api\Model\InternalServerError',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+            }
+            throw $e;
+        }
+    }
+
+    /**
+     * Operation updateContactCredentialsAsync
+     *
+     * Update contact credentials
+     *
+     * @param  string $id contact id (required)
+     * @param  \Metatavu\Pakkasmarja\Api\Model\Credentials $body Payload (required)
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function updateContactCredentialsAsync($id, $body)
+    {
+        return $this->updateContactCredentialsAsyncWithHttpInfo($id, $body)
+            ->then(
+                function ($response) {
+                    return $response[0];
+                }
+            );
+    }
+
+    /**
+     * Operation updateContactCredentialsAsyncWithHttpInfo
+     *
+     * Update contact credentials
+     *
+     * @param  string $id contact id (required)
+     * @param  \Metatavu\Pakkasmarja\Api\Model\Credentials $body Payload (required)
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function updateContactCredentialsAsyncWithHttpInfo($id, $body)
+    {
+        $returnType = '';
+        $request = $this->updateContactCredentialsRequest($id, $body);
+
+        return $this->client
+            ->sendAsync($request)
+            ->then(
+                function ($response) use ($returnType) {
+                    return [null, $response->getStatusCode(), $response->getHeaders()];
+                },
+                function ($exception) {
+                    $response = $exception->getResponse();
+                    $statusCode = $response->getStatusCode();
+                    throw new ApiException(
+                        sprintf(
+                            '[%d] Error connecting to the API (%s)',
+                            $statusCode,
+                            $exception->getRequest()->getUri()
+                        ),
+                        $statusCode,
+                        $response->getHeaders(),
+                        $response->getBody()
+                    );
+                }
+            );
+    }
+
+    /**
+     * Create request for operation 'updateContactCredentials'
+     *
+     * @param  string $id contact id (required)
+     * @param  \Metatavu\Pakkasmarja\Api\Model\Credentials $body Payload (required)
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Psr7\Request
+     */
+    protected function updateContactCredentialsRequest($id, $body)
+    {
+        // verify the required parameter 'id' is set
+        if ($id === null) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $id when calling updateContactCredentials'
+            );
+        }
+        // verify the required parameter 'body' is set
+        if ($body === null) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $body when calling updateContactCredentials'
+            );
+        }
+
+        $resourcePath = '/contacts/{id}/credentials';
+        $formParams = [];
+        $queryParams = [];
+        $headerParams = [];
+        $httpBody = '';
+        $multipart = false;
+
+
+        // path params
+        if ($id !== null) {
+            $resourcePath = str_replace(
+                '{' . 'id' . '}',
+                ObjectSerializer::toPathValue($id),
+                $resourcePath
+            );
+        }
+
+        // body params
+        $_tempBody = null;
+        if (isset($body)) {
+            $_tempBody = $body;
+        }
+
+        if ($multipart) {
+            $headers= $this->headerSelector->selectHeadersForMultipart(
+                ['application/json;charset=utf-8']
+            );
+        } else {
+            $headers = $this->headerSelector->selectHeaders(
+                ['application/json;charset=utf-8'],
+                ['application/json;charset=utf-8']
+            );
+        }
+
+        // for model (json/xml)
+        if (isset($_tempBody)) {
+            $httpBody = $_tempBody; // $_tempBody is the method argument, if present
+
+        } elseif (count($formParams) > 0) {
+            if ($multipart) {
+                $multipartContents = [];
+                foreach ($formParams as $formParamName => $formParamValue) {
+                    $multipartContents[] = [
+                        'name' => $formParamName,
+                        'contents' => $formParamValue
+                    ];
+                }
+                // for HTTP post (form)
+                $httpBody = new MultipartStream($multipartContents);
+
+            } elseif ($headers['Content-Type'] === 'application/json') {
+                $httpBody = \GuzzleHttp\json_encode($formParams);
+
+            } else {
+                // for HTTP post (form)
+                $httpBody = \GuzzleHttp\Psr7\build_query($formParams);
+            }
+        }
+
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
+        if ($apiKey !== null) {
+            $headers['Authorization'] = $apiKey;
+        }
+
+        $defaultHeaders = [];
+        if ($this->config->getUserAgent()) {
+            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
+        }
+
+        $headers = array_merge(
+            $defaultHeaders,
+            $headerParams,
+            $headers
+        );
+
+        $query = \GuzzleHttp\Psr7\build_query($queryParams);
+        return new Request(
+            'PUT',
+            $this->config->getHost() . $resourcePath . ($query ? "?{$query}" : ''),
+            $headers,
+            $httpBody
+        );
+    }
+
 }

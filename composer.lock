@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "bfb5ff1d0bff43d67f0bbf1af3751cb1",
+    "content-hash": "9a29070105114b2b1d3fbc378669a978",
     "packages": [
         {
             "name": "guzzlehttp/guzzle",
@@ -189,16 +189,16 @@
         },
         {
             "name": "metatavu/pakkasmarja-client-php",
-            "version": "0.0.15",
+            "version": "0.0.16",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Metatavu/pakkasmarja-client-php.git",
-                "reference": "7afc5bed05bd4083a39af1a541ecdb208c720aa4"
+                "reference": "3467261e804dcc20450f84477474cee1a1c007a3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Metatavu/pakkasmarja-client-php/zipball/7afc5bed05bd4083a39af1a541ecdb208c720aa4",
-                "reference": "7afc5bed05bd4083a39af1a541ecdb208c720aa4",
+                "url": "https://api.github.com/repos/Metatavu/pakkasmarja-client-php/zipball/3467261e804dcc20450f84477474cee1a1c007a3",
+                "reference": "3467261e804dcc20450f84477474cee1a1c007a3",
                 "shasum": ""
             },
             "require": {
@@ -236,7 +236,7 @@
                 "sdk",
                 "swagger"
             ],
-            "time": "2018-04-03T10:01:00+00:00"
+            "time": "2018-04-05T12:15:26+00:00"
         },
         {
             "name": "psr/http-message",

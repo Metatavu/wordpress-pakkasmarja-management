@@ -1,6 +1,6 @@
 <?php
 /**
- * ItemGroup
+ * Credentials
  *
  * PHP version 5
  *
@@ -32,14 +32,14 @@ use \ArrayAccess;
 use \Metatavu\Pakkasmarja\ObjectSerializer;
 
 /**
- * ItemGroup Class Doc Comment
+ * Credentials Class Doc Comment
  *
  * @category Class
  * @package  Metatavu\Pakkasmarja
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
  */
-class ItemGroup implements ModelInterface, ArrayAccess
+class Credentials implements ModelInterface, ArrayAccess
 {
     const DISCRIMINATOR = null;
 
@@ -48,7 +48,7 @@ class ItemGroup implements ModelInterface, ArrayAccess
       *
       * @var string
       */
-    protected static $swaggerModelName = 'ItemGroup';
+    protected static $swaggerModelName = 'Credentials';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -56,11 +56,7 @@ class ItemGroup implements ModelInterface, ArrayAccess
       * @var string[]
       */
     protected static $swaggerTypes = [
-        'id' => 'string',
-        'name' => 'string',
-        'displayName' => 'string',
-        'category' => 'string',
-        'prerequisiteContractItemGroupId' => 'string'
+        'password' => 'string'
     ];
 
     /**
@@ -69,11 +65,7 @@ class ItemGroup implements ModelInterface, ArrayAccess
       * @var string[]
       */
     protected static $swaggerFormats = [
-        'id' => 'uuid',
-        'name' => null,
-        'displayName' => null,
-        'category' => null,
-        'prerequisiteContractItemGroupId' => 'uuid'
+        'password' => null
     ];
 
     /**
@@ -103,11 +95,7 @@ class ItemGroup implements ModelInterface, ArrayAccess
      * @var string[]
      */
     protected static $attributeMap = [
-        'id' => 'id',
-        'name' => 'name',
-        'displayName' => 'displayName',
-        'category' => 'category',
-        'prerequisiteContractItemGroupId' => 'prerequisiteContractItemGroupId'
+        'password' => 'password'
     ];
 
     /**
@@ -116,11 +104,7 @@ class ItemGroup implements ModelInterface, ArrayAccess
      * @var string[]
      */
     protected static $setters = [
-        'id' => 'setId',
-        'name' => 'setName',
-        'displayName' => 'setDisplayName',
-        'category' => 'setCategory',
-        'prerequisiteContractItemGroupId' => 'setPrerequisiteContractItemGroupId'
+        'password' => 'setPassword'
     ];
 
     /**
@@ -129,11 +113,7 @@ class ItemGroup implements ModelInterface, ArrayAccess
      * @var string[]
      */
     protected static $getters = [
-        'id' => 'getId',
-        'name' => 'getName',
-        'displayName' => 'getDisplayName',
-        'category' => 'getCategory',
-        'prerequisiteContractItemGroupId' => 'getPrerequisiteContractItemGroupId'
+        'password' => 'getPassword'
     ];
 
     /**
@@ -196,11 +176,7 @@ class ItemGroup implements ModelInterface, ArrayAccess
      */
     public function __construct(array $data = null)
     {
-        $this->container['id'] = isset($data['id']) ? $data['id'] : null;
-        $this->container['name'] = isset($data['name']) ? $data['name'] : null;
-        $this->container['displayName'] = isset($data['displayName']) ? $data['displayName'] : null;
-        $this->container['category'] = isset($data['category']) ? $data['category'] : null;
-        $this->container['prerequisiteContractItemGroupId'] = isset($data['prerequisiteContractItemGroupId']) ? $data['prerequisiteContractItemGroupId'] : null;
+        $this->container['password'] = isset($data['password']) ? $data['password'] : null;
     }
 
     /**
@@ -229,121 +205,25 @@ class ItemGroup implements ModelInterface, ArrayAccess
 
 
     /**
-     * Gets id
+     * Gets password
      *
      * @return string
      */
-    public function getId()
+    public function getPassword()
     {
-        return $this->container['id'];
+        return $this->container['password'];
     }
 
     /**
-     * Sets id
+     * Sets password
      *
-     * @param string $id
+     * @param string $password
      *
      * @return $this
      */
-    public function setId($id)
+    public function setPassword($password)
     {
-        $this->container['id'] = $id;
-
-        return $this;
-    }
-
-    /**
-     * Gets name
-     *
-     * @return string
-     */
-    public function getName()
-    {
-        return $this->container['name'];
-    }
-
-    /**
-     * Sets name
-     *
-     * @param string $name
-     *
-     * @return $this
-     */
-    public function setName($name)
-    {
-        $this->container['name'] = $name;
-
-        return $this;
-    }
-
-    /**
-     * Gets displayName
-     *
-     * @return string
-     */
-    public function getDisplayName()
-    {
-        return $this->container['displayName'];
-    }
-
-    /**
-     * Sets displayName
-     *
-     * @param string $displayName
-     *
-     * @return $this
-     */
-    public function setDisplayName($displayName)
-    {
-        $this->container['displayName'] = $displayName;
-
-        return $this;
-    }
-
-    /**
-     * Gets category
-     *
-     * @return string
-     */
-    public function getCategory()
-    {
-        return $this->container['category'];
-    }
-
-    /**
-     * Sets category
-     *
-     * @param string $category
-     *
-     * @return $this
-     */
-    public function setCategory($category)
-    {
-        $this->container['category'] = $category;
-
-        return $this;
-    }
-
-    /**
-     * Gets prerequisiteContractItemGroupId
-     *
-     * @return string
-     */
-    public function getPrerequisiteContractItemGroupId()
-    {
-        return $this->container['prerequisiteContractItemGroupId'];
-    }
-
-    /**
-     * Sets prerequisiteContractItemGroupId
-     *
-     * @param string $prerequisiteContractItemGroupId Require contract in specified item group before siging a contract
-     *
-     * @return $this
-     */
-    public function setPrerequisiteContractItemGroupId($prerequisiteContractItemGroupId)
-    {
-        $this->container['prerequisiteContractItemGroupId'] = $prerequisiteContractItemGroupId;
+        $this->container['password'] = $password;
 
         return $this;
     }

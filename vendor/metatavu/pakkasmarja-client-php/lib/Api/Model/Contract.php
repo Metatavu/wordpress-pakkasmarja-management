@@ -72,6 +72,8 @@ class Contract implements ModelInterface, ArrayAccess
         'signDate' => '\DateTime',
         'termDate' => '\DateTime',
         'rejectComment' => 'string',
+        'areaDetails' => '\Metatavu\Pakkasmarja\Api\Model\AreaDetail[]',
+        'deliverAll' => 'bool',
         'status' => 'string',
         'remarks' => 'string'
     ];
@@ -98,6 +100,8 @@ class Contract implements ModelInterface, ArrayAccess
         'signDate' => 'date',
         'termDate' => 'date',
         'rejectComment' => null,
+        'areaDetails' => null,
+        'deliverAll' => null,
         'status' => null,
         'remarks' => null
     ];
@@ -145,6 +149,8 @@ class Contract implements ModelInterface, ArrayAccess
         'signDate' => 'signDate',
         'termDate' => 'termDate',
         'rejectComment' => 'rejectComment',
+        'areaDetails' => 'areaDetails',
+        'deliverAll' => 'deliverAll',
         'status' => 'status',
         'remarks' => 'remarks'
     ];
@@ -171,6 +177,8 @@ class Contract implements ModelInterface, ArrayAccess
         'signDate' => 'setSignDate',
         'termDate' => 'setTermDate',
         'rejectComment' => 'setRejectComment',
+        'areaDetails' => 'setAreaDetails',
+        'deliverAll' => 'setDeliverAll',
         'status' => 'setStatus',
         'remarks' => 'setRemarks'
     ];
@@ -197,6 +205,8 @@ class Contract implements ModelInterface, ArrayAccess
         'signDate' => 'getSignDate',
         'termDate' => 'getTermDate',
         'rejectComment' => 'getRejectComment',
+        'areaDetails' => 'getAreaDetails',
+        'deliverAll' => 'getDeliverAll',
         'status' => 'getStatus',
         'remarks' => 'getRemarks'
     ];
@@ -298,6 +308,8 @@ class Contract implements ModelInterface, ArrayAccess
         $this->container['signDate'] = isset($data['signDate']) ? $data['signDate'] : null;
         $this->container['termDate'] = isset($data['termDate']) ? $data['termDate'] : null;
         $this->container['rejectComment'] = isset($data['rejectComment']) ? $data['rejectComment'] : null;
+        $this->container['areaDetails'] = isset($data['areaDetails']) ? $data['areaDetails'] : null;
+        $this->container['deliverAll'] = isset($data['deliverAll']) ? $data['deliverAll'] : null;
         $this->container['status'] = isset($data['status']) ? $data['status'] : null;
         $this->container['remarks'] = isset($data['remarks']) ? $data['remarks'] : null;
     }
@@ -719,6 +731,54 @@ class Contract implements ModelInterface, ArrayAccess
     public function setRejectComment($rejectComment)
     {
         $this->container['rejectComment'] = $rejectComment;
+
+        return $this;
+    }
+
+    /**
+     * Gets areaDetails
+     *
+     * @return \Metatavu\Pakkasmarja\Api\Model\AreaDetail[]
+     */
+    public function getAreaDetails()
+    {
+        return $this->container['areaDetails'];
+    }
+
+    /**
+     * Sets areaDetails
+     *
+     * @param \Metatavu\Pakkasmarja\Api\Model\AreaDetail[] $areaDetails
+     *
+     * @return $this
+     */
+    public function setAreaDetails($areaDetails)
+    {
+        $this->container['areaDetails'] = $areaDetails;
+
+        return $this;
+    }
+
+    /**
+     * Gets deliverAll
+     *
+     * @return bool
+     */
+    public function getDeliverAll()
+    {
+        return $this->container['deliverAll'];
+    }
+
+    /**
+     * Sets deliverAll
+     *
+     * @param bool $deliverAll
+     *
+     * @return $this
+     */
+    public function setDeliverAll($deliverAll)
+    {
+        $this->container['deliverAll'] = $deliverAll;
 
         return $this;
     }

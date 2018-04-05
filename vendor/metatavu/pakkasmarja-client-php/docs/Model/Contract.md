@@ -19,6 +19,8 @@ Name | Type | Description | Notes
 **signDate** | [**\DateTime**](\DateTime.md) |  | [optional] 
 **termDate** | [**\DateTime**](\DateTime.md) |  | [optional] 
 **rejectComment** | **string** |  | [optional] 
+**areaDetails** | [**\Metatavu\Pakkasmarja\Api\Model\AreaDetail[]**](AreaDetail.md) |  | [optional] 
+**deliverAll** | **bool** |  | [optional] 
 **status** | **string** |  | [optional] 
 **remarks** | **string** |  | [optional] 
 

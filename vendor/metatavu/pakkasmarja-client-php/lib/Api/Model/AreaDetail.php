@@ -1,6 +1,6 @@
 <?php
 /**
- * ItemGroup
+ * AreaDetail
  *
  * PHP version 5
  *
@@ -32,14 +32,14 @@ use \ArrayAccess;
 use \Metatavu\Pakkasmarja\ObjectSerializer;
 
 /**
- * ItemGroup Class Doc Comment
+ * AreaDetail Class Doc Comment
  *
  * @category Class
  * @package  Metatavu\Pakkasmarja
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
  */
-class ItemGroup implements ModelInterface, ArrayAccess
+class AreaDetail implements ModelInterface, ArrayAccess
 {
     const DISCRIMINATOR = null;
 
@@ -48,7 +48,7 @@ class ItemGroup implements ModelInterface, ArrayAccess
       *
       * @var string
       */
-    protected static $swaggerModelName = 'ItemGroup';
+    protected static $swaggerModelName = 'AreaDetail';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -56,11 +56,10 @@ class ItemGroup implements ModelInterface, ArrayAccess
       * @var string[]
       */
     protected static $swaggerTypes = [
-        'id' => 'string',
         'name' => 'string',
-        'displayName' => 'string',
-        'category' => 'string',
-        'prerequisiteContractItemGroupId' => 'string'
+        'size' => 'double',
+        'species' => 'string',
+        'profitEstimation' => 'double'
     ];
 
     /**
@@ -69,11 +68,10 @@ class ItemGroup implements ModelInterface, ArrayAccess
       * @var string[]
       */
     protected static $swaggerFormats = [
-        'id' => 'uuid',
         'name' => null,
-        'displayName' => null,
-        'category' => null,
-        'prerequisiteContractItemGroupId' => 'uuid'
+        'size' => 'double',
+        'species' => null,
+        'profitEstimation' => 'double'
     ];
 
     /**
@@ -103,11 +101,10 @@ class ItemGroup implements ModelInterface, ArrayAccess
      * @var string[]
      */
     protected static $attributeMap = [
-        'id' => 'id',
         'name' => 'name',
-        'displayName' => 'displayName',
-        'category' => 'category',
-        'prerequisiteContractItemGroupId' => 'prerequisiteContractItemGroupId'
+        'size' => 'size',
+        'species' => 'species',
+        'profitEstimation' => 'profitEstimation'
     ];
 
     /**
@@ -116,11 +113,10 @@ class ItemGroup implements ModelInterface, ArrayAccess
      * @var string[]
      */
     protected static $setters = [
-        'id' => 'setId',
         'name' => 'setName',
-        'displayName' => 'setDisplayName',
-        'category' => 'setCategory',
-        'prerequisiteContractItemGroupId' => 'setPrerequisiteContractItemGroupId'
+        'size' => 'setSize',
+        'species' => 'setSpecies',
+        'profitEstimation' => 'setProfitEstimation'
     ];
 
     /**
@@ -129,11 +125,10 @@ class ItemGroup implements ModelInterface, ArrayAccess
      * @var string[]
      */
     protected static $getters = [
-        'id' => 'getId',
         'name' => 'getName',
-        'displayName' => 'getDisplayName',
-        'category' => 'getCategory',
-        'prerequisiteContractItemGroupId' => 'getPrerequisiteContractItemGroupId'
+        'size' => 'getSize',
+        'species' => 'getSpecies',
+        'profitEstimation' => 'getProfitEstimation'
     ];
 
     /**
@@ -196,11 +191,10 @@ class ItemGroup implements ModelInterface, ArrayAccess
      */
     public function __construct(array $data = null)
     {
-        $this->container['id'] = isset($data['id']) ? $data['id'] : null;
         $this->container['name'] = isset($data['name']) ? $data['name'] : null;
-        $this->container['displayName'] = isset($data['displayName']) ? $data['displayName'] : null;
-        $this->container['category'] = isset($data['category']) ? $data['category'] : null;
-        $this->container['prerequisiteContractItemGroupId'] = isset($data['prerequisiteContractItemGroupId']) ? $data['prerequisiteContractItemGroupId'] : null;
+        $this->container['size'] = isset($data['size']) ? $data['size'] : null;
+        $this->container['species'] = isset($data['species']) ? $data['species'] : null;
+        $this->container['profitEstimation'] = isset($data['profitEstimation']) ? $data['profitEstimation'] : null;
     }
 
     /**
@@ -229,30 +223,6 @@ class ItemGroup implements ModelInterface, ArrayAccess
 
 
     /**
-     * Gets id
-     *
-     * @return string
-     */
-    public function getId()
-    {
-        return $this->container['id'];
-    }
-
-    /**
-     * Sets id
-     *
-     * @param string $id
-     *
-     * @return $this
-     */
-    public function setId($id)
-    {
-        $this->container['id'] = $id;
-
-        return $this;
-    }
-
-    /**
      * Gets name
      *
      * @return string
@@ -277,73 +247,73 @@ class ItemGroup implements ModelInterface, ArrayAccess
     }
 
     /**
-     * Gets displayName
+     * Gets size
      *
-     * @return string
+     * @return double
      */
-    public function getDisplayName()
+    public function getSize()
     {
-        return $this->container['displayName'];
+        return $this->container['size'];
     }
 
     /**
-     * Sets displayName
+     * Sets size
      *
-     * @param string $displayName
+     * @param double $size
      *
      * @return $this
      */
-    public function setDisplayName($displayName)
+    public function setSize($size)
     {
-        $this->container['displayName'] = $displayName;
+        $this->container['size'] = $size;
 
         return $this;
     }
 
     /**
-     * Gets category
+     * Gets species
      *
      * @return string
      */
-    public function getCategory()
+    public function getSpecies()
     {
-        return $this->container['category'];
+        return $this->container['species'];
     }
 
     /**
-     * Sets category
+     * Sets species
      *
-     * @param string $category
+     * @param string $species
      *
      * @return $this
      */
-    public function setCategory($category)
+    public function setSpecies($species)
     {
-        $this->container['category'] = $category;
+        $this->container['species'] = $species;
 
         return $this;
     }
 
     /**
-     * Gets prerequisiteContractItemGroupId
+     * Gets profitEstimation
      *
-     * @return string
+     * @return double
      */
-    public function getPrerequisiteContractItemGroupId()
+    public function getProfitEstimation()
     {
-        return $this->container['prerequisiteContractItemGroupId'];
+        return $this->container['profitEstimation'];
     }
 
     /**
-     * Sets prerequisiteContractItemGroupId
+     * Sets profitEstimation
      *
-     * @param string $prerequisiteContractItemGroupId Require contract in specified item group before siging a contract
+     * @param double $profitEstimation
      *
      * @return $this
      */
-    public function setPrerequisiteContractItemGroupId($prerequisiteContractItemGroupId)
+    public function setProfitEstimation($profitEstimation)
     {
-        $this->container['prerequisiteContractItemGroupId'] = $prerequisiteContractItemGroupId;
+        $this->container['profitEstimation'] = $profitEstimation;
 
         return $this;
     }
