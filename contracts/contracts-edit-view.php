@@ -157,6 +157,12 @@
         $this->renderInlineTextField(__('Proposed Quantity', 'pakkasmarja_management'), $contract ? $contract->getProposedQuantity() : null);
         $this->renderMemoInput(__('Quantity Comment', 'pakkasmarja_management'), "quantity-comment", $contract ? $contract->getQuantityComment() : null);
         $this->renderNumberInput(__('Contract Quantity', 'pakkasmarja_management'), "contract-quantity", $contract ? $contract->getContractQuantity() : "0");
+
+
+        if ($contract && $contract->getDeliverAll()) {
+          echo sprintf('<br/><br/><b style="font-size: 18px;">%s</b>', __('Farmed delivers all berries to company', 'pakkasmarja_management'));
+        }
+
         $this->renderLine();
         $this->renderDeliveryPlaceInput(__('Delivery Place', 'pakkasmarja_management'), "delivery-place", $contract ? $contract->getDeliveryPlaceId() : null);
         $this->renderInlineTextField(__('Proposed Delivery Place', 'pakkasmarja_management'), $contract ? Formatter::getDeliveryPlaceName($contract->getProposedDeliveryPlaceId()) : null);        
@@ -281,6 +287,8 @@
           $contract->setQuantityComment($quantityComment);
           $contract->setDeliveryPlaceComment($deliveryPlaceComment);
           $contract->setYear(date("Y"));
+          $contract->setDeliverAll(false);
+          $contract->setAreaDetails([]);
 
           return $this->contractsApi->createContract($contract);
         } catch (\Metatavu\Pakkasmarja\ApiException $e) {

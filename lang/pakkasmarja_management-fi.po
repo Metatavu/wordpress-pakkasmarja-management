@@ -5,8 +5,8 @@ msgstr ""
 "Project-Id-Version: Pakkasmarja Management 0.0.1\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/wordpress-"
 "pakkasmarja-management\n"
-"POT-Creation-Date: 2018-04-03 14:59:06+00:00\n"
-"PO-Revision-Date: 2018-04-03 18:00+0300\n"
+"POT-Creation-Date: 2018-04-05 12:41:16+00:00\n"
+"PO-Revision-Date: 2018-04-05 15:42+0300\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: fi\n"
@@ -158,19 +158,23 @@ msgstr "Määrän kommentti"
 msgid "Contract Quantity"
 msgstr "Sopimusmäärä"
 
-#: contracts/contracts-edit-view.php:161
+#: contracts/contracts-edit-view.php:163
+msgid "Farmed delivers all berries to company"
+msgstr "Viljelijä toimittaa kaikki marjansa Pakkasmarjalle"
+
+#: contracts/contracts-edit-view.php:167
 msgid "Delivery Place"
 msgstr "Toimituspaikka"
 
-#: contracts/contracts-edit-view.php:162
+#: contracts/contracts-edit-view.php:168
 msgid "Proposed Delivery Place"
 msgstr "Viljelijän ehdottama toimituspaikka"
 
-#: contracts/contracts-edit-view.php:163
+#: contracts/contracts-edit-view.php:169
 msgid "Delivery Place Comment"
 msgstr "Toimituspaikan kommentti"
 
-#: contracts/contracts-edit-view.php:165 contracts/contracts-table.php:206
+#: contracts/contracts-edit-view.php:171 contracts/contracts-table.php:206
 msgid "Remarks"
 msgstr "Huomautuskenttä"
 
