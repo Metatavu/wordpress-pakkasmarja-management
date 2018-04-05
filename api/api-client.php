@@ -106,8 +106,8 @@
        * @deprecated
        */
       private function doGet($path) {
-        $response = wp_remote_get( $this->url . $path, [
-            headers => $this->getHeaders() 
+        $response = wp_remote_get($this->url . $path, [
+          'headers' => $this->getHeaders() 
         ]);
         
         if (is_array($response)) {
