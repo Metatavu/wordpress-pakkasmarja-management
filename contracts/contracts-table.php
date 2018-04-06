@@ -133,6 +133,12 @@
             ];
           }
 
+          $itemGroupOptions[] = [
+            "value" => 'all',
+            "text" => __('All', 'pakkasmarja_management'),
+            "selected" => $selectedItemGroup === "all"
+          ];
+
           $this->printExtraNavSelect("item-group-select", __('Show item group', 'pakkasmarja_management'), "item-group-id", $itemGroupOptions);
 
           $statusOptions = [];
@@ -147,19 +153,31 @@
             ];
           }
 
+          $statusOptions[] = [
+            "value" => 'all',
+            "text" => __('All', 'pakkasmarja_management'),
+            "selected" => $selectedStatus === "all"
+          ];
+
           $this->printExtraNavSelect("status-select", __('Show status', 'pakkasmarja_management'), "status", $statusOptions);
 
           $yearOptions = [];
           $currentYear = intval(date("Y"));
-          $selectedYear = intval(sanitize_text_field($_REQUEST["year"])); 
+          $selectedYear = sanitize_text_field($_REQUEST["year"]); 
 
           for ($year = $currentYear; $year >= $currentYear - 10; $year--) {
             $yearOptions[] = [
               "value" => $year,
               "text" => $year,
-              "selected" => $selectedYear === $year
+              "selected" => intval($selectedYear) === $year
             ];
           };
+
+          $yearOptions[] = [
+            "value" => 'all',
+            "text" => __('All', 'pakkasmarja_management'),
+            "selected" => $selectedYear === "all"
+          ];
 
           $this->printExtraNavSelect("year-select", __('Show year', 'pakkasmarja_management'), "year", $yearOptions);
 
@@ -183,6 +201,7 @@
         foreach ($selectOptions as $option) {
           echo sprintf('<option value="%s"%s>%s</option>', $option['value'], $option['selected'] ? ' selected=selected' : '', $option['text']);
         }
+
         echo "</select>";
 
         echo '</div>';
@@ -260,7 +279,7 @@
           $pdfUrl = sprintf("?page=contract.php&action=%s&id=%s&type=%s", "single-pdf", $id, $itemGroupDocumentTemplate->getType());
           $editDocumentTemplateUrl = sprintf("?page=pakkasmarja-contracts-document-template-edit-view.php&item-group-document-template-id=%s&item-group-id=%s&contract-id=%s", $itemGroupDocumentTemplate->getId(), $itemGroupDocumentTemplate->getItemGroupId(), $id);
           $actions['edit-document-template-' . $itemGroupDocumentTemplate->getId()] = sprintf('<a href="%s">%s</a>', $editDocumentTemplateUrl, sprintf(__('Customize (%s)', 'pakkasmarja_management'), Formatter::formatDocumentTemplateType($itemGroupDocumentTemplate->getType())));
-          $actions['pdf-' . $itemGroupDocumentTemplate->getId()] = sprintf('<a href="%s">%s</a>', $pdfUrl, sprintf(__('Preview (%s)', 'pakkasmarja_management'), Formatter::formatDocumentTemplateType($itemGroupDocumentTemplate->getType())));
+          $actions['pdf-' . $itemGroupDocumentTemplate->getId()] = sprintf('<a href="%s">%s</a>', $pdfUrl, sprintf(__('View PDF (%s)', 'pakkasmarja_management'), Formatter::formatDocumentTemplateType($itemGroupDocumentTemplate->getType())));
         }
 
         return sprintf('%1$s%2$s', sprintf('<a href="%s">%s</a>', $editUrl, $companyName), $this->row_actions($actions));
@@ -289,6 +308,18 @@
 
         if (!$year) {
           $year = intval(date("Y"));
+        }
+
+        if ($itemGroupId === "all") {
+          $itemGroupId = null;
+        }
+
+        if ($year === "all") {
+          $year = null;
+        }
+
+        if ($status === "all") {
+          $status = null;
         }
 
         try {

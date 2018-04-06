@@ -5,8 +5,8 @@ msgstr ""
 "Project-Id-Version: Pakkasmarja Management 0.0.1\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/wordpress-"
 "pakkasmarja-management\n"
-"POT-Creation-Date: 2018-04-05 12:41:16+00:00\n"
-"PO-Revision-Date: 2018-04-05 15:42+0300\n"
+"POT-Creation-Date: 2018-04-06 13:36:00+00:00\n"
+"PO-Revision-Date: 2018-04-06 16:36+0300\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: fi\n"
@@ -81,7 +81,7 @@ msgid "Edit %s document template %s"
 msgstr "Muokkaa sopimuksen %s sopimusmallia %s"
 
 #: contracts/contracts-document-template-edit-view.php:69
-#: contracts/contracts-edit-view.php:98
+#: contracts/contracts-edit-view.php:99
 #: item-groups/item-groups-document-template-edit-view.php:69
 #: item-groups/item-groups-price-edit-view.php:64
 #: operations/operations-report-view.php:45
@@ -115,128 +115,141 @@ msgstr "Alatunniste"
 msgid "Edit Contract"
 msgstr "Muokkaa sopimusta"
 
-#: contracts/contracts-edit-view.php:83
+#: contracts/contracts-edit-view.php:84
 msgid "Failed to create contract"
 msgstr "Sopimuksen luonti epäonnistui"
 
-#: contracts/contracts-edit-view.php:89
+#: contracts/contracts-edit-view.php:90
 #: item-groups/item-groups-document-template-edit-view.php:57
 msgid "Failed to update contract"
 msgstr "Sopimuksen muokkaus epäonnistui"
 
-#: contracts/contracts-edit-view.php:103 contracts/contracts-menu.php:30
+#: contracts/contracts-edit-view.php:104 contracts/contracts-menu.php:30
 msgid "New Contract"
 msgstr "Uusi sopimus"
 
-#: contracts/contracts-edit-view.php:150
+#: contracts/contracts-edit-view.php:151
 msgid "Contact"
 msgstr "Sopimus"
 
-#: contracts/contracts-edit-view.php:151 contracts/contracts-table.php:202
+#: contracts/contracts-edit-view.php:152 contracts/contracts-table.php:221
 msgid "Item Group"
 msgstr "Marjalaji"
 
-#: contracts/contracts-edit-view.php:154 contracts/contracts-table.php:201
+#: contracts/contracts-edit-view.php:155
+msgid "SAP Id"
+msgstr "SAP id"
+
+#: contracts/contracts-edit-view.php:156 contracts/contracts-table.php:220
 #: operations/operation-reports-table.php:118
 #: operations/operations-report-view.php:49
 msgid "Status"
 msgstr "Tila"
 
-#: contracts/contracts-edit-view.php:155
+#: contracts/contracts-edit-view.php:157
 msgid "Reject Comment"
 msgstr "Hylkäyskommentti"
 
-#: contracts/contracts-edit-view.php:157
+#: contracts/contracts-edit-view.php:159
 msgid "Proposed Quantity"
 msgstr "Viljelijän ehdottama määrä"
 
-#: contracts/contracts-edit-view.php:158
+#: contracts/contracts-edit-view.php:160
 msgid "Quantity Comment"
 msgstr "Määrän kommentti"
 
-#: contracts/contracts-edit-view.php:159 contracts/contracts-table.php:203
+#: contracts/contracts-edit-view.php:161 contracts/contracts-table.php:222
 msgid "Contract Quantity"
 msgstr "Sopimusmäärä"
 
-#: contracts/contracts-edit-view.php:163
+#: contracts/contracts-edit-view.php:165
 msgid "Farmed delivers all berries to company"
 msgstr "Viljelijä toimittaa kaikki marjansa Pakkasmarjalle"
 
-#: contracts/contracts-edit-view.php:167
+#: contracts/contracts-edit-view.php:169
 msgid "Delivery Place"
 msgstr "Toimituspaikka"
 
-#: contracts/contracts-edit-view.php:168
+#: contracts/contracts-edit-view.php:170
 msgid "Proposed Delivery Place"
 msgstr "Viljelijän ehdottama toimituspaikka"
 
-#: contracts/contracts-edit-view.php:169
+#: contracts/contracts-edit-view.php:171
 msgid "Delivery Place Comment"
 msgstr "Toimituspaikan kommentti"
 
-#: contracts/contracts-edit-view.php:171 contracts/contracts-table.php:206
-msgid "Remarks"
-msgstr "Huomautuskenttä"
+#: contracts/contracts-edit-view.php:173
+msgid "Remarks (SAP)"
+msgstr "Huomautuskenttä (SAP)"
 
 #: contracts/contracts-menu.php:19 contracts/contracts-menu.php:30
 msgid "Contracts"
 msgstr "Sopimukset"
 
-#: contracts/contracts-table.php:136
+#: contracts/contracts-table.php:138 contracts/contracts-table.php:158
+#: contracts/contracts-table.php:178
+msgid "All"
+msgstr "Kaikki"
+
+#: contracts/contracts-table.php:142
 msgid "Show item group"
 msgstr "Marjalaji"
 
-#: contracts/contracts-table.php:150
+#: contracts/contracts-table.php:162
 msgid "Show status"
 msgstr "Tila"
 
-#: contracts/contracts-table.php:164
+#: contracts/contracts-table.php:182
 msgid "Show year"
 msgstr "Vuosi"
 
-#: contracts/contracts-table.php:167
+#: contracts/contracts-table.php:185
 msgid "Download XLSX"
 msgstr "Lataa XLSX -tiedostona"
 
-#: contracts/contracts-table.php:200
+#: contracts/contracts-table.php:219
 msgid "Company"
 msgstr "Toimittajan nimi"
 
-#: contracts/contracts-table.php:204
+#: contracts/contracts-table.php:223
 msgid "Delivered Quantity"
 msgstr "Toimitettu määrä"
 
-#: contracts/contracts-table.php:205
+#: contracts/contracts-table.php:224
 msgid "Place"
 msgstr "Toimituspaikka"
 
-#: contracts/contracts-table.php:207
+#: contracts/contracts-table.php:225
+msgid "Remarks"
+msgstr "Huomautuskenttä"
+
+#: contracts/contracts-table.php:226
 msgid "Sign date"
 msgstr "Viljelijän allekirjoituspäivä"
 
-#: contracts/contracts-table.php:208
+#: contracts/contracts-table.php:227
 msgid "Start date"
 msgstr "Alkupäivä"
 
-#: contracts/contracts-table.php:209
+#: contracts/contracts-table.php:228
 msgid "End date"
 msgstr "Loppupäivä"
 
-#: contracts/contracts-table.php:210
+#: contracts/contracts-table.php:229
 msgid "Approval date"
 msgstr "Pakkasmarjan hyväksyntäpäivä"
 
-#: contracts/contracts-table.php:256
+#: contracts/contracts-table.php:275
 msgid "Edit"
 msgstr "Muokkaa"
 
-#: contracts/contracts-table.php:262
+#: contracts/contracts-table.php:281
 msgid "Customize (%s)"
 msgstr "Muokkaa mallia (%s)"
 
-#: contracts/contracts-table.php:263
-msgid "Preview (%s)"
-msgstr "Esikatsele (%s)"
+#: contracts/contracts-table.php:282
+msgid "View PDF (%s)"
+msgstr "Näytä PDF (%s)"
 
 #: item-groups/item-groups-document-template-edit-view.php:35
 msgid "Edit Item Group Document Template"
