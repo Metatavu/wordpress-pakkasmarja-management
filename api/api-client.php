@@ -81,7 +81,7 @@
        * @deprecated
        */
       public function listUserGroups() {
-        return $this->doGet('/rest/v1/userGroups'); 
+        return $this->doGet('/userGroups'); 
       }
       
       /**
