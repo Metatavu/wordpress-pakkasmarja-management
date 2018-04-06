@@ -59,8 +59,7 @@
 
         $itemGroup = $this->findItemGroupById($itemGroupId);
         $itemGroupName = $itemGroup->getName();
-
-        $prices = $this->itemGroupsApi->listItemGroupPrices($itemGroupId, "YEAR", "DESC");
+        $prices = $this->itemGroupsApi->listItemGroupPrices($itemGroupId, "YEAR", "DESC", 0, 1000);
         $backLink = sprintf('<a href="%s" class="page-title-action">%s</a>', "?page=item-group.php", __('Back', 'pakkasmarja_management'));
 
         echo '<div class="wrap">';
