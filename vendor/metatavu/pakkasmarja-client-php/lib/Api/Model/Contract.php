@@ -57,6 +57,7 @@ class Contract implements ModelInterface, ArrayAccess
       */
     protected static $swaggerTypes = [
         'id' => 'string',
+        'sapId' => 'string',
         'contactId' => 'string',
         'deliveryPlaceId' => 'string',
         'proposedDeliveryPlaceId' => 'string',
@@ -85,6 +86,7 @@ class Contract implements ModelInterface, ArrayAccess
       */
     protected static $swaggerFormats = [
         'id' => 'uuid',
+        'sapId' => null,
         'contactId' => 'uuid',
         'deliveryPlaceId' => 'uuid',
         'proposedDeliveryPlaceId' => 'uuid',
@@ -134,6 +136,7 @@ class Contract implements ModelInterface, ArrayAccess
      */
     protected static $attributeMap = [
         'id' => 'id',
+        'sapId' => 'sapId',
         'contactId' => 'contactId',
         'deliveryPlaceId' => 'deliveryPlaceId',
         'proposedDeliveryPlaceId' => 'proposedDeliveryPlaceId',
@@ -162,6 +165,7 @@ class Contract implements ModelInterface, ArrayAccess
      */
     protected static $setters = [
         'id' => 'setId',
+        'sapId' => 'setSapId',
         'contactId' => 'setContactId',
         'deliveryPlaceId' => 'setDeliveryPlaceId',
         'proposedDeliveryPlaceId' => 'setProposedDeliveryPlaceId',
@@ -190,6 +194,7 @@ class Contract implements ModelInterface, ArrayAccess
      */
     protected static $getters = [
         'id' => 'getId',
+        'sapId' => 'getSapId',
         'contactId' => 'getContactId',
         'deliveryPlaceId' => 'getDeliveryPlaceId',
         'proposedDeliveryPlaceId' => 'getProposedDeliveryPlaceId',
@@ -293,6 +298,7 @@ class Contract implements ModelInterface, ArrayAccess
     public function __construct(array $data = null)
     {
         $this->container['id'] = isset($data['id']) ? $data['id'] : null;
+        $this->container['sapId'] = isset($data['sapId']) ? $data['sapId'] : null;
         $this->container['contactId'] = isset($data['contactId']) ? $data['contactId'] : null;
         $this->container['deliveryPlaceId'] = isset($data['deliveryPlaceId']) ? $data['deliveryPlaceId'] : null;
         $this->container['proposedDeliveryPlaceId'] = isset($data['proposedDeliveryPlaceId']) ? $data['proposedDeliveryPlaceId'] : null;
@@ -371,6 +377,30 @@ class Contract implements ModelInterface, ArrayAccess
     public function setId($id)
     {
         $this->container['id'] = $id;
+
+        return $this;
+    }
+
+    /**
+     * Gets sapId
+     *
+     * @return string
+     */
+    public function getSapId()
+    {
+        return $this->container['sapId'];
+    }
+
+    /**
+     * Sets sapId
+     *
+     * @param string $sapId
+     *
+     * @return $this
+     */
+    public function setSapId($sapId)
+    {
+        $this->container['sapId'] = $sapId;
 
         return $this;
     }

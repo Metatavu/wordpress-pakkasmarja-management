@@ -60,6 +60,7 @@ class ItemGroup implements ModelInterface, ArrayAccess
         'name' => 'string',
         'displayName' => 'string',
         'category' => 'string',
+        'minimumProfitEstimation' => 'double',
         'prerequisiteContractItemGroupId' => 'string'
     ];
 
@@ -73,6 +74,7 @@ class ItemGroup implements ModelInterface, ArrayAccess
         'name' => null,
         'displayName' => null,
         'category' => null,
+        'minimumProfitEstimation' => 'double',
         'prerequisiteContractItemGroupId' => 'uuid'
     ];
 
@@ -107,6 +109,7 @@ class ItemGroup implements ModelInterface, ArrayAccess
         'name' => 'name',
         'displayName' => 'displayName',
         'category' => 'category',
+        'minimumProfitEstimation' => 'minimumProfitEstimation',
         'prerequisiteContractItemGroupId' => 'prerequisiteContractItemGroupId'
     ];
 
@@ -120,6 +123,7 @@ class ItemGroup implements ModelInterface, ArrayAccess
         'name' => 'setName',
         'displayName' => 'setDisplayName',
         'category' => 'setCategory',
+        'minimumProfitEstimation' => 'setMinimumProfitEstimation',
         'prerequisiteContractItemGroupId' => 'setPrerequisiteContractItemGroupId'
     ];
 
@@ -133,6 +137,7 @@ class ItemGroup implements ModelInterface, ArrayAccess
         'name' => 'getName',
         'displayName' => 'getDisplayName',
         'category' => 'getCategory',
+        'minimumProfitEstimation' => 'getMinimumProfitEstimation',
         'prerequisiteContractItemGroupId' => 'getPrerequisiteContractItemGroupId'
     ];
 
@@ -200,6 +205,7 @@ class ItemGroup implements ModelInterface, ArrayAccess
         $this->container['name'] = isset($data['name']) ? $data['name'] : null;
         $this->container['displayName'] = isset($data['displayName']) ? $data['displayName'] : null;
         $this->container['category'] = isset($data['category']) ? $data['category'] : null;
+        $this->container['minimumProfitEstimation'] = isset($data['minimumProfitEstimation']) ? $data['minimumProfitEstimation'] : null;
         $this->container['prerequisiteContractItemGroupId'] = isset($data['prerequisiteContractItemGroupId']) ? $data['prerequisiteContractItemGroupId'] : null;
     }
 
@@ -320,6 +326,30 @@ class ItemGroup implements ModelInterface, ArrayAccess
     public function setCategory($category)
     {
         $this->container['category'] = $category;
+
+        return $this;
+    }
+
+    /**
+     * Gets minimumProfitEstimation
+     *
+     * @return double
+     */
+    public function getMinimumProfitEstimation()
+    {
+        return $this->container['minimumProfitEstimation'];
+    }
+
+    /**
+     * Sets minimumProfitEstimation
+     *
+     * @param double $minimumProfitEstimation
+     *
+     * @return $this
+     */
+    public function setMinimumProfitEstimation($minimumProfitEstimation)
+    {
+        $this->container['minimumProfitEstimation'] = $minimumProfitEstimation;
 
         return $this;
     }
