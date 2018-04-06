@@ -73,11 +73,12 @@
             $remarks = $this->getMemoPostString("remarks");
             $quantityComment = $this->getMemoPostString("quantity-comment");
             $deliveryPlaceComment = $this->getMemoPostString("delivery-place-comment");
+            $sapId = $this->getPostString("sap-id");
 
             if ($id === 'NEW') {
               $contactId = $this->getPostString("contact-id");
               $itemGroupId = $this->getPostString("item-group-id");
-              $contract = $this->createContract($contactId, $itemGroupId, $contractQuantity, $status, $deliveryPlaceId, $remarks, $quantityComment, $deliveryPlaceComment);
+              $contract = $this->createContract($contactId, $sapId, $itemGroupId, $contractQuantity, $status, $deliveryPlaceId, $remarks, $quantityComment, $deliveryPlaceComment);
               
               if (!$contract) {
                 echo sprintf('<div class="notice-error notice">%s</div>', htmlspecialchars(__('Failed to create contract', 'pakkasmarja_management')));
@@ -85,7 +86,7 @@
                 $id = $contract->getId();
               }
             } else {
-              if (!$this->updateContract($contract, $contractQuantity, $status, $deliveryPlaceId, $remarks, $quantityComment, $deliveryPlaceComment)) {
+              if (!$this->updateContract($contract, $sapId, $contractQuantity, $status, $deliveryPlaceId, $remarks, $quantityComment, $deliveryPlaceComment)) {
                 echo sprintf('<div class="notice-error notice">%s</div>', htmlspecialchars(__('Failed to update contract', 'pakkasmarja_management')));
               }
             }
@@ -151,6 +152,7 @@
           $this->renderItemGroupInput(__('Item Group', 'pakkasmarja_management'), "item-group-id");
         }
 
+        $this->renderTextInput(__('SAP Id', 'pakkasmarja_management'), "sap-id", $contract ? $contract->getSapId() : "");
         $this->renderStatusInput(__('Status', 'pakkasmarja_management'), "status", $contract ? $contract->getStatus() : "DRAFT");
         $this->renderInlineTextField(__('Reject Comment', 'pakkasmarja_management'), $contract ? $contract->getRejectComment() : null);
         $this->renderLine();
@@ -168,7 +170,7 @@
         $this->renderInlineTextField(__('Proposed Delivery Place', 'pakkasmarja_management'), $contract ? Formatter::getDeliveryPlaceName($contract->getProposedDeliveryPlaceId()) : null);        
         $this->renderMemoInput(__('Delivery Place Comment', 'pakkasmarja_management'), "delivery-place-comment", $contract ? $contract->getDeliveryPlaceComment() : null);
         $this->renderLine();
-        $this->renderMemoInput(__('Remarks', 'pakkasmarja_management'), "remarks", $contract ? $contract->getRemarks() : null);
+        $this->renderMemoInput(__('Remarks (SAP)', 'pakkasmarja_management'), "remarks", $contract ? $contract->getRemarks() : null);
       }
 
       /**
@@ -263,6 +265,7 @@
        * Creates a contract
        * 
        * @param String $contactId contact id
+       * @param STring $sapId SAP id
        * @param String $itemGroupId item group id
        * @param int $contractQuantity new contract quantity
        * @param String $status new status
@@ -272,11 +275,12 @@
        * @param String $deliveryPlaceComment delivery place comment
        * @return \Metatavu\Pakkasmarja\Api\Model\Contract updated contract
        */
-      private function createContract($contactId, $itemGroupId, $contractQuantity, $status, $deliveryPlaceId, $remarks, $quantityComment, $deliveryPlaceComment) {
+      private function createContract($contactId, $sapId, $itemGroupId, $contractQuantity, $status, $deliveryPlaceId, $remarks, $quantityComment, $deliveryPlaceComment) {
         try {
           $contract = new \Metatavu\Pakkasmarja\Api\Model\Contract();
 
           $contract->setContactId($contactId);
+          $contract->setSapId($sapId);
           $contract->setItemGroupId($itemGroupId);
           $contract->setContractQuantity($contractQuantity);
           $contract->setProposedQuantity($contractQuantity);
@@ -306,6 +310,7 @@
        * Updates contract
        * 
        * @param \Metatavu\Pakkasmarja\Api\Model\Contract $contract contract
+       * @param STring $sapId SAP id
        * @param int $contractQuantity new contract quantity
        * @param String $status new status
        * @param String $deliveryPlaceId new delivery place id
@@ -314,8 +319,9 @@
        * @param String $deliveryPlaceComment delivery place comment
        * @return \Metatavu\Pakkasmarja\Api\Model\Contract updated contract
        */
-      private function updateContract($contract, $contractQuantity, $status, $deliveryPlaceId, $remarks, $quantityComment, $deliveryPlaceComment) {
+      private function updateContract($contract, $sapId, $contractQuantity, $status, $deliveryPlaceId, $remarks, $quantityComment, $deliveryPlaceComment) {
         try {
+          $contract->setSapId($sapId);
           $contract->setContractQuantity($contractQuantity);
           $contract->setStatus($status);
           $contract->setDeliveryPlaceId($deliveryPlaceId);
