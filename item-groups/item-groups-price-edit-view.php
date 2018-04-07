@@ -75,25 +75,44 @@
        * @param String $itemGroupId item group id
        */
       private function save($itemGroupId) {
-        $priceCount = $this->getPostInt('price-count');
+        try {
+          $priceCount = $this->getPostInt('price-count');
+          $deletedItemGroupIds = $this->getPostCDT('deleted-prices');
 
-        for ($i = 0; $i < $priceCount; $i++) {
-          $prefix = "price-$i";
-          
-          $price = new \Metatavu\Pakkasmarja\Api\Model\Price([
-            "id" => $this->getPostString("$prefix-id"),
-            "group" => $this->getPostString("$prefix-group"),
-            "year" => $this->getPostString("$prefix-year"),
-            "price" => $this->getPostString("$prefix-price"),
-            "unit" => $this->getPostString("$prefix-unit")
-          ]);
-          
-          if ($price->getId()) {
-            $this->itemGroupsApi->updateItemGroupPrice($itemGroupId, $price->getId(), $price);
+          for ($i = 0; $i < $priceCount; $i++) {
+            $prefix = "price-$i";
+            
+            $price = new \Metatavu\Pakkasmarja\Api\Model\Price([
+              "id" => $this->getPostString("$prefix-id"),
+              "group" => $this->getPostString("$prefix-group"),
+              "year" => $this->getPostString("$prefix-year"),
+              "price" => $this->getPostString("$prefix-price"),
+              "unit" => $this->getPostString("$prefix-unit")
+            ]);
+
+            if ($price->getGroup() && $price->getYear() && $price->getPrice() && $price->getUnit()) {
+              if ($price->getId()) {
+                $this->itemGroupsApi->updateItemGroupPrice($itemGroupId, $price->getId(), $price);
+              } else {
+                $this->itemGroupsApi->createItemGroupPrice($itemGroupId, $price);
+              } 
+            }
+          }
+
+          foreach ($deletedItemGroupIds as $deletedItemGroupId) {
+            $this->itemGroupsApi->deleteItemGroupPrice($itemGroupId, $deletedItemGroupId);
+          }
+        } catch (\Metatavu\Pakkasmarja\ApiException $e) {
+          echo '<div class="error notice">';
+          if ($e->getResponseBody()) {
+            echo print_r($e->getResponseBody());
           } else {
-            $this->itemGroupsApi->createItemGroupPrice($itemGroupId, $price);
-          }              
+            echo $e;
+          }
+
+          echo '</div>';
         }
+
       }
 
       /**
@@ -150,6 +169,7 @@
         echo "</tbody></table>";
         echo sprintf("<button id=\"add-price\" class=\"button button-primary\">%s</button>", __('Add Price', 'pakkasmarja_management'));
         echo sprintf('<input name="price-count" type="hidden" value="%s"/>', count($prices));
+        echo '<input name="deleted-prices" type="hidden" value=""/>';
       }
 
       /**
@@ -168,11 +188,8 @@
         echo sprintf("<td><input required=\"required\" name=\"%s-unit\" type=\"text\" value=\"%s\"/></td>", $prefix, $price ? $price->getUnit() : '');
         echo "<td>";
         
-        if (!$price) {
-          echo sprintf('<a class="button button-danger remove-price">%s</a>', __('Remove', 'pakkasmarja_management'));
-        }
-
-        echo sprintf("<input name=\"%s-id\" type=\"hidden\" value=\"%s\"/>", $prefix, $price ? $price->getId() : '');
+        echo sprintf('<a class="button button-danger remove-price">%s</a>', __('Remove', 'pakkasmarja_management'));
+        echo sprintf("<input class=\"id\" name=\"%s-id\" type=\"hidden\" value=\"%s\"/>", $prefix, $price ? $price->getId() : '');
 
         echo "</td>";
         echo "</tr>";

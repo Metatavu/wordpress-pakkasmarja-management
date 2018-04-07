@@ -5,6 +5,7 @@ All URIs are relative to *https://localhost/rest/v1*
 Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**createItemGroupPrice**](ItemGroupsApi.md#createItemGroupPrice) | **POST** /itemGroups/{itemGroupId}/prices | Creates item group price
+[**deleteItemGroupPrice**](ItemGroupsApi.md#deleteItemGroupPrice) | **DELETE** /itemGroups/{itemGroupId}/prices/{priceId} | Delete item group price
 [**findItemGroup**](ItemGroupsApi.md#findItemGroup) | **GET** /itemGroups/{id} | Find item group
 [**findItemGroupDocumentTemplate**](ItemGroupsApi.md#findItemGroupDocumentTemplate) | **GET** /itemGroups/{itemGroupId}/documentTemplates/{id} | Find item group document template
 [**findItemGroupPrice**](ItemGroupsApi.md#findItemGroupPrice) | **GET** /itemGroups/{itemGroupId}/prices/{priceId} | Find item group price
@@ -55,6 +56,57 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**\Metatavu\Pakkasmarja\Api\Model\Price**](../Model/Price.md)
+
+### Authorization
+
+[bearer](../../README.md#bearer)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json;charset=utf-8
+ - **Accept**: application/json;charset=utf-8
+
+[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
+
+# **deleteItemGroupPrice**
+> deleteItemGroupPrice($itemGroupId, $priceId)
+
+Delete item group price
+
+Deletes an item group price
+
+### Example
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+// Configure API key authorization: bearer
+Metatavu\Pakkasmarja\Configuration::getDefaultConfiguration()->setApiKey('Authorization', 'YOUR_API_KEY');
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+// Metatavu\Pakkasmarja\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Authorization', 'Bearer');
+
+$api_instance = new Metatavu\Pakkasmarja\Api\ItemGroupsApi(new \Http\Adapter\Guzzle6\Client());
+$itemGroupId = "itemGroupId_example"; // string | item group id
+$priceId = "priceId_example"; // string | price id
+
+try {
+    $api_instance->deleteItemGroupPrice($itemGroupId, $priceId);
+} catch (Exception $e) {
+    echo 'Exception when calling ItemGroupsApi->deleteItemGroupPrice: ', $e->getMessage(), PHP_EOL;
+}
+?>
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **itemGroupId** | **string**| item group id |
+ **priceId** | **string**| price id |
+
+### Return type
+
+void (empty response body)
 
 ### Authorization
 

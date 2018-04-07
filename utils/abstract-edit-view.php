@@ -158,6 +158,21 @@
       }
 
       /**
+       * Returns comma delimitered string as array from POST request
+       * 
+       * @param String $name variable name
+       * @return String[] values
+       */
+      protected function getPostCDT($name) {
+        $string = $this->getPostString($name);
+        if ($string) {
+          return explode(",", $string);
+        }
+
+        return [];
+      }
+
+      /**
        * Returns multiline string value from POST request
        * 
        * @param String $name variable name
