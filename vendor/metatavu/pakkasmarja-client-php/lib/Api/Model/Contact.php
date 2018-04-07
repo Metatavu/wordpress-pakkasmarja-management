@@ -57,6 +57,7 @@ class Contact implements ModelInterface, ArrayAccess
       */
     protected static $swaggerTypes = [
         'id' => 'string',
+        'sapId' => 'string',
         'firstName' => 'string',
         'lastName' => 'string',
         'companyName' => 'string',
@@ -77,6 +78,7 @@ class Contact implements ModelInterface, ArrayAccess
       */
     protected static $swaggerFormats = [
         'id' => 'uuid',
+        'sapId' => null,
         'firstName' => null,
         'lastName' => null,
         'companyName' => null,
@@ -118,6 +120,7 @@ class Contact implements ModelInterface, ArrayAccess
      */
     protected static $attributeMap = [
         'id' => 'id',
+        'sapId' => 'sapId',
         'firstName' => 'firstName',
         'lastName' => 'lastName',
         'companyName' => 'companyName',
@@ -138,6 +141,7 @@ class Contact implements ModelInterface, ArrayAccess
      */
     protected static $setters = [
         'id' => 'setId',
+        'sapId' => 'setSapId',
         'firstName' => 'setFirstName',
         'lastName' => 'setLastName',
         'companyName' => 'setCompanyName',
@@ -158,6 +162,7 @@ class Contact implements ModelInterface, ArrayAccess
      */
     protected static $getters = [
         'id' => 'getId',
+        'sapId' => 'getSapId',
         'firstName' => 'getFirstName',
         'lastName' => 'getLastName',
         'companyName' => 'getCompanyName',
@@ -249,6 +254,7 @@ class Contact implements ModelInterface, ArrayAccess
     public function __construct(array $data = null)
     {
         $this->container['id'] = isset($data['id']) ? $data['id'] : null;
+        $this->container['sapId'] = isset($data['sapId']) ? $data['sapId'] : null;
         $this->container['firstName'] = isset($data['firstName']) ? $data['firstName'] : null;
         $this->container['lastName'] = isset($data['lastName']) ? $data['lastName'] : null;
         $this->container['companyName'] = isset($data['companyName']) ? $data['companyName'] : null;
@@ -319,6 +325,30 @@ class Contact implements ModelInterface, ArrayAccess
     public function setId($id)
     {
         $this->container['id'] = $id;
+
+        return $this;
+    }
+
+    /**
+     * Gets sapId
+     *
+     * @return string
+     */
+    public function getSapId()
+    {
+        return $this->container['sapId'];
+    }
+
+    /**
+     * Sets sapId
+     *
+     * @param string $sapId
+     *
+     * @return $this
+     */
+    public function setSapId($sapId)
+    {
+        $this->container['sapId'] = $sapId;
 
         return $this;
     }

@@ -4,6 +4,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **id** | **string** |  | [optional] 
+**sapId** | **string** |  | [optional] 
 **firstName** | **string** |  | [optional] 
 **lastName** | **string** |  | [optional] 
 **companyName** | **string** |  | [optional] 

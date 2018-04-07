@@ -381,6 +381,274 @@ class ItemGroupsApi
     }
 
     /**
+     * Operation deleteItemGroupPrice
+     *
+     * Delete item group price
+     *
+     * @param  string $itemGroupId item group id (required)
+     * @param  string $priceId price id (required)
+     *
+     * @throws \Metatavu\Pakkasmarja\ApiException on non-2xx response
+     * @throws \InvalidArgumentException
+     * @return void
+     */
+    public function deleteItemGroupPrice($itemGroupId, $priceId)
+    {
+        $this->deleteItemGroupPriceWithHttpInfo($itemGroupId, $priceId);
+    }
+
+    /**
+     * Operation deleteItemGroupPriceWithHttpInfo
+     *
+     * Delete item group price
+     *
+     * @param  string $itemGroupId item group id (required)
+     * @param  string $priceId price id (required)
+     *
+     * @throws \Metatavu\Pakkasmarja\ApiException on non-2xx response
+     * @throws \InvalidArgumentException
+     * @return array of null, HTTP status code, HTTP response headers (array of strings)
+     */
+    public function deleteItemGroupPriceWithHttpInfo($itemGroupId, $priceId)
+    {
+        $returnType = '';
+        $request = $this->deleteItemGroupPriceRequest($itemGroupId, $priceId);
+
+        try {
+
+            try {
+                $response = $this->client->send($request);
+            } catch (RequestException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    $e->getCode(),
+                    $e->getResponse() ? $e->getResponse()->getHeaders() : null
+                );
+            }
+
+            $statusCode = $response->getStatusCode();
+
+            if ($statusCode < 200 || $statusCode > 299) {
+                throw new ApiException(
+                    sprintf(
+                        '[%d] Error connecting to the API (%s)',
+                        $statusCode,
+                        $request->getUri()
+                    ),
+                    $statusCode,
+                    $response->getHeaders(),
+                    $response->getBody()
+                );
+            }
+
+            return [null, $statusCode, $response->getHeaders()];
+
+        } catch (ApiException $e) {
+            switch ($e->getCode()) {
+                case 400:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Metatavu\Pakkasmarja\Api\Model\BadRequest',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 403:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Metatavu\Pakkasmarja\Api\Model\Forbidden',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 500:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Metatavu\Pakkasmarja\Api\Model\InternalServerError',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+            }
+            throw $e;
+        }
+    }
+
+    /**
+     * Operation deleteItemGroupPriceAsync
+     *
+     * Delete item group price
+     *
+     * @param  string $itemGroupId item group id (required)
+     * @param  string $priceId price id (required)
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function deleteItemGroupPriceAsync($itemGroupId, $priceId)
+    {
+        return $this->deleteItemGroupPriceAsyncWithHttpInfo($itemGroupId, $priceId)
+            ->then(
+                function ($response) {
+                    return $response[0];
+                }
+            );
+    }
+
+    /**
+     * Operation deleteItemGroupPriceAsyncWithHttpInfo
+     *
+     * Delete item group price
+     *
+     * @param  string $itemGroupId item group id (required)
+     * @param  string $priceId price id (required)
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function deleteItemGroupPriceAsyncWithHttpInfo($itemGroupId, $priceId)
+    {
+        $returnType = '';
+        $request = $this->deleteItemGroupPriceRequest($itemGroupId, $priceId);
+
+        return $this->client
+            ->sendAsync($request)
+            ->then(
+                function ($response) use ($returnType) {
+                    return [null, $response->getStatusCode(), $response->getHeaders()];
+                },
+                function ($exception) {
+                    $response = $exception->getResponse();
+                    $statusCode = $response->getStatusCode();
+                    throw new ApiException(
+                        sprintf(
+                            '[%d] Error connecting to the API (%s)',
+                            $statusCode,
+                            $exception->getRequest()->getUri()
+                        ),
+                        $statusCode,
+                        $response->getHeaders(),
+                        $response->getBody()
+                    );
+                }
+            );
+    }
+
+    /**
+     * Create request for operation 'deleteItemGroupPrice'
+     *
+     * @param  string $itemGroupId item group id (required)
+     * @param  string $priceId price id (required)
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Psr7\Request
+     */
+    protected function deleteItemGroupPriceRequest($itemGroupId, $priceId)
+    {
+        // verify the required parameter 'itemGroupId' is set
+        if ($itemGroupId === null) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $itemGroupId when calling deleteItemGroupPrice'
+            );
+        }
+        // verify the required parameter 'priceId' is set
+        if ($priceId === null) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $priceId when calling deleteItemGroupPrice'
+            );
+        }
+
+        $resourcePath = '/itemGroups/{itemGroupId}/prices/{priceId}';
+        $formParams = [];
+        $queryParams = [];
+        $headerParams = [];
+        $httpBody = '';
+        $multipart = false;
+
+
+        // path params
+        if ($itemGroupId !== null) {
+            $resourcePath = str_replace(
+                '{' . 'itemGroupId' . '}',
+                ObjectSerializer::toPathValue($itemGroupId),
+                $resourcePath
+            );
+        }
+        // path params
+        if ($priceId !== null) {
+            $resourcePath = str_replace(
+                '{' . 'priceId' . '}',
+                ObjectSerializer::toPathValue($priceId),
+                $resourcePath
+            );
+        }
+
+        // body params
+        $_tempBody = null;
+
+        if ($multipart) {
+            $headers= $this->headerSelector->selectHeadersForMultipart(
+                ['application/json;charset=utf-8']
+            );
+        } else {
+            $headers = $this->headerSelector->selectHeaders(
+                ['application/json;charset=utf-8'],
+                ['application/json;charset=utf-8']
+            );
+        }
+
+        // for model (json/xml)
+        if (isset($_tempBody)) {
+            $httpBody = $_tempBody; // $_tempBody is the method argument, if present
+
+        } elseif (count($formParams) > 0) {
+            if ($multipart) {
+                $multipartContents = [];
+                foreach ($formParams as $formParamName => $formParamValue) {
+                    $multipartContents[] = [
+                        'name' => $formParamName,
+                        'contents' => $formParamValue
+                    ];
+                }
+                // for HTTP post (form)
+                $httpBody = new MultipartStream($multipartContents);
+
+            } elseif ($headers['Content-Type'] === 'application/json') {
+                $httpBody = \GuzzleHttp\json_encode($formParams);
+
+            } else {
+                // for HTTP post (form)
+                $httpBody = \GuzzleHttp\Psr7\build_query($formParams);
+            }
+        }
+
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
+        if ($apiKey !== null) {
+            $headers['Authorization'] = $apiKey;
+        }
+
+        $defaultHeaders = [];
+        if ($this->config->getUserAgent()) {
+            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
+        }
+
+        $headers = array_merge(
+            $defaultHeaders,
+            $headerParams,
+            $headers
+        );
+
+        $query = \GuzzleHttp\Psr7\build_query($queryParams);
+        return new Request(
+            'DELETE',
+            $this->config->getHost() . $resourcePath . ($query ? "?{$query}" : ''),
+            $headers,
+            $httpBody
+        );
+    }
+
+    /**
      * Operation findItemGroup
      *
      * Find item group
