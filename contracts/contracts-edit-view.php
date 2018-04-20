@@ -53,6 +53,8 @@
         add_action( 'admin_menu', function () {
           add_submenu_page(NULL, __('Edit Contract', 'pakkasmarja_management'), __('Edit Contract', 'pakkasmarja_management'), $this->capability, 'pakkasmarja-contract-edit-view.php', [ $this, 'renderContractEditView' ]);
         });
+
+        add_action( 'wp_ajax_pakkasmarja_search_contacts', [ $this, 'ajaxSearchContacts'] );
       }
 
       /**
@@ -61,6 +63,10 @@
       public function renderContractEditView() {
         $id = sanitize_text_field($_GET['id']);
         $contract = $id !== 'NEW' ? $this->findContractById($id) : null;
+
+        wp_enqueue_script('jquery');
+        wp_enqueue_script('jquery-ui-autocomplete', null, ['jquery']);
+        wp_enqueue_script('contracts-edit-view', plugin_dir_url(__FILE__) . 'contracts-edit-view.js', null, ['jquery-ui-autocomplete' ]);
 
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
           $validateMessage = $this->validatePost();
@@ -210,19 +216,14 @@
       }
 
       /**
-       * Renders a contact dropdown input
+       * Renders a contact autocomplete input
        * 
        * @param String $label input label
        * @param String $name input name
        */
       private function renderContactInput($label, $name) {
-        $options = [];
-        
-        foreach ($this->listContacts() as $contact) {
-          $options[$contact->getId()] = Formatter::getCompanyName($contact->getId());
-        }
-
-        $this->renderDropdownInput($label, $name, null, $options);
+        echo '<input type="hidden" name="' . $name . '"/>';
+        $this->renderTextInput($label, "$name-ac", null);
       }
 
       /**
@@ -259,6 +260,34 @@
        */
       private function getItemGroupName($contract) {
         return Formatter::getItemGroupName($contract->getItemGroupId());
+      }
+
+      /**
+       * Ajax action for searching contacts
+       */
+      public function ajaxSearchContacts() {
+        try {
+          $searchResults = $this->listContacts($_POST['search']);
+          $result = [];
+          
+          foreach ($searchResults as $searchResult) {
+            $companyName = Formatter::getCompanyName($searchResult->getId());
+
+            $result[] = [
+              'value' => $companyName,
+              'id' => $searchResult->getId()
+            ];
+          }
+
+          echo json_encode($result);
+
+          wp_die();
+        } catch (\Metatavu\Pakkasmarja\ApiException $e) {
+          $message = json_encode($e->getResponseBody());
+          wp_die($message, null, [
+            response => $e->getCode()
+          ]);
+        }
       }
 
       /**
@@ -365,9 +394,9 @@
        * 
        * @return array array containing contacts
        */
-      private function listContacts() {
+      private function listContacts($search) {
         try {
-          return $this->contactsApi->listContacts();
+          return $this->contactsApi->listContacts($search);
         } catch (\Metatavu\Pakkasmarja\ApiException $e) {
           echo '<div class="error notice">';
           if ($e->getResponseBody()) {
