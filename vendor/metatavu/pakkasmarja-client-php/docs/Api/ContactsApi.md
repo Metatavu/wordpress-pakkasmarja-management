@@ -61,7 +61,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 # **listContacts**
-> \Metatavu\Pakkasmarja\Api\Model\Contact[] listContacts()
+> \Metatavu\Pakkasmarja\Api\Model\Contact[] listContacts($search)
 
 Lists contacts
 
@@ -78,9 +78,10 @@ Metatavu\Pakkasmarja\Configuration::getDefaultConfiguration()->setApiKey('Author
 // Metatavu\Pakkasmarja\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Authorization', 'Bearer');
 
 $api_instance = new Metatavu\Pakkasmarja\Api\ContactsApi(new \Http\Adapter\Guzzle6\Client());
+$search = "search_example"; // string | filter results by free text search
 
 try {
-    $result = $api_instance->listContacts();
+    $result = $api_instance->listContacts($search);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling ContactsApi->listContacts: ', $e->getMessage(), PHP_EOL;
@@ -89,7 +90,10 @@ try {
 ```
 
 ### Parameters
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **search** | **string**| filter results by free text search | [optional]
 
 ### Return type
 

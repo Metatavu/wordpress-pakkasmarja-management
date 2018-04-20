@@ -371,14 +371,15 @@ class ContactsApi
      *
      * Lists contacts
      *
+     * @param  string $search filter results by free text search (optional)
      *
      * @throws \Metatavu\Pakkasmarja\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return \Metatavu\Pakkasmarja\Api\Model\Contact[]
      */
-    public function listContacts()
+    public function listContacts($search = null)
     {
-        list($response) = $this->listContactsWithHttpInfo();
+        list($response) = $this->listContactsWithHttpInfo($search);
         return $response;
     }
 
@@ -387,15 +388,16 @@ class ContactsApi
      *
      * Lists contacts
      *
+     * @param  string $search filter results by free text search (optional)
      *
      * @throws \Metatavu\Pakkasmarja\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return array of \Metatavu\Pakkasmarja\Api\Model\Contact[], HTTP status code, HTTP response headers (array of strings)
      */
-    public function listContactsWithHttpInfo()
+    public function listContactsWithHttpInfo($search = null)
     {
         $returnType = '\Metatavu\Pakkasmarja\Api\Model\Contact[]';
-        $request = $this->listContactsRequest();
+        $request = $this->listContactsRequest($search);
 
         try {
 
@@ -484,13 +486,14 @@ class ContactsApi
      *
      * Lists contacts
      *
+     * @param  string $search filter results by free text search (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function listContactsAsync()
+    public function listContactsAsync($search = null)
     {
-        return $this->listContactsAsyncWithHttpInfo()
+        return $this->listContactsAsyncWithHttpInfo($search)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -503,14 +506,15 @@ class ContactsApi
      *
      * Lists contacts
      *
+     * @param  string $search filter results by free text search (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function listContactsAsyncWithHttpInfo()
+    public function listContactsAsyncWithHttpInfo($search = null)
     {
         $returnType = '\Metatavu\Pakkasmarja\Api\Model\Contact[]';
-        $request = $this->listContactsRequest();
+        $request = $this->listContactsRequest($search);
 
         return $this->client
             ->sendAsync($request)
@@ -552,11 +556,12 @@ class ContactsApi
     /**
      * Create request for operation 'listContacts'
      *
+     * @param  string $search filter results by free text search (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    protected function listContactsRequest()
+    protected function listContactsRequest($search = null)
     {
 
         $resourcePath = '/contacts';
@@ -566,6 +571,10 @@ class ContactsApi
         $httpBody = '';
         $multipart = false;
 
+        // query params
+        if ($search !== null) {
+            $queryParams['search'] = ObjectSerializer::toQueryValue($search);
+        }
 
 
         // body params
