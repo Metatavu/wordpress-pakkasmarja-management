@@ -20,7 +20,32 @@
           if (current_user_can('pakkasmarja_contracts_view') && $page === 'contract.php') {
             switch ($action) {
               case 'xlsx':
-                $xlsxResponse = \Metatavu\Pakkasmarja\Api\ApiClient::getContractsApi()->listContractsXLSX();
+                $firstResult = 0;
+                $maxResults = 1000;
+                $accept = null;
+                $listAll = "true";
+                $itemGroupCategory = null;
+                $itemGroupId = sanitize_text_field($_REQUEST["item-group-id"]);
+                $year = sanitize_text_field($_REQUEST["year"]);
+                $status = sanitize_text_field($_REQUEST["status"]);
+
+                if (!$year) {
+                  $year = intval(date("Y"));
+                }
+
+                if ($itemGroupId === "all") {
+                  $itemGroupId = null;
+                }
+
+                if ($year === "all") {
+                  $year = null;
+                }
+
+                if ($status === "all") {
+                  $status = null;
+                }
+
+                $xlsxResponse = \Metatavu\Pakkasmarja\Api\ApiClient::getContractsApi()->listContractsXLSX($accept, $listAll, $itemGroupCategory, $itemGroupId, $year, $status, $firstResult, $maxResults);
                 $body = $xlsxResponse->getBody();
                 $contentType = $xlsxResponse->getHeader('Content-Type')[0];
                 $contentDisposition = $xlsxResponse->getHeader('Content-Disposition')[0];  

@@ -17,8 +17,8 @@
       /**
        * Downloads contracts list as Excel file
        */
-      public function listContractsXLSX() {
-        $requestTemplate = $this->listContractsRequest();
+      public function listContractsXLSX($accept = null, $listAll = null, $itemGroupCategory = null, $itemGroupId = null, $year = null, $status = null, $firstResult = null, $maxResults = null) {
+        $requestTemplate = $this->listContractsRequest($accept, $listAll, $itemGroupCategory, $itemGroupId, $year, $status, $firstResult, $maxResults);
         $headers = $requestTemplate->getHeaders();
         $headers['Accept'] = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet";
         $request = new \GuzzleHttp\Psr7\Request('GET', $requestTemplate->getUri(), $headers);

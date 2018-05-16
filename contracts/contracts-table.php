@@ -181,8 +181,7 @@
 
           $this->printExtraNavSelect("year-select", __('Show year', 'pakkasmarja_management'), "year", $yearOptions);
 
-          $xlsxUrl = "?page=contract.php&action=xlsx";
-          echo sprintf('<a class="button" style="display: inline-block; href="%s">%s</a>', $xlsxUrl, __('Download XLSX', 'pakkasmarja_management'));
+          echo sprintf('<a class="button export-contracts-xlsx-btn" style="display: inline-block;" href="#">%s</a>', __('Download XLSX', 'pakkasmarja_management'));
         }
       }
 
