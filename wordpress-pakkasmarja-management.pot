@@ -1,84 +1,81 @@
-# Copyright (C) 2017 Pakkasmarja Management
+# Copyright (C) 2018 Pakkasmarja Management
 # This file is distributed under the same license as the Pakkasmarja Management package.
 msgid ""
 msgstr ""
-"Project-Id-Version: Pakkasmarja Management 0.0.1\n"
+"Project-Id-Version: Pakkasmarja Management 0.1.11\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/wordpress-"
 "pakkasmarja-management\n"
 "POT-Creation-Date: 2018-06-26 14:09:34+00:00\n"
-"PO-Revision-Date: 2018-06-26 17:10+0300\n"
-"Last-Translator: \n"
-"Language-Team: \n"
-"Language: fi\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 2.0.4\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"PO-Revision-Date: 2018-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
 
 #: chat-threads/chat-threads-groups-widget.php:18
 #: question-groups/question-groups-groups-widget.php:18
 msgid "User Groups"
-msgstr "Käyttäjäryhmät"
+msgstr ""
 
 #: chat-threads/chat-threads-groups-widget.php:62
 #: question-groups/question-groups-groups-widget.php:62
 msgid "User"
-msgstr "Käyttäjä"
+msgstr ""
 
 #: chat-threads/chat-threads-groups-widget.php:63
 #: question-groups/question-groups-groups-widget.php:63
 msgid "Manager"
-msgstr "Manageri"
+msgstr ""
 
 #: chat-threads/chat-threads-type.php:11 chat-threads/chat-threads-type.php:21
 #: chat-threads/chat-threads-type.php:22
 msgid "Chat Threads"
-msgstr "Keskusteluketjut"
+msgstr ""
 
 #: chat-threads/chat-threads-type.php:12
 msgid "Chat Thread"
-msgstr "Keskusteluketju"
+msgstr ""
 
 #: chat-threads/chat-threads-type.php:13 chat-threads/chat-threads-type.php:14
 msgid "Add Chat Thread"
-msgstr "Lisää keskusteluketju"
+msgstr ""
 
 #: chat-threads/chat-threads-type.php:15
 msgid "Edit Chat Thread"
-msgstr "Muokkaa keskusteluketjua"
+msgstr ""
 
 #: chat-threads/chat-threads-type.php:16
 msgid "New Chat Thread"
-msgstr "Uusi keskusteluketju"
+msgstr ""
 
 #: chat-threads/chat-threads-type.php:17
 msgid "View Chat Thread"
-msgstr "Näytä keskusteluketju"
+msgstr ""
 
 #: chat-threads/chat-threads-type.php:18
 msgid "Search Chat Threads"
-msgstr "Hae keskusteluketjuja"
+msgstr ""
 
 #: chat-threads/chat-threads-type.php:19
 msgid "No Chat Threads found"
-msgstr "Keskusteluketjuja ei löytynyt"
+msgstr ""
 
 #: chat-threads/chat-threads-type.php:20
 msgid "No Chat Threads in trash"
-msgstr "Ei keskusteluketjuja roskakorissa"
+msgstr ""
 
 #: contracts/contracts-document-template-edit-view.php:35
 msgid "Edit Contract Document Template"
-msgstr "Muokkaa sopimuksen sopimusmallia"
+msgstr ""
 
 #: contracts/contracts-document-template-edit-view.php:60
 msgid "Failed to update contract document template"
-msgstr "Sopimuksen muokkaus epäonnistui"
+msgstr ""
 
 #: contracts/contracts-document-template-edit-view.php:65
 msgid "Edit %s document template %s"
-msgstr "Muokkaa sopimuksen %s sopimusmallia %s"
+msgstr ""
 
 #: contracts/contracts-document-template-edit-view.php:69
 #: contracts/contracts-edit-view.php:105
@@ -86,417 +83,414 @@ msgstr "Muokkaa sopimuksen %s sopimusmallia %s"
 #: item-groups/item-groups-price-edit-view.php:63
 #: operations/operations-report-view.php:45
 msgid "Back"
-msgstr "Takaisin"
+msgstr ""
 
 #: contracts/contracts-document-template-edit-view.php:113
 msgid ""
 "Please not that saving this will create customized version of the contract "
 "document template"
 msgstr ""
-"Huomaathan, että mallin tallentaminen luo sopimukselle erillisen mallin ja "
-"eriyttää mallin marjaryhmän pohjamalista"
 
 #: contracts/contracts-document-template-edit-view.php:120
 #: item-groups/item-groups-document-template-edit-view.php:105
 msgid "Contents"
-msgstr "Sisältö"
+msgstr ""
 
 #: contracts/contracts-document-template-edit-view.php:121
 #: item-groups/item-groups-document-template-edit-view.php:106
 msgid "Header"
-msgstr "Ylätunniste"
+msgstr ""
 
 #: contracts/contracts-document-template-edit-view.php:122
 #: item-groups/item-groups-document-template-edit-view.php:107
 msgid "Footer"
-msgstr "Alatunniste"
+msgstr ""
 
 #: contracts/contracts-edit-view.php:54
 msgid "Edit Contract"
-msgstr "Muokkaa sopimusta"
+msgstr ""
 
 #: contracts/contracts-edit-view.php:90
 msgid "Failed to create contract"
-msgstr "Sopimuksen luonti epäonnistui"
+msgstr ""
 
 #: contracts/contracts-edit-view.php:96
 #: item-groups/item-groups-document-template-edit-view.php:57
 msgid "Failed to update contract"
-msgstr "Sopimuksen muokkaus epäonnistui"
+msgstr ""
 
 #: contracts/contracts-edit-view.php:110 contracts/contracts-menu.php:30
 msgid "New Contract"
-msgstr "Uusi sopimus"
+msgstr ""
 
 #: contracts/contracts-edit-view.php:157
 msgid "Contact"
-msgstr "Sopimus"
+msgstr ""
 
 #: contracts/contracts-edit-view.php:158 contracts/contracts-table.php:220
 msgid "Item Group"
-msgstr "Marjalaji"
+msgstr ""
 
 #: contracts/contracts-edit-view.php:161
 msgid "SAP Id"
-msgstr "SAP id"
+msgstr ""
 
 #: contracts/contracts-edit-view.php:162 contracts/contracts-table.php:219
 #: operations/operation-reports-table.php:118
 #: operations/operations-report-view.php:49
 msgid "Status"
-msgstr "Tila"
+msgstr ""
 
 #: contracts/contracts-edit-view.php:163
 msgid "Reject Comment"
-msgstr "Hylkäyskommentti"
+msgstr ""
 
 #: contracts/contracts-edit-view.php:165
 msgid "Proposed Quantity"
-msgstr "Viljelijän ehdottama määrä"
+msgstr ""
 
 #: contracts/contracts-edit-view.php:166
 msgid "Quantity Comment"
-msgstr "Määrän kommentti"
+msgstr ""
 
 #: contracts/contracts-edit-view.php:167 contracts/contracts-table.php:221
 msgid "Contract Quantity"
-msgstr "Sopimusmäärä"
+msgstr ""
 
 #: contracts/contracts-edit-view.php:171
 msgid "Farmed delivers all berries to company"
-msgstr "Viljelijä toimittaa kaikki marjansa Pakkasmarjalle"
+msgstr ""
 
 #: contracts/contracts-edit-view.php:175
 msgid "Delivery Place"
-msgstr "Toimituspaikka"
+msgstr ""
 
 #: contracts/contracts-edit-view.php:176
 msgid "Proposed Delivery Place"
-msgstr "Viljelijän ehdottama toimituspaikka"
+msgstr ""
 
 #: contracts/contracts-edit-view.php:177
 msgid "Delivery Place Comment"
-msgstr "Toimituspaikan kommentti"
+msgstr ""
 
 #: contracts/contracts-edit-view.php:179
 msgid "Remarks (SAP)"
-msgstr "Huomautuskenttä (SAP)"
+msgstr ""
 
 #: contracts/contracts-menu.php:19 contracts/contracts-menu.php:30
 msgid "Contracts"
-msgstr "Sopimukset"
+msgstr ""
 
 #: contracts/contracts-table.php:138 contracts/contracts-table.php:158
 #: contracts/contracts-table.php:178
 msgid "All"
-msgstr "Kaikki"
+msgstr ""
 
 #: contracts/contracts-table.php:142
 msgid "Show item group"
-msgstr "Marjalaji"
+msgstr ""
 
 #: contracts/contracts-table.php:162
 msgid "Show status"
-msgstr "Tila"
+msgstr ""
 
 #: contracts/contracts-table.php:182
 msgid "Show year"
-msgstr "Vuosi"
+msgstr ""
 
 #: contracts/contracts-table.php:184
 msgid "Download XLSX"
-msgstr "Lataa XLSX -tiedostona"
+msgstr ""
 
 #: contracts/contracts-table.php:218
 msgid "Company"
-msgstr "Toimittajan nimi"
+msgstr ""
 
 #: contracts/contracts-table.php:222
 msgid "Delivered Quantity"
-msgstr "Toimitettu määrä"
+msgstr ""
 
 #: contracts/contracts-table.php:223
 msgid "Place"
-msgstr "Toimituspaikka"
+msgstr ""
 
 #: contracts/contracts-table.php:224
 msgid "Remarks"
-msgstr "Huomautuskenttä"
+msgstr ""
 
 #: contracts/contracts-table.php:225
 msgid "Sign date"
-msgstr "Viljelijän allekirjoituspäivä"
+msgstr ""
 
 #: contracts/contracts-table.php:226
 msgid "Start date"
-msgstr "Alkupäivä"
+msgstr ""
 
 #: contracts/contracts-table.php:227
 msgid "End date"
-msgstr "Loppupäivä"
+msgstr ""
 
 #: contracts/contracts-table.php:228
 msgid "Approval date"
-msgstr "Pakkasmarjan hyväksyntäpäivä"
+msgstr ""
 
 #: contracts/contracts-table.php:274
 msgid "Edit"
-msgstr "Muokkaa"
+msgstr ""
 
 #: contracts/contracts-table.php:280
 msgid "Customize (%s)"
-msgstr "Muokkaa mallia (%s)"
+msgstr ""
 
 #: contracts/contracts-table.php:281
 msgid "View PDF (%s)"
-msgstr "Näytä PDF (%s)"
+msgstr ""
 
 #: item-groups/item-groups-document-template-edit-view.php:35
 msgid "Edit Item Group Document Template"
-msgstr "Muokkaa marjalajin sopimusmallia"
+msgstr ""
 
 #: item-groups/item-groups-menu.php:19 item-groups/item-groups-menu.php:29
 msgid "Item Groups"
-msgstr "Marjalajit"
+msgstr ""
 
 #: item-groups/item-groups-price-edit-view.php:35
 msgid "Edit Item Group Price"
-msgstr "Muokkaa marjalajin hintoja"
+msgstr ""
 
 #: item-groups/item-groups-price-edit-view.php:66
 msgid "Prices"
-msgstr "Hinnat"
+msgstr ""
 
 #: item-groups/item-groups-price-edit-view.php:150
 msgid "Year"
-msgstr "Vuosi"
+msgstr ""
 
 #: item-groups/item-groups-price-edit-view.php:151 utils/formatter.php:90
 msgid "Group"
-msgstr "Ryhmä"
+msgstr ""
 
 #: item-groups/item-groups-price-edit-view.php:152
 msgid "Price"
-msgstr "Hinta"
+msgstr ""
 
 #: item-groups/item-groups-price-edit-view.php:153
 msgid "Unit"
-msgstr "Yksikkö"
+msgstr ""
 
 #: item-groups/item-groups-price-edit-view.php:170
 msgid "Add Price"
-msgstr "Lisää hinta"
+msgstr ""
 
 #: item-groups/item-groups-price-edit-view.php:191
 msgid "Remove"
-msgstr "Poista"
+msgstr ""
 
 #: item-groups/item-groups-table.php:78
 msgid "Name"
-msgstr "Nimi"
+msgstr ""
 
 #: item-groups/item-groups-table.php:126
 msgid "Edit template %s"
-msgstr "Muokkaa sopimusmallia %s"
+msgstr ""
 
 #: item-groups/item-groups-table.php:131
 msgid "Edit prices"
-msgstr "Muokkaa hintoja"
+msgstr ""
 
 #: operations/operation-reports-table.php:87
 msgid "Operation"
-msgstr "Toimenpide"
+msgstr ""
 
 #: operations/operation-reports-table.php:99
 msgid "Confirm"
-msgstr "Vahvista"
+msgstr ""
 
 #: operations/operation-reports-table.php:100
 msgid "Cancel"
-msgstr "Peruuta"
+msgstr ""
 
 #: operations/operation-reports-table.php:101
 msgid "Confirm operation"
-msgstr "Vahvista toimenpide"
+msgstr ""
 
 #: operations/operation-reports-table.php:102
 msgid "Confirm operation %s start"
-msgstr "Vahvista toimenpiteen %s -aloittaminen"
+msgstr ""
 
 #: operations/operation-reports-table.php:103
 msgid "Start"
-msgstr "Aloita"
+msgstr ""
 
 #: operations/operation-reports-table.php:116
 msgid "Type"
-msgstr "Tyyppi"
+msgstr ""
 
 #: operations/operation-reports-table.php:117
 msgid "Started"
-msgstr "Aloitettu"
+msgstr ""
 
 #: operations/operation-reports-table.php:162
 msgid "View"
-msgstr "Näytä"
+msgstr ""
 
 #: operations/operation-reports-table.php:176
 msgid "In Progress (%d / %d)"
-msgstr "Kesken (%d / %d)"
+msgstr ""
 
 #: operations/operation-reports-table.php:180
 msgid "Contains Errors (%d / %d)"
-msgstr "Sisältää virheitä (%d / %d)"
+msgstr ""
 
 #: operations/operation-reports-table.php:184
 msgid "Errored"
-msgstr "Epäonnistunut"
+msgstr ""
 
 #: operations/operation-reports-table.php:187 utils/formatter.php:54
 msgid "Success"
-msgstr "Onnistunut"
+msgstr ""
 
 #: operations/operations-menu.php:19 operations/operations-menu.php:29
 msgid "Operations"
-msgstr "Toimenpiteet"
+msgstr ""
 
 #: operations/operations-report-view.php:32
 msgid "View Operation"
-msgstr "Näytä toimenpide"
+msgstr ""
 
 #: operations/operations-report-view.php:49
 msgid "Message"
-msgstr "Viesti"
+msgstr ""
 
 #: question-groups/question-groups-type.php:11
 #: question-groups/question-groups-type.php:21
 #: question-groups/question-groups-type.php:22
 msgid "Question Groups"
-msgstr "Kysymysryhmät"
+msgstr ""
 
 #: question-groups/question-groups-type.php:12
 msgid "Question Group"
-msgstr "Kysymysryhmä"
+msgstr ""
 
 #: question-groups/question-groups-type.php:13
 #: question-groups/question-groups-type.php:14
 msgid "Add Question Group"
 msgstr ""
-"Lisää k\n"
-"ysymysryhmä"
 
 #: question-groups/question-groups-type.php:15
 msgid "Edit Question Group"
-msgstr "Muokkaa kysymysryhmää"
+msgstr ""
 
 #: question-groups/question-groups-type.php:16
 msgid "New Question Group"
-msgstr "Uusi kysymysryhmä"
+msgstr ""
 
 #: question-groups/question-groups-type.php:17
 msgid "View Question Group"
-msgstr "Näytä kysymysryhmä"
+msgstr ""
 
 #: question-groups/question-groups-type.php:18
 msgid "Search Question Groups"
-msgstr "Hae kysymysryhmiä"
+msgstr ""
 
 #: question-groups/question-groups-type.php:19
 msgid "No Question Groups found"
-msgstr "Kysymysryhmiä ei löytynyt"
+msgstr ""
 
 #: question-groups/question-groups-type.php:20
 msgid "No Question Groups in trash"
-msgstr "Ei kysymysryhmiä roskakorissa"
+msgstr ""
 
 #: settings/settings-ui.php:18
 msgid "Pakkasmarja Settings"
-msgstr "Pakkasmarja Asetukset"
+msgstr ""
 
 #: settings/settings-ui.php:23
 msgid "API Settings"
-msgstr "API-asetukset"
+msgstr ""
 
 #: settings/settings-ui.php:24
 msgid "API URL"
-msgstr "API-osoite"
+msgstr ""
 
 #: settings/settings-ui.php:25
 msgid "Client Id"
-msgstr "Client Id"
+msgstr ""
 
 #: settings/settings-ui.php:26
 msgid "Client Secret"
-msgstr "Client Secret"
+msgstr ""
 
 #: settings/settings-ui.php:45
 msgid "You do not have sufficient permissions to access this page."
-msgstr "Oikeutesi eivät riitä tämän sivun katseluun."
+msgstr ""
 
+#. #-#-#-#-#  wordpress-pakkasmarja-management.pot (Pakkasmarja Management 0.1.11)  #-#-#-#-#
 #. Plugin Name of the plugin/theme
 #: settings/settings-ui.php:49
 msgid "Pakkasmarja Management"
-msgstr "Pakkasmarja hallinta"
+msgstr ""
 
 #: utils/formatter.php:27
 msgid "SAP Contacts synchronization"
-msgstr "SAP Yhteystietojen synkronointi"
+msgstr ""
 
 #: utils/formatter.php:29
 msgid "SAP Delivery Places synchronization"
-msgstr "SAP toimituspaikkojen synkronointi"
+msgstr ""
 
 #: utils/formatter.php:31
 msgid "SAP Item Groups synchronization"
-msgstr "SAP marjalajien synkronointi"
+msgstr ""
 
 #: utils/formatter.php:33
 msgid "SAP Contracts synchronization"
-msgstr "SAP sopimusten synkronointi"
+msgstr ""
 
 #: utils/formatter.php:35
 msgid "Item Group default document templates"
-msgstr "Marjalajien oletus sopimusmallit"
+msgstr ""
 
 #: utils/formatter.php:37
 msgid "Synchronize contract SAP ids"
-msgstr "Synkronoi sopimusten SAP -tunnisteet"
+msgstr ""
 
 #: utils/formatter.php:50
 msgid "Pending"
-msgstr "Odottaa"
+msgstr ""
 
 #: utils/formatter.php:52
 msgid "Failure"
-msgstr "Epäonnistunut"
+msgstr ""
 
 #: utils/formatter.php:67
 msgid "Approved"
-msgstr "Hyväksytty"
+msgstr ""
 
 #: utils/formatter.php:69
 msgid "On Hold"
-msgstr "Odottaa"
+msgstr ""
 
 #: utils/formatter.php:71
 msgid "Draft"
-msgstr "Vedos"
+msgstr ""
 
 #: utils/formatter.php:73
 msgid "Terminated"
-msgstr "Päättynyt"
+msgstr ""
 
 #: utils/formatter.php:75
 msgid "Rejected"
-msgstr "Hylätty"
+msgstr ""
 
 #: utils/formatter.php:88
 msgid "Master"
-msgstr "Pääsopimus"
+msgstr ""
 
 #. Description of the plugin/theme
 msgid "Management functions for Pakkasmarja Application"
-msgstr "Pakkasmarja applikaation hallintapalvelut"
+msgstr ""
 
 #. Author of the plugin/theme
 msgid "Metatavu Oy"
-msgstr "Metatavu Oy"
+msgstr ""

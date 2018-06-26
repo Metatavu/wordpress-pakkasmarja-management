@@ -33,6 +33,8 @@
             return __('SAP Contracts synchronization', 'pakkasmarja_management');
           case "ITEM_GROUP_DEFAULT_DOCUMENT_TEMPLATES":
             return __('Item Group default document templates', 'pakkasmarja_management');
+          case "SAP_CONTRACT_SAPID_SYNC":
+            return __('Synchronize contract SAP ids', 'pakkasmarja_management');
         }
       }
 
