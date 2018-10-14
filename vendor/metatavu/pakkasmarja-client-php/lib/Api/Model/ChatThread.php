@@ -183,7 +183,7 @@ class ChatThread implements ModelInterface, ArrayAccess
     }
 
     const ANSWER_TYPE_TEXT = 'TEXT';
-    const ANSWER_TYPE_PREDEFINED = 'PREDEFINED';
+    const ANSWER_TYPE_POLL = 'POLL';
     
 
     
@@ -196,7 +196,7 @@ class ChatThread implements ModelInterface, ArrayAccess
     {
         return [
             self::ANSWER_TYPE_TEXT,
-            self::ANSWER_TYPE_PREDEFINED,
+            self::ANSWER_TYPE_POLL,
         ];
     }
     

@@ -81,41 +81,41 @@ class ChatThreadsApi
     }
 
     /**
-     * Operation createThreadPredefinedText
+     * Operation getChatThreadReport
      *
-     * Creates a predefined text for a thread
+     * Returns chat thread report
      *
-     * @param  int $threadId thread id (required)
-     * @param  int $predefinedTextId predefined text id (required)
-     * @param  \Metatavu\Pakkasmarja\Api\Model\ChatThreadPredefinedText $payload predefined text (required)
+     * @param  int $threadId chat thread id (required)
+     * @param  string $type report type. Accepted values summaryReport (required)
+     * @param  string $accept Expected response format. Accepted values application/vnd.openxmlformats for Excel response (optional)
      *
      * @throws \Metatavu\Pakkasmarja\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \Metatavu\Pakkasmarja\Api\Model\ChatThreadPredefinedText
+     * @return string
      */
-    public function createThreadPredefinedText($threadId, $predefinedTextId, $payload)
+    public function getChatThreadReport($threadId, $type, $accept = null)
     {
-        list($response) = $this->createThreadPredefinedTextWithHttpInfo($threadId, $predefinedTextId, $payload);
+        list($response) = $this->getChatThreadReportWithHttpInfo($threadId, $type, $accept);
         return $response;
     }
 
     /**
-     * Operation createThreadPredefinedTextWithHttpInfo
+     * Operation getChatThreadReportWithHttpInfo
      *
-     * Creates a predefined text for a thread
+     * Returns chat thread report
      *
-     * @param  int $threadId thread id (required)
-     * @param  int $predefinedTextId predefined text id (required)
-     * @param  \Metatavu\Pakkasmarja\Api\Model\ChatThreadPredefinedText $payload predefined text (required)
+     * @param  int $threadId chat thread id (required)
+     * @param  string $type report type. Accepted values summaryReport (required)
+     * @param  string $accept Expected response format. Accepted values application/vnd.openxmlformats for Excel response (optional)
      *
      * @throws \Metatavu\Pakkasmarja\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of \Metatavu\Pakkasmarja\Api\Model\ChatThreadPredefinedText, HTTP status code, HTTP response headers (array of strings)
+     * @return array of string, HTTP status code, HTTP response headers (array of strings)
      */
-    public function createThreadPredefinedTextWithHttpInfo($threadId, $predefinedTextId, $payload)
+    public function getChatThreadReportWithHttpInfo($threadId, $type, $accept = null)
     {
-        $returnType = '\Metatavu\Pakkasmarja\Api\Model\ChatThreadPredefinedText';
-        $request = $this->createThreadPredefinedTextRequest($threadId, $predefinedTextId, $payload);
+        $returnType = 'string';
+        $request = $this->getChatThreadReportRequest($threadId, $type, $accept);
 
         try {
 
@@ -165,7 +165,7 @@ class ChatThreadsApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\Metatavu\Pakkasmarja\Api\Model\ChatThreadPredefinedText',
+                        'string',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -200,20 +200,20 @@ class ChatThreadsApi
     }
 
     /**
-     * Operation createThreadPredefinedTextAsync
+     * Operation getChatThreadReportAsync
      *
-     * Creates a predefined text for a thread
+     * Returns chat thread report
      *
-     * @param  int $threadId thread id (required)
-     * @param  int $predefinedTextId predefined text id (required)
-     * @param  \Metatavu\Pakkasmarja\Api\Model\ChatThreadPredefinedText $payload predefined text (required)
+     * @param  int $threadId chat thread id (required)
+     * @param  string $type report type. Accepted values summaryReport (required)
+     * @param  string $accept Expected response format. Accepted values application/vnd.openxmlformats for Excel response (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function createThreadPredefinedTextAsync($threadId, $predefinedTextId, $payload)
+    public function getChatThreadReportAsync($threadId, $type, $accept = null)
     {
-        return $this->createThreadPredefinedTextAsyncWithHttpInfo($threadId, $predefinedTextId, $payload)
+        return $this->getChatThreadReportAsyncWithHttpInfo($threadId, $type, $accept)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -222,21 +222,21 @@ class ChatThreadsApi
     }
 
     /**
-     * Operation createThreadPredefinedTextAsyncWithHttpInfo
+     * Operation getChatThreadReportAsyncWithHttpInfo
      *
-     * Creates a predefined text for a thread
+     * Returns chat thread report
      *
-     * @param  int $threadId thread id (required)
-     * @param  int $predefinedTextId predefined text id (required)
-     * @param  \Metatavu\Pakkasmarja\Api\Model\ChatThreadPredefinedText $payload predefined text (required)
+     * @param  int $threadId chat thread id (required)
+     * @param  string $type report type. Accepted values summaryReport (required)
+     * @param  string $accept Expected response format. Accepted values application/vnd.openxmlformats for Excel response (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function createThreadPredefinedTextAsyncWithHttpInfo($threadId, $predefinedTextId, $payload)
+    public function getChatThreadReportAsyncWithHttpInfo($threadId, $type, $accept = null)
     {
-        $returnType = '\Metatavu\Pakkasmarja\Api\Model\ChatThreadPredefinedText';
-        $request = $this->createThreadPredefinedTextRequest($threadId, $predefinedTextId, $payload);
+        $returnType = 'string';
+        $request = $this->getChatThreadReportRequest($threadId, $type, $accept);
 
         return $this->client
             ->sendAsync($request)
@@ -276,43 +276,41 @@ class ChatThreadsApi
     }
 
     /**
-     * Create request for operation 'createThreadPredefinedText'
+     * Create request for operation 'getChatThreadReport'
      *
-     * @param  int $threadId thread id (required)
-     * @param  int $predefinedTextId predefined text id (required)
-     * @param  \Metatavu\Pakkasmarja\Api\Model\ChatThreadPredefinedText $payload predefined text (required)
+     * @param  int $threadId chat thread id (required)
+     * @param  string $type report type. Accepted values summaryReport (required)
+     * @param  string $accept Expected response format. Accepted values application/vnd.openxmlformats for Excel response (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    protected function createThreadPredefinedTextRequest($threadId, $predefinedTextId, $payload)
+    protected function getChatThreadReportRequest($threadId, $type, $accept = null)
     {
         // verify the required parameter 'threadId' is set
         if ($threadId === null) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $threadId when calling createThreadPredefinedText'
+                'Missing the required parameter $threadId when calling getChatThreadReport'
             );
         }
-        // verify the required parameter 'predefinedTextId' is set
-        if ($predefinedTextId === null) {
+        // verify the required parameter 'type' is set
+        if ($type === null) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $predefinedTextId when calling createThreadPredefinedText'
-            );
-        }
-        // verify the required parameter 'payload' is set
-        if ($payload === null) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $payload when calling createThreadPredefinedText'
+                'Missing the required parameter $type when calling getChatThreadReport'
             );
         }
 
-        $resourcePath = '/chatThreads/{threadId}/predefinedTexts';
+        $resourcePath = '/chatThreads/{threadId}/reports/{type}';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];
         $httpBody = '';
         $multipart = false;
 
+        // header params
+        if ($accept !== null) {
+            $headerParams['Accept'] = ObjectSerializer::toHeaderValue($accept);
+        }
 
         // path params
         if ($threadId !== null) {
@@ -323,318 +321,10 @@ class ChatThreadsApi
             );
         }
         // path params
-        if ($predefinedTextId !== null) {
+        if ($type !== null) {
             $resourcePath = str_replace(
-                '{' . 'predefinedTextId' . '}',
-                ObjectSerializer::toPathValue($predefinedTextId),
-                $resourcePath
-            );
-        }
-
-        // body params
-        $_tempBody = null;
-        if (isset($payload)) {
-            $_tempBody = $payload;
-        }
-
-        if ($multipart) {
-            $headers= $this->headerSelector->selectHeadersForMultipart(
-                ['application/json;charset=utf-8']
-            );
-        } else {
-            $headers = $this->headerSelector->selectHeaders(
-                ['application/json;charset=utf-8'],
-                ['application/json;charset=utf-8']
-            );
-        }
-
-        // for model (json/xml)
-        if (isset($_tempBody)) {
-            $httpBody = $_tempBody; // $_tempBody is the method argument, if present
-
-        } elseif (count($formParams) > 0) {
-            if ($multipart) {
-                $multipartContents = [];
-                foreach ($formParams as $formParamName => $formParamValue) {
-                    $multipartContents[] = [
-                        'name' => $formParamName,
-                        'contents' => $formParamValue
-                    ];
-                }
-                // for HTTP post (form)
-                $httpBody = new MultipartStream($multipartContents);
-
-            } elseif ($headers['Content-Type'] === 'application/json') {
-                $httpBody = \GuzzleHttp\json_encode($formParams);
-
-            } else {
-                // for HTTP post (form)
-                $httpBody = \GuzzleHttp\Psr7\build_query($formParams);
-            }
-        }
-
-        // this endpoint requires API key authentication
-        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
-        if ($apiKey !== null) {
-            $headers['Authorization'] = $apiKey;
-        }
-
-        $defaultHeaders = [];
-        if ($this->config->getUserAgent()) {
-            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
-        }
-
-        $headers = array_merge(
-            $defaultHeaders,
-            $headerParams,
-            $headers
-        );
-
-        $query = \GuzzleHttp\Psr7\build_query($queryParams);
-        return new Request(
-            'POST',
-            $this->config->getHost() . $resourcePath . ($query ? "?{$query}" : ''),
-            $headers,
-            $httpBody
-        );
-    }
-
-    /**
-     * Operation findChatThreadPredefinedText
-     *
-     * Finds a thread predefined text
-     *
-     * @param  int $threadId thread id (required)
-     * @param  int $predefinedTextId predefined text id (required)
-     *
-     * @throws \Metatavu\Pakkasmarja\ApiException on non-2xx response
-     * @throws \InvalidArgumentException
-     * @return \Metatavu\Pakkasmarja\Api\Model\ChatThreadPredefinedText
-     */
-    public function findChatThreadPredefinedText($threadId, $predefinedTextId)
-    {
-        list($response) = $this->findChatThreadPredefinedTextWithHttpInfo($threadId, $predefinedTextId);
-        return $response;
-    }
-
-    /**
-     * Operation findChatThreadPredefinedTextWithHttpInfo
-     *
-     * Finds a thread predefined text
-     *
-     * @param  int $threadId thread id (required)
-     * @param  int $predefinedTextId predefined text id (required)
-     *
-     * @throws \Metatavu\Pakkasmarja\ApiException on non-2xx response
-     * @throws \InvalidArgumentException
-     * @return array of \Metatavu\Pakkasmarja\Api\Model\ChatThreadPredefinedText, HTTP status code, HTTP response headers (array of strings)
-     */
-    public function findChatThreadPredefinedTextWithHttpInfo($threadId, $predefinedTextId)
-    {
-        $returnType = '\Metatavu\Pakkasmarja\Api\Model\ChatThreadPredefinedText';
-        $request = $this->findChatThreadPredefinedTextRequest($threadId, $predefinedTextId);
-
-        try {
-
-            try {
-                $response = $this->client->send($request);
-            } catch (RequestException $e) {
-                throw new ApiException(
-                    "[{$e->getCode()}] {$e->getMessage()}",
-                    $e->getCode(),
-                    $e->getResponse() ? $e->getResponse()->getHeaders() : null
-                );
-            }
-
-            $statusCode = $response->getStatusCode();
-
-            if ($statusCode < 200 || $statusCode > 299) {
-                throw new ApiException(
-                    sprintf(
-                        '[%d] Error connecting to the API (%s)',
-                        $statusCode,
-                        $request->getUri()
-                    ),
-                    $statusCode,
-                    $response->getHeaders(),
-                    $response->getBody()
-                );
-            }
-
-            $responseBody = $response->getBody();
-            if ($returnType === '\SplFileObject') {
-                $content = $responseBody; //stream goes to serializer
-            } else {
-                $content = $responseBody->getContents();
-                if ($returnType !== 'string') {
-                    $content = json_decode($content);
-                }
-            }
-
-            return [
-                ObjectSerializer::deserialize($content, $returnType, []),
-                $response->getStatusCode(),
-                $response->getHeaders()
-            ];
-
-        } catch (ApiException $e) {
-            switch ($e->getCode()) {
-                case 200:
-                    $data = ObjectSerializer::deserialize(
-                        $e->getResponseBody(),
-                        '\Metatavu\Pakkasmarja\Api\Model\ChatThreadPredefinedText',
-                        $e->getResponseHeaders()
-                    );
-                    $e->setResponseObject($data);
-                    break;
-                case 400:
-                    $data = ObjectSerializer::deserialize(
-                        $e->getResponseBody(),
-                        '\Metatavu\Pakkasmarja\Api\Model\BadRequest',
-                        $e->getResponseHeaders()
-                    );
-                    $e->setResponseObject($data);
-                    break;
-                case 403:
-                    $data = ObjectSerializer::deserialize(
-                        $e->getResponseBody(),
-                        '\Metatavu\Pakkasmarja\Api\Model\Forbidden',
-                        $e->getResponseHeaders()
-                    );
-                    $e->setResponseObject($data);
-                    break;
-                case 500:
-                    $data = ObjectSerializer::deserialize(
-                        $e->getResponseBody(),
-                        '\Metatavu\Pakkasmarja\Api\Model\InternalServerError',
-                        $e->getResponseHeaders()
-                    );
-                    $e->setResponseObject($data);
-                    break;
-            }
-            throw $e;
-        }
-    }
-
-    /**
-     * Operation findChatThreadPredefinedTextAsync
-     *
-     * Finds a thread predefined text
-     *
-     * @param  int $threadId thread id (required)
-     * @param  int $predefinedTextId predefined text id (required)
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
-     */
-    public function findChatThreadPredefinedTextAsync($threadId, $predefinedTextId)
-    {
-        return $this->findChatThreadPredefinedTextAsyncWithHttpInfo($threadId, $predefinedTextId)
-            ->then(
-                function ($response) {
-                    return $response[0];
-                }
-            );
-    }
-
-    /**
-     * Operation findChatThreadPredefinedTextAsyncWithHttpInfo
-     *
-     * Finds a thread predefined text
-     *
-     * @param  int $threadId thread id (required)
-     * @param  int $predefinedTextId predefined text id (required)
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
-     */
-    public function findChatThreadPredefinedTextAsyncWithHttpInfo($threadId, $predefinedTextId)
-    {
-        $returnType = '\Metatavu\Pakkasmarja\Api\Model\ChatThreadPredefinedText';
-        $request = $this->findChatThreadPredefinedTextRequest($threadId, $predefinedTextId);
-
-        return $this->client
-            ->sendAsync($request)
-            ->then(
-                function ($response) use ($returnType) {
-                    $responseBody = $response->getBody();
-                    if ($returnType === '\SplFileObject') {
-                        $content = $responseBody; //stream goes to serializer
-                    } else {
-                        $content = $responseBody->getContents();
-                        if ($returnType !== 'string') {
-                            $content = json_decode($content);
-                        }
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, $returnType, []),
-                        $response->getStatusCode(),
-                        $response->getHeaders()
-                    ];
-                },
-                function ($exception) {
-                    $response = $exception->getResponse();
-                    $statusCode = $response->getStatusCode();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $statusCode,
-                            $exception->getRequest()->getUri()
-                        ),
-                        $statusCode,
-                        $response->getHeaders(),
-                        $response->getBody()
-                    );
-                }
-            );
-    }
-
-    /**
-     * Create request for operation 'findChatThreadPredefinedText'
-     *
-     * @param  int $threadId thread id (required)
-     * @param  int $predefinedTextId predefined text id (required)
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Psr7\Request
-     */
-    protected function findChatThreadPredefinedTextRequest($threadId, $predefinedTextId)
-    {
-        // verify the required parameter 'threadId' is set
-        if ($threadId === null) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $threadId when calling findChatThreadPredefinedText'
-            );
-        }
-        // verify the required parameter 'predefinedTextId' is set
-        if ($predefinedTextId === null) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $predefinedTextId when calling findChatThreadPredefinedText'
-            );
-        }
-
-        $resourcePath = '/chatThreads/{threadId}/predefinedTexts/{predefinedTextId}';
-        $formParams = [];
-        $queryParams = [];
-        $headerParams = [];
-        $httpBody = '';
-        $multipart = false;
-
-
-        // path params
-        if ($threadId !== null) {
-            $resourcePath = str_replace(
-                '{' . 'threadId' . '}',
-                ObjectSerializer::toPathValue($threadId),
-                $resourcePath
-            );
-        }
-        // path params
-        if ($predefinedTextId !== null) {
-            $resourcePath = str_replace(
-                '{' . 'predefinedTextId' . '}',
-                ObjectSerializer::toPathValue($predefinedTextId),
+                '{' . 'type' . '}',
+                ObjectSerializer::toPathValue($type),
                 $resourcePath
             );
         }
@@ -705,37 +395,37 @@ class ChatThreadsApi
     }
 
     /**
-     * Operation listChatThreadPredefinedTexts
+     * Operation listChatThreads
      *
-     * List thread's predefined texts
+     * Returns list of chat threads
      *
-     * @param  int $threadId thread id (required)
+     * @param  string $originId Filter chat threads by origin id (optional)
      *
      * @throws \Metatavu\Pakkasmarja\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \Metatavu\Pakkasmarja\Api\Model\ThreadPredefinedText[]
+     * @return \Metatavu\Pakkasmarja\Api\Model\ChatThread[]
      */
-    public function listChatThreadPredefinedTexts($threadId)
+    public function listChatThreads($originId = null)
     {
-        list($response) = $this->listChatThreadPredefinedTextsWithHttpInfo($threadId);
+        list($response) = $this->listChatThreadsWithHttpInfo($originId);
         return $response;
     }
 
     /**
-     * Operation listChatThreadPredefinedTextsWithHttpInfo
+     * Operation listChatThreadsWithHttpInfo
      *
-     * List thread's predefined texts
+     * Returns list of chat threads
      *
-     * @param  int $threadId thread id (required)
+     * @param  string $originId Filter chat threads by origin id (optional)
      *
      * @throws \Metatavu\Pakkasmarja\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of \Metatavu\Pakkasmarja\Api\Model\ThreadPredefinedText[], HTTP status code, HTTP response headers (array of strings)
+     * @return array of \Metatavu\Pakkasmarja\Api\Model\ChatThread[], HTTP status code, HTTP response headers (array of strings)
      */
-    public function listChatThreadPredefinedTextsWithHttpInfo($threadId)
+    public function listChatThreadsWithHttpInfo($originId = null)
     {
-        $returnType = '\Metatavu\Pakkasmarja\Api\Model\ThreadPredefinedText[]';
-        $request = $this->listChatThreadPredefinedTextsRequest($threadId);
+        $returnType = '\Metatavu\Pakkasmarja\Api\Model\ChatThread[]';
+        $request = $this->listChatThreadsRequest($originId);
 
         try {
 
@@ -785,7 +475,7 @@ class ChatThreadsApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\Metatavu\Pakkasmarja\Api\Model\ThreadPredefinedText[]',
+                        '\Metatavu\Pakkasmarja\Api\Model\ChatThread[]',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -820,18 +510,18 @@ class ChatThreadsApi
     }
 
     /**
-     * Operation listChatThreadPredefinedTextsAsync
+     * Operation listChatThreadsAsync
      *
-     * List thread's predefined texts
+     * Returns list of chat threads
      *
-     * @param  int $threadId thread id (required)
+     * @param  string $originId Filter chat threads by origin id (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function listChatThreadPredefinedTextsAsync($threadId)
+    public function listChatThreadsAsync($originId = null)
     {
-        return $this->listChatThreadPredefinedTextsAsyncWithHttpInfo($threadId)
+        return $this->listChatThreadsAsyncWithHttpInfo($originId)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -840,19 +530,19 @@ class ChatThreadsApi
     }
 
     /**
-     * Operation listChatThreadPredefinedTextsAsyncWithHttpInfo
+     * Operation listChatThreadsAsyncWithHttpInfo
      *
-     * List thread's predefined texts
+     * Returns list of chat threads
      *
-     * @param  int $threadId thread id (required)
+     * @param  string $originId Filter chat threads by origin id (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function listChatThreadPredefinedTextsAsyncWithHttpInfo($threadId)
+    public function listChatThreadsAsyncWithHttpInfo($originId = null)
     {
-        $returnType = '\Metatavu\Pakkasmarja\Api\Model\ThreadPredefinedText[]';
-        $request = $this->listChatThreadPredefinedTextsRequest($threadId);
+        $returnType = '\Metatavu\Pakkasmarja\Api\Model\ChatThread[]';
+        $request = $this->listChatThreadsRequest($originId);
 
         return $this->client
             ->sendAsync($request)
@@ -892,38 +582,28 @@ class ChatThreadsApi
     }
 
     /**
-     * Create request for operation 'listChatThreadPredefinedTexts'
+     * Create request for operation 'listChatThreads'
      *
-     * @param  int $threadId thread id (required)
+     * @param  string $originId Filter chat threads by origin id (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    protected function listChatThreadPredefinedTextsRequest($threadId)
+    protected function listChatThreadsRequest($originId = null)
     {
-        // verify the required parameter 'threadId' is set
-        if ($threadId === null) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $threadId when calling listChatThreadPredefinedTexts'
-            );
-        }
 
-        $resourcePath = '/chatThreads/{threadId}/predefinedTexts';
+        $resourcePath = '/chatThreads';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];
         $httpBody = '';
         $multipart = false;
 
-
-        // path params
-        if ($threadId !== null) {
-            $resourcePath = str_replace(
-                '{' . 'threadId' . '}',
-                ObjectSerializer::toPathValue($threadId),
-                $resourcePath
-            );
+        // query params
+        if ($originId !== null) {
+            $queryParams['originId'] = ObjectSerializer::toQueryValue($originId);
         }
+
 
         // body params
         $_tempBody = null;
@@ -984,325 +664,6 @@ class ChatThreadsApi
         $query = \GuzzleHttp\Psr7\build_query($queryParams);
         return new Request(
             'GET',
-            $this->config->getHost() . $resourcePath . ($query ? "?{$query}" : ''),
-            $headers,
-            $httpBody
-        );
-    }
-
-    /**
-     * Operation updateChatThreadPredefinedText
-     *
-     * Updates a thread's predefined text
-     *
-     * @param  int $threadId thread id (required)
-     * @param  int $predefinedTextId predefined text id (required)
-     * @param  \Metatavu\Pakkasmarja\Api\Model\ChatThreadPredefinedText $payload predefined text (required)
-     *
-     * @throws \Metatavu\Pakkasmarja\ApiException on non-2xx response
-     * @throws \InvalidArgumentException
-     * @return \Metatavu\Pakkasmarja\Api\Model\ChatThreadPredefinedText
-     */
-    public function updateChatThreadPredefinedText($threadId, $predefinedTextId, $payload)
-    {
-        list($response) = $this->updateChatThreadPredefinedTextWithHttpInfo($threadId, $predefinedTextId, $payload);
-        return $response;
-    }
-
-    /**
-     * Operation updateChatThreadPredefinedTextWithHttpInfo
-     *
-     * Updates a thread's predefined text
-     *
-     * @param  int $threadId thread id (required)
-     * @param  int $predefinedTextId predefined text id (required)
-     * @param  \Metatavu\Pakkasmarja\Api\Model\ChatThreadPredefinedText $payload predefined text (required)
-     *
-     * @throws \Metatavu\Pakkasmarja\ApiException on non-2xx response
-     * @throws \InvalidArgumentException
-     * @return array of \Metatavu\Pakkasmarja\Api\Model\ChatThreadPredefinedText, HTTP status code, HTTP response headers (array of strings)
-     */
-    public function updateChatThreadPredefinedTextWithHttpInfo($threadId, $predefinedTextId, $payload)
-    {
-        $returnType = '\Metatavu\Pakkasmarja\Api\Model\ChatThreadPredefinedText';
-        $request = $this->updateChatThreadPredefinedTextRequest($threadId, $predefinedTextId, $payload);
-
-        try {
-
-            try {
-                $response = $this->client->send($request);
-            } catch (RequestException $e) {
-                throw new ApiException(
-                    "[{$e->getCode()}] {$e->getMessage()}",
-                    $e->getCode(),
-                    $e->getResponse() ? $e->getResponse()->getHeaders() : null
-                );
-            }
-
-            $statusCode = $response->getStatusCode();
-
-            if ($statusCode < 200 || $statusCode > 299) {
-                throw new ApiException(
-                    sprintf(
-                        '[%d] Error connecting to the API (%s)',
-                        $statusCode,
-                        $request->getUri()
-                    ),
-                    $statusCode,
-                    $response->getHeaders(),
-                    $response->getBody()
-                );
-            }
-
-            $responseBody = $response->getBody();
-            if ($returnType === '\SplFileObject') {
-                $content = $responseBody; //stream goes to serializer
-            } else {
-                $content = $responseBody->getContents();
-                if ($returnType !== 'string') {
-                    $content = json_decode($content);
-                }
-            }
-
-            return [
-                ObjectSerializer::deserialize($content, $returnType, []),
-                $response->getStatusCode(),
-                $response->getHeaders()
-            ];
-
-        } catch (ApiException $e) {
-            switch ($e->getCode()) {
-                case 200:
-                    $data = ObjectSerializer::deserialize(
-                        $e->getResponseBody(),
-                        '\Metatavu\Pakkasmarja\Api\Model\ChatThreadPredefinedText',
-                        $e->getResponseHeaders()
-                    );
-                    $e->setResponseObject($data);
-                    break;
-                case 400:
-                    $data = ObjectSerializer::deserialize(
-                        $e->getResponseBody(),
-                        '\Metatavu\Pakkasmarja\Api\Model\BadRequest',
-                        $e->getResponseHeaders()
-                    );
-                    $e->setResponseObject($data);
-                    break;
-                case 403:
-                    $data = ObjectSerializer::deserialize(
-                        $e->getResponseBody(),
-                        '\Metatavu\Pakkasmarja\Api\Model\Forbidden',
-                        $e->getResponseHeaders()
-                    );
-                    $e->setResponseObject($data);
-                    break;
-                case 500:
-                    $data = ObjectSerializer::deserialize(
-                        $e->getResponseBody(),
-                        '\Metatavu\Pakkasmarja\Api\Model\InternalServerError',
-                        $e->getResponseHeaders()
-                    );
-                    $e->setResponseObject($data);
-                    break;
-            }
-            throw $e;
-        }
-    }
-
-    /**
-     * Operation updateChatThreadPredefinedTextAsync
-     *
-     * Updates a thread's predefined text
-     *
-     * @param  int $threadId thread id (required)
-     * @param  int $predefinedTextId predefined text id (required)
-     * @param  \Metatavu\Pakkasmarja\Api\Model\ChatThreadPredefinedText $payload predefined text (required)
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
-     */
-    public function updateChatThreadPredefinedTextAsync($threadId, $predefinedTextId, $payload)
-    {
-        return $this->updateChatThreadPredefinedTextAsyncWithHttpInfo($threadId, $predefinedTextId, $payload)
-            ->then(
-                function ($response) {
-                    return $response[0];
-                }
-            );
-    }
-
-    /**
-     * Operation updateChatThreadPredefinedTextAsyncWithHttpInfo
-     *
-     * Updates a thread's predefined text
-     *
-     * @param  int $threadId thread id (required)
-     * @param  int $predefinedTextId predefined text id (required)
-     * @param  \Metatavu\Pakkasmarja\Api\Model\ChatThreadPredefinedText $payload predefined text (required)
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
-     */
-    public function updateChatThreadPredefinedTextAsyncWithHttpInfo($threadId, $predefinedTextId, $payload)
-    {
-        $returnType = '\Metatavu\Pakkasmarja\Api\Model\ChatThreadPredefinedText';
-        $request = $this->updateChatThreadPredefinedTextRequest($threadId, $predefinedTextId, $payload);
-
-        return $this->client
-            ->sendAsync($request)
-            ->then(
-                function ($response) use ($returnType) {
-                    $responseBody = $response->getBody();
-                    if ($returnType === '\SplFileObject') {
-                        $content = $responseBody; //stream goes to serializer
-                    } else {
-                        $content = $responseBody->getContents();
-                        if ($returnType !== 'string') {
-                            $content = json_decode($content);
-                        }
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, $returnType, []),
-                        $response->getStatusCode(),
-                        $response->getHeaders()
-                    ];
-                },
-                function ($exception) {
-                    $response = $exception->getResponse();
-                    $statusCode = $response->getStatusCode();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $statusCode,
-                            $exception->getRequest()->getUri()
-                        ),
-                        $statusCode,
-                        $response->getHeaders(),
-                        $response->getBody()
-                    );
-                }
-            );
-    }
-
-    /**
-     * Create request for operation 'updateChatThreadPredefinedText'
-     *
-     * @param  int $threadId thread id (required)
-     * @param  int $predefinedTextId predefined text id (required)
-     * @param  \Metatavu\Pakkasmarja\Api\Model\ChatThreadPredefinedText $payload predefined text (required)
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Psr7\Request
-     */
-    protected function updateChatThreadPredefinedTextRequest($threadId, $predefinedTextId, $payload)
-    {
-        // verify the required parameter 'threadId' is set
-        if ($threadId === null) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $threadId when calling updateChatThreadPredefinedText'
-            );
-        }
-        // verify the required parameter 'predefinedTextId' is set
-        if ($predefinedTextId === null) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $predefinedTextId when calling updateChatThreadPredefinedText'
-            );
-        }
-        // verify the required parameter 'payload' is set
-        if ($payload === null) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $payload when calling updateChatThreadPredefinedText'
-            );
-        }
-
-        $resourcePath = '/chatThreads/{threadId}/predefinedTexts/{predefinedTextId}';
-        $formParams = [];
-        $queryParams = [];
-        $headerParams = [];
-        $httpBody = '';
-        $multipart = false;
-
-
-        // path params
-        if ($threadId !== null) {
-            $resourcePath = str_replace(
-                '{' . 'threadId' . '}',
-                ObjectSerializer::toPathValue($threadId),
-                $resourcePath
-            );
-        }
-        // path params
-        if ($predefinedTextId !== null) {
-            $resourcePath = str_replace(
-                '{' . 'predefinedTextId' . '}',
-                ObjectSerializer::toPathValue($predefinedTextId),
-                $resourcePath
-            );
-        }
-
-        // body params
-        $_tempBody = null;
-        if (isset($payload)) {
-            $_tempBody = $payload;
-        }
-
-        if ($multipart) {
-            $headers= $this->headerSelector->selectHeadersForMultipart(
-                ['application/json;charset=utf-8']
-            );
-        } else {
-            $headers = $this->headerSelector->selectHeaders(
-                ['application/json;charset=utf-8'],
-                ['application/json;charset=utf-8']
-            );
-        }
-
-        // for model (json/xml)
-        if (isset($_tempBody)) {
-            $httpBody = $_tempBody; // $_tempBody is the method argument, if present
-
-        } elseif (count($formParams) > 0) {
-            if ($multipart) {
-                $multipartContents = [];
-                foreach ($formParams as $formParamName => $formParamValue) {
-                    $multipartContents[] = [
-                        'name' => $formParamName,
-                        'contents' => $formParamValue
-                    ];
-                }
-                // for HTTP post (form)
-                $httpBody = new MultipartStream($multipartContents);
-
-            } elseif ($headers['Content-Type'] === 'application/json') {
-                $httpBody = \GuzzleHttp\json_encode($formParams);
-
-            } else {
-                // for HTTP post (form)
-                $httpBody = \GuzzleHttp\Psr7\build_query($formParams);
-            }
-        }
-
-        // this endpoint requires API key authentication
-        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
-        if ($apiKey !== null) {
-            $headers['Authorization'] = $apiKey;
-        }
-
-        $defaultHeaders = [];
-        if ($this->config->getUserAgent()) {
-            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
-        }
-
-        $headers = array_merge(
-            $defaultHeaders,
-            $headerParams,
-            $headers
-        );
-
-        $query = \GuzzleHttp\Psr7\build_query($queryParams);
-        return new Request(
-            'PUT',
             $this->config->getHost() . $resourcePath . ($query ? "?{$query}" : ''),
             $headers,
             $httpBody
