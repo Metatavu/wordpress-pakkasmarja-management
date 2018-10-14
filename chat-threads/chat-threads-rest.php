@@ -91,7 +91,7 @@
        * @return String[] array of predefined texts
        */
       public function getPredefinedTexts($object) {
-        $texts = get_post_meta($object[ 'id' ], 'pm-predefined-texts');
+        $texts = get_post_meta($object[ 'id' ], 'pm-predefined-texts')[0];
         return empty($texts) ? [] : $texts;
       }
 

@@ -36,7 +36,7 @@
         $answerType = get_post_meta($chatThreadId, 'pm-answer-type', true);
         echo sprintf('<select style="width:100%%" name="answer-type">');
         echo sprintf('<option value="TEXT">%s</option>', __('Text', 'pakkasmarja_management'));
-        echo sprintf('<option value="SELECT"%s>%s</option>', $answerType == "SELECT" ? "selected" : "", __('Select', 'pakkasmarja_management'));
+        echo sprintf('<option value="POLL"%s>%s</option>', $answerType == "POLL" ? "selected" : "", __('Poll', 'pakkasmarja_management'));
         echo sprintf('</select>');
       }
 
