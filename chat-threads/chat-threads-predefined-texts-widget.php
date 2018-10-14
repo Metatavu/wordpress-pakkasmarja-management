@@ -24,19 +24,18 @@
        * Adds predefined texts metabox
        */
       public function addMetaBoxes() {
-        $metaboxTitle = __('Predefined Texts', 'pakkasmarja_management');
-        
+        $metaboxTitle = __('Poll answer options', 'pakkasmarja_management');
       	add_meta_box('chat-thread-predefined-texts-meta-box', $metaboxTitle, [$this, 'renderPredefinedTextsMetaBox'], 'chat-thread', 'normal', 'default');
       }
       
       /**
        * Renders predefined texts metabox
        */
-      public function renderPredefinedTextsMetaBox($chatThread) {
-        wp_enqueue_script('chat-threads-predefined-texts-widget', plugin_dir_url(__FILE__) . 'chat-threads-predefined-texts-widget.js', null, []);
+      public function renderPredefinedTextsMetaBox($chatThread) {        
         $chatThreadId = $chatThread->ID;
+        wp_enqueue_script('chat-threads-predefined-texts-widget', plugin_dir_url(__FILE__) . 'chat-threads-predefined-texts-widget.js', null, []);
         $texts = get_post_meta($chatThreadId, 'pm-predefined-texts')[0];
-        $helpText = __('Enter the answer options into the text box below.', 'pakkasmarja_management');
+        $helpText = __('Enter the poll answer options into the text box below.', 'pakkasmarja_management');
         echo sprintf('<p>%s</p>', $helpText);
 
         if (empty($texts)) {
