@@ -32,6 +32,40 @@
             ] 
           ]
         ]);
+
+        register_rest_field( 'chat-thread', 'predefined-texts', [
+          'get_callback' => [$this, 'getPredefinedTexts'],
+          'update_callback' => null,
+          'schema' => [
+            "type" => "array",
+        	  "description" => "Array of predefined texts",
+            "items" => [
+              "text" => [
+                "description" => "Predefined text",
+                "type" => "string"
+              ]
+            ]
+          ]
+        ]);
+
+        register_rest_field('chat-thread', 'answer-type', [
+          'get_callback' => [$this, 'getAnswerType'],
+          'update_callback' => null,
+          'schema' => [
+            "type" => "string",
+        	  "description" => "Answer type"
+          ]
+        ]);
+
+        register_rest_field('chat-thread', 'expires', [
+          'get_callback' => [$this, 'getExpires'],
+          'update_callback' => null,
+          'schema' => [
+            "type" => "string",
+        	  "description" => "Expire time"
+          ]
+        ]);
+
       }
 
       public function getUserGroupsMeta($object) {
@@ -50,6 +84,31 @@
         }
         
       	return $result;
+      }
+
+      /**
+       * Returns predefined texts for REST field
+       * @return String[] array of predefined texts
+       */
+      public function getPredefinedTexts($object) {
+        $texts = get_post_meta($object[ 'id' ], 'pm-predefined-texts')[0];
+        return empty($texts) ? [] : $texts;
+      }
+
+      /**
+       * Returns answer type for REST field
+       * @return String answer type
+       */
+      public function getAnswerType($object) {
+        return get_post_meta($object[ 'id' ], 'pm-answer-type', true);
+      }
+
+      /**
+       * Returns expires for REST field
+       * @return String expires
+       */
+      public function getExpires($object) {
+        return get_post_meta($object[ 'id' ], 'pm-expires', true);
       }
 
     }

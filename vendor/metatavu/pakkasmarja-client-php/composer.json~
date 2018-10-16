@@ -1,6 +1,10 @@
 {
     "name": "metatavu/pakkasmarja-client-php",
-    "version": "0.0.26",
+<<<<<<< HEAD
+    "version": "0.0.25",
+=======
+    "version": "0.0.24",
+>>>>>>> 452345ab4b2c4d208c7835a39b7ac3d33fd584fd
     "description": "",
     "keywords": [
         "swagger",

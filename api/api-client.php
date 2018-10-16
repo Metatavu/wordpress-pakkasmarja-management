@@ -7,6 +7,7 @@
 
   require_once( __DIR__ . '/../vendor/autoload.php');
   require_once( __DIR__ . '/contracts-api-ext.php');
+  require_once( __DIR__ . '/chat-threads-api-ext.php');
 
   if (!class_exists( '\Metatavu\Pakkasmarja\Api\ApiClient' ) ) {
     
@@ -78,6 +79,15 @@
       }
 
       /**
+       * Returns new instance of ThreadsApi
+       * 
+       * @return \Metatavu\Pakkasmarja\Api\ChatThreadsApiExt
+       */
+      public static function getChatThreadsApi() {
+        return new \Metatavu\Pakkasmarja\Api\ChatThreadsApiExt(null, self::getConfiguration());
+      }
+
+      /**
        * @deprecated
        */
       public function listUserGroups() {
@@ -132,10 +142,10 @@
        * @returns \Metatavu\Pakkasmarja\Configuration
        */
       private static function getConfiguration() {
-       $result = \Metatavu\Pakkasmarja\Configuration::getDefaultConfiguration();
-       $result->setHost(\Metatavu\Pakkasmarja\Settings\Settings::getValue("api-url"));
-       $result->setApiKey("Authorization", "Bearer " . self::getAccessToken());
-       return $result;
+        $result = \Metatavu\Pakkasmarja\Configuration::getDefaultConfiguration();
+        $result->setHost(\Metatavu\Pakkasmarja\Settings\Settings::getValue("api-url"));
+        $result->setApiKey("Authorization", "Bearer " . self::getAccessToken());
+        return $result;
       }
 
       /**
