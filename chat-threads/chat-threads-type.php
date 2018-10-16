@@ -75,6 +75,12 @@
         ]);
       }
 
+      /**
+       * Registers extra actions into chat thread post type
+       * 
+       * @param {Array} $actions actions
+       * @param {\WP_Post} $post post
+       */
       public function postRowActionsFilter($actions, $post) {
         if ($post->post_type == "chat-thread") {
           if (get_post_meta($post->ID, 'pm-answer-type', true) === "POLL") {
