@@ -41,8 +41,8 @@
         
         $dateFormat = get_option('date_format');
         $datepickerDateFormat = \str_replace([ 'd', 'j', 'l', 'z', 'F', 'M', 'n', 'm', 'Y', 'y' ], [ 'dd', 'd', 'DD', 'o', 'MM', 'M', 'm', 'mm', 'yy', 'y' ], $dateFormat );
-        $expireDate = isset($expires) ? new \DateTime($expires) : null;
-        $expireDateFormatted = isset($expireDate) ? $expireDate->format($dateFormat) : "";
+        $expireDate = !empty($expires) ? new \DateTime($expires) : null;
+        $expireDateFormatted = !empty($expires) ? $expireDate->format($dateFormat) : "";
 
         wp_localize_script('chat-threads-expires-widget', 'locales', [
           'monthNames'        => \array_values( $wp_locale->month ),
