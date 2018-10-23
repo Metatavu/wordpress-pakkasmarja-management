@@ -3,7 +3,7 @@
  * Created on Jun 21, 2017
  * Plugin Name: Pakkasmarja Management
  * Description: Management functions for Pakkasmarja Application
- * Version: 0.1.15
+ * Version: 0.1.16
  * Author: Metatavu Oy
  */
 
