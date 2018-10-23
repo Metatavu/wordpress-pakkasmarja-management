@@ -57,7 +57,10 @@
         
 
         echo sprintf('<input name="expires" type="hidden" value="%s"/>', empty($expires) ? "" : $expires);
-        echo sprintf('<input name="expires-dp" style="width:100%%" value="%s"/>', $expireDateFormatted);
+        echo '<div style="width: 100%; position: relative">';
+        echo sprintf('<input name="expires-dp" readonly="readonly" style="width:calc(100%% - 20px); " value="%s"/>', $expireDateFormatted);
+        echo sprintf('<a class="expires-clear" style="display: inline-block; position: absolute; right: 0px; margin-top: 4px; cursor: pointer;">X</a>');
+        echo "</div>";
       }
 
       /**
