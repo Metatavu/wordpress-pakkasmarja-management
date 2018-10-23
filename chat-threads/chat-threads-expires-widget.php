@@ -37,6 +37,8 @@
 
         $chatThreadId = $chatThread->ID;
         $expires = get_post_meta($chatThreadId, 'pm-expires', true);
+        wp_enqueue_style('jquery-ui', '//cdn.metatavu.io/libs/jquery-ui/1.12.1/jquery-ui.min.css');
+        wp_enqueue_script('jquery-ui-datepicker');
         wp_enqueue_script('chat-threads-expires-widget', plugin_dir_url(__FILE__) . 'chat-threads-expires-widget.js', null, ['jquery-ui-datepicker']);
         
         $dateFormat = get_option('date_format');
