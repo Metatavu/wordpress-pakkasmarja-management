@@ -41,8 +41,8 @@
         
         $dateFormat = get_option('date_format');
         $datepickerDateFormat = \str_replace([ 'd', 'j', 'l', 'z', 'F', 'M', 'n', 'm', 'Y', 'y' ], [ 'dd', 'd', 'DD', 'o', 'MM', 'M', 'm', 'mm', 'yy', 'y' ], $dateFormat );
-        $expireDate = isset($expires) ? new \DateTime($expires) : null;
-        $expireDateFormatted = isset($expireDate) ? $expireDate->format($dateFormat) : "";
+        $expireDate = !empty($expires) ? new \DateTime($expires) : null;
+        $expireDateFormatted = !empty($expires) ? $expireDate->format($dateFormat) : "";
 
         wp_localize_script('chat-threads-expires-widget', 'locales', [
           'monthNames'        => \array_values( $wp_locale->month ),
@@ -57,7 +57,10 @@
         
 
         echo sprintf('<input name="expires" type="hidden" value="%s"/>', empty($expires) ? "" : $expires);
-        echo sprintf('<input name="expires-dp" style="width:100%%" value="%s"/>', $expireDateFormatted);
+        echo '<div style="width: 100%; position: relative">';
+        echo sprintf('<input name="expires-dp" readonly="readonly" style="width:calc(100%% - 20px); " value="%s"/>', $expireDateFormatted);
+        echo sprintf('<a class="expires-clear" style="display: inline-block; position: absolute; right: 0px; margin-top: 4px; cursor: pointer;">X</a>');
+        echo "</div>";
       }
 
       /**
