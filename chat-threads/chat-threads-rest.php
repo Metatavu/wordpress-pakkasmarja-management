@@ -57,6 +57,15 @@
           ]
         ]);
 
+        register_rest_field('chat-thread', 'poll-allow-other', [
+          'get_callback' => [$this, 'getPollAllowOther'],
+          'update_callback' => null,
+          'schema' => [
+            "type" => "boolean",
+        	  "description" => "Whether polls allow other answers"
+          ]
+        ]);
+
         register_rest_field('chat-thread', 'expires', [
           'get_callback' => [$this, 'getExpires'],
           'update_callback' => null,
@@ -101,6 +110,14 @@
        */
       public function getAnswerType($object) {
         return get_post_meta($object[ 'id' ], 'pm-answer-type', true);
+      }
+
+      /**
+       * Returns poll allow other for REST field
+       * @return Boolean Whether polls allow other answers
+       */
+      public function getPollAllowOther($object) {
+        return get_post_meta($object[ 'id' ], 'pm-poll-allow-other', true) == "true";
       }
 
       /**
