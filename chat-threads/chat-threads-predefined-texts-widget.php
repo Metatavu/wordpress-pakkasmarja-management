@@ -37,8 +37,8 @@
         $allowOther = get_post_meta($chatThreadId, 'pm-poll-allow-other', true) == "true";
 
         echo "<p>";
-        echo sprintf('<input id="poll-Allow-other" name="poll-Allow-other" value="true" type="checkbox" %s/>', $allowOther ? "checked" : "");
-        echo sprintf('<label style="vertical-align:top" for="poll-Allow-other">%s</label>', __('Allow other poll answers', 'pakkasmarja_management'));
+        echo sprintf('<input id="poll-allow-other" name="poll-allow-other" value="true" type="checkbox" %s/>', $allowOther ? "checked" : "");
+        echo sprintf('<label style="vertical-align:top" for="poll-allow-other">%s</label>', __('Allow other poll answers', 'pakkasmarja_management'));
         echo "</p>";
 
         wp_enqueue_script('chat-threads-predefined-texts-widget', plugin_dir_url(__FILE__) . 'chat-threads-predefined-texts-widget.js', null, []);
@@ -61,7 +61,7 @@
        */
       public function savePredefinedTexts($chatThreadId) {
         $predefinedTexts = array_filter($_POST['predefined-texts']);
-        $allowOther = filter_input(INPUT_POST, 'poll-Allow-other');
+        $allowOther = filter_input(INPUT_POST, 'poll-allow-other');
 
         update_post_meta($chatThreadId, 'pm-predefined-texts', $predefinedTexts);      
         update_post_meta($chatThreadId, 'pm-poll-allow-other', $allowOther);      
