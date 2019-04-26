@@ -75,6 +75,7 @@ class Contract implements ModelInterface, ArrayAccess
         'rejectComment' => 'string',
         'areaDetails' => '\Metatavu\Pakkasmarja\Api\Model\AreaDetail[]',
         'deliverAll' => 'bool',
+        'proposedDeliverAll' => 'bool',
         'status' => 'string',
         'remarks' => 'string'
     ];
@@ -104,6 +105,7 @@ class Contract implements ModelInterface, ArrayAccess
         'rejectComment' => null,
         'areaDetails' => null,
         'deliverAll' => null,
+        'proposedDeliverAll' => null,
         'status' => null,
         'remarks' => null
     ];
@@ -154,6 +156,7 @@ class Contract implements ModelInterface, ArrayAccess
         'rejectComment' => 'rejectComment',
         'areaDetails' => 'areaDetails',
         'deliverAll' => 'deliverAll',
+        'proposedDeliverAll' => 'proposedDeliverAll',
         'status' => 'status',
         'remarks' => 'remarks'
     ];
@@ -183,6 +186,7 @@ class Contract implements ModelInterface, ArrayAccess
         'rejectComment' => 'setRejectComment',
         'areaDetails' => 'setAreaDetails',
         'deliverAll' => 'setDeliverAll',
+        'proposedDeliverAll' => 'setProposedDeliverAll',
         'status' => 'setStatus',
         'remarks' => 'setRemarks'
     ];
@@ -212,6 +216,7 @@ class Contract implements ModelInterface, ArrayAccess
         'rejectComment' => 'getRejectComment',
         'areaDetails' => 'getAreaDetails',
         'deliverAll' => 'getDeliverAll',
+        'proposedDeliverAll' => 'getProposedDeliverAll',
         'status' => 'getStatus',
         'remarks' => 'getRemarks'
     ];
@@ -316,6 +321,7 @@ class Contract implements ModelInterface, ArrayAccess
         $this->container['rejectComment'] = isset($data['rejectComment']) ? $data['rejectComment'] : null;
         $this->container['areaDetails'] = isset($data['areaDetails']) ? $data['areaDetails'] : null;
         $this->container['deliverAll'] = isset($data['deliverAll']) ? $data['deliverAll'] : null;
+        $this->container['proposedDeliverAll'] = isset($data['proposedDeliverAll']) ? $data['proposedDeliverAll'] : null;
         $this->container['status'] = isset($data['status']) ? $data['status'] : null;
         $this->container['remarks'] = isset($data['remarks']) ? $data['remarks'] : null;
     }
@@ -809,6 +815,30 @@ class Contract implements ModelInterface, ArrayAccess
     public function setDeliverAll($deliverAll)
     {
         $this->container['deliverAll'] = $deliverAll;
+
+        return $this;
+    }
+
+    /**
+     * Gets proposedDeliverAll
+     *
+     * @return bool
+     */
+    public function getProposedDeliverAll()
+    {
+        return $this->container['proposedDeliverAll'];
+    }
+
+    /**
+     * Sets proposedDeliverAll
+     *
+     * @param bool $proposedDeliverAll
+     *
+     * @return $this
+     */
+    public function setProposedDeliverAll($proposedDeliverAll)
+    {
+        $this->container['proposedDeliverAll'] = $proposedDeliverAll;
 
         return $this;
     }

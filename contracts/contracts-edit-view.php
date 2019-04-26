@@ -79,6 +79,7 @@
             $remarks = $this->getMemoPostString("remarks");
             $quantityComment = $this->getMemoPostString("quantity-comment");
             $deliveryPlaceComment = $this->getMemoPostString("delivery-place-comment");
+            $deliverAll = "true" == $this->getMemoPostString("deliver-all");
             $sapId = $this->getPostString("sap-id");
 
             if ($id === 'NEW') {
@@ -92,7 +93,7 @@
                 $id = $contract->getId();
               }
             } else {
-              if (!$this->updateContract($contract, $sapId, $contractQuantity, $status, $deliveryPlaceId, $remarks, $quantityComment, $deliveryPlaceComment)) {
+              if (!$this->updateContract($contract, $sapId, $contractQuantity, $status, $deliveryPlaceId, $remarks, $quantityComment, $deliveryPlaceComment, $deliverAll)) {
                 echo sprintf('<div class="notice-error notice">%s</div>', htmlspecialchars(__('Failed to update contract', 'pakkasmarja_management')));
               }
             }
@@ -166,12 +167,9 @@
         $this->renderMemoInput(__('Quantity Comment', 'pakkasmarja_management'), "quantity-comment", $contract ? $contract->getQuantityComment() : null);
         $this->renderNumberInput(__('Contract Quantity', 'pakkasmarja_management'), "contract-quantity", $contract ? $contract->getContractQuantity() : "0");
 
+        $this->renderDeliverAllInput($contract ? $contract->getDeliverAll() : false);
+        echo sprintf('<p style="font-size: 18px">Viljelijän ehdotus: %s</p>', ($contract ? $contract->getProposedDeliverAll() : false) ? "Kyllä" : "Ei");
 
-        if ($contract && $contract->getDeliverAll()) {
-          echo sprintf('<br/><br/><b style="font-size: 18px;">%s</b>', __('Farmed delivers all berries to company', 'pakkasmarja_management'));
-        }
-
-        $this->renderLine();
         $this->renderDeliveryPlaceInput(__('Delivery Place', 'pakkasmarja_management'), "delivery-place", $contract ? $contract->getDeliveryPlaceId() : null);
         $this->renderInlineTextField(__('Proposed Delivery Place', 'pakkasmarja_management'), $contract ? Formatter::getDeliveryPlaceName($contract->getProposedDeliveryPlaceId()) : null);        
         $this->renderMemoInput(__('Delivery Place Comment', 'pakkasmarja_management'), "delivery-place-comment", $contract ? $contract->getDeliveryPlaceComment() : null);
@@ -224,6 +222,19 @@
       private function renderContactInput($label, $name) {
         echo '<input type="hidden" name="' . $name . '"/>';
         $this->renderTextInput($label, "$name-ac", null);
+      }
+
+      /**
+       * Renders a deliver all dropdown input
+       * 
+       * @param Boolean $value value
+       */
+      private function renderDeliverAllInput($value) {
+        $options = [];
+        $options["true"] = "Kyllä";
+        $options["false"] = "Ei";
+
+        $this->renderDropdownInput(__('Farmed delivers all berries to company', 'pakkasmarja_management'), "deliver-all",  $value ? "true" : "false", $options);
       }
 
       /**
@@ -321,6 +332,7 @@
           $contract->setDeliveryPlaceComment($deliveryPlaceComment);
           $contract->setYear(date("Y"));
           $contract->setDeliverAll(false);
+          $contract->setProposedDeliverAll(false);
           $contract->setAreaDetails([]);
 
           return $this->contractsApi->createContract($contract);
@@ -346,9 +358,10 @@
        * @param String $remarks remark
        * @param String $quantityComment quantity comment
        * @param String $deliveryPlaceComment delivery place comment
+       * @param boolean $deliverAll
        * @return \Metatavu\Pakkasmarja\Api\Model\Contract updated contract
        */
-      private function updateContract($contract, $sapId, $contractQuantity, $status, $deliveryPlaceId, $remarks, $quantityComment, $deliveryPlaceComment) {
+      private function updateContract($contract, $sapId, $contractQuantity, $status, $deliveryPlaceId, $remarks, $quantityComment, $deliveryPlaceComment, $deliverAll) {
         try {
           $contract->setSapId($sapId);
           $contract->setContractQuantity($contractQuantity);
@@ -357,6 +370,7 @@
           $contract->setRemarks($remarks);
           $contract->setQuantityComment($quantityComment);
           $contract->setDeliveryPlaceComment($deliveryPlaceComment);
+          $contract->setDeliverAll($deliverAll);
           return $this->contractsApi->updateContract($contract->getId(), $contract);
         } catch (\Metatavu\Pakkasmarja\ApiException $e) {
           echo '<div class="error notice">';
